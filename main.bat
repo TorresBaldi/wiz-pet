@@ -1,7 +1,12 @@
 @echo off
 cd /d %~dp0
-del main.dcb
+
+:: COMPILO PRG
 ..\..\bin\bgdc.exe -g main.prg
 
-IF ERRORLEVEL 1 ..\..\bin\bgdi.exe main.dcb
-IF NOT ERRORLEVEL 1 pause
+:: EN CASO CORRECTO EJECUTO
+IF NOT ERRORLEVEL 2 ..\..\bin\bgdi.exe main.dcb
+IF NOT ERRORLEVEL 2 del main.dcb
+
+:: EN CASO INCORRECTO MUESTRO ERROR
+IF ERRORLEVEL 2 pause
