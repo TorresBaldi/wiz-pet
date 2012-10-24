@@ -1,6 +1,9 @@
 # BennuGD
 *.dcb
 
+# github wiki
+wiki/
+
 # Windows image file caches
 Thumbs.db
 
