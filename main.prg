@@ -34,6 +34,8 @@ END
 
 include "prg/globals.prg";
 
+include "prg/time.prg";
+
 /* ------------------------------------------------------------------------- */
 
 
@@ -46,81 +48,20 @@ BEGIN
 	
 	write_var(0,0,0,0,fps);
 	
-	calcular_tiempo();
+	// test
+	say ( hms_a_seg( seg_a_hms( 199 ) ) );
 
 	LOOP
 
 		IF ( EXIT_STATUS OR KEY(_ESC) )
 		
-			guardar_tiempo();
-		
 			exit();
+			
 		END
 
 		frame;
 
 	END
 
-
-END
-
-function string segundos_a_string( int segundos )
-
-private
-
-	hms t;
-
-end
-
-begin
-
-	t.s = segundos;
-
-	while ( t.s > 60 )
-	
-		t.s -= 60;
-		t.m += 1;
-	
-	end
-	
-	while ( t.m > 60 )
-	
-		t.m -= 60;
-		t.h += 1;
-	
-	end
-	
-	return "" + t.h + "h " + t.m + "m " + t.s + "s";
-
-end
-
-process guardar_tiempo()
-
-BEGIN
-
-	// guardo el tiempo de salida
-	time.last = time();
-	
-	// aumento el tiempo que paso dentro del juego
-	time.delta += time.last - time.current;
-	
-	// guardo el archivo
-	save( "time.dat", time );
-
-END
-
-process calcular_tiempo()
-
-BEGIN
-
-	// cargo el archivo
-	load( "time.dat", time );
-
-	// calculo el tiempo que paso desde la ultima partida
-	time.current = time();
-	
-	time.delta += time.current - time.last;
-	
-	say( segundos_a_string( time.delta ) );
 
 END

@@ -1,3 +1,4 @@
+/* ------------------------------------------------------------------------- */
 TYPE hms
 
 	// tipo de dato hms para guardar tiempos
@@ -7,6 +8,7 @@ TYPE hms
 
 END
 
+/* ------------------------------------------------------------------------- */
 GLOBAL
 
 	STRUCT time
@@ -22,7 +24,8 @@ GLOBAL
 		int hambre;
 		int salud;
 		int diversion;
-		int edad;
+		
+		hms edad;
 	
 	END
 
