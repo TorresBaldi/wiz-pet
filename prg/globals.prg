@@ -12,15 +12,11 @@ END
 GLOBAL
 
 	// unidad de tiempo del juego
-	int tick = 50;
-
-	STRUCT time
+	int tick = 100;
 	
-		int current;
-		int last;
-		int delta;
-		
-	END
+	// 
+	int last_time;
+	int time_delta;
 
 	STRUCT stats
 	

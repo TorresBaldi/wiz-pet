@@ -55,15 +55,44 @@ BEGIN
 	// mostrar hud
 	mostrar_hud();
 	
-	calcular_ticks();
+	//cargo tiempo anterior
+	if ( fexists("time.dat") )
+		load( "time.dat", last_time );
+	else
+		last_time = time();
+	end
+	
+	// calculo el tiempo que paso
+	time_delta = time() - last_time;
+	
+	// modifico los stats
+	calcular_ticks ( time_delta );
 
 	LOOP
 
 		IF ( EXIT_STATUS OR KEY(_ESC) )
+			
+			last_time = time();
+			
+			save( "time.dat", last_time );
 		
 			exit();
 			
 		END		
+	
+		// cada tick
+		IF ( timer[0] > tick )
+		
+			timer[0] -= tick;
+			
+			calcular_ticks(1);
+		
+		END
+		
+		//debug
+		if ( key(_space) )
+			calcular_ticks(5);
+		end
 
 		frame;
 
