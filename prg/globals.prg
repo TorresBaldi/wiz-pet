@@ -12,7 +12,7 @@ END
 GLOBAL
 
 	// unidad de tiempo del juego
-	int tick = 500;
+	int tick = 50;
 
 	STRUCT time
 	
