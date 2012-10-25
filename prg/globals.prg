@@ -11,6 +11,9 @@ END
 /* ------------------------------------------------------------------------- */
 GLOBAL
 
+	// unidad de tiempo del juego
+	int tick = 500;
+
 	STRUCT time
 	
 		int current;
@@ -21,9 +24,11 @@ GLOBAL
 
 	STRUCT stats
 	
-		int hambre;
-		int salud;
-		int diversion;
+		int hambre = 1000;
+		int salud = 900;
+		int diversion = 500;
+		int higiene = 900;
+		int energia = 900;
 		
 		hms edad;
 	
