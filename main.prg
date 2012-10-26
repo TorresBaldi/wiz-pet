@@ -38,6 +38,7 @@ include "prg/globals.prg";
 include "prg/time.prg";
 include "prg/hud.prg";
 include "prg/game.prg";
+include "prg/pet.prg";
 
 /* ------------------------------------------------------------------------- */
 
@@ -67,6 +68,9 @@ BEGIN
 	
 	// modifico los stats
 	calcular_ticks ( time_delta );
+	
+	// inicio el bucle del juego
+	game_loop();
 
 	LOOP
 
@@ -79,20 +83,6 @@ BEGIN
 			exit();
 			
 		END		
-	
-		// cada tick
-		IF ( timer[0] > tick )
-		
-			timer[0] -= tick;
-			
-			calcular_ticks(1);
-		
-		END
-		
-		//debug
-		if ( key(_space) )
-			calcular_ticks(5);
-		end
 
 		frame;
 

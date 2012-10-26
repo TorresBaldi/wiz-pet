@@ -1,4 +1,34 @@
 /* ------------------------------------------------------------------------- */
+PROCESS game_loop()
+
+BEGIN
+
+	// inicializacion del juego
+	mascota();
+
+	loop
+	
+		// cada tick
+		IF ( timer[0] >= tick )
+		
+			timer[0] -= tick;
+			
+			calcular_ticks(1);
+		
+		END
+		
+		//debug
+		if ( key(_space) )
+			calcular_ticks(5);
+		end
+		
+		frame;
+	
+	end
+
+END
+
+/* ------------------------------------------------------------------------- */
 PROCESS calcular_ticks( int ticks )
 
 
