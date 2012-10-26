@@ -44,7 +44,7 @@ BEGIN
 		
 		//crezco
 		if ( stats.ticks % 10 == 0 )
-			stats.edad++;
+			stats.edad = stats.ticks / 10;
 			if ( stats.edad > AGES-1 ) stats.edad = AGES-1; end // limite
 		end
 		
