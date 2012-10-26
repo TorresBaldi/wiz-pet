@@ -26,20 +26,18 @@ GLOBAL
 	// unidad de tiempo del juego
 	int tick = 100;
 	
-	// 
-	int last_time;
-	int time_delta;
-
 	STRUCT stats
 	
 		int hambre = 1000;
-		int salud = 900;
-		int diversion = 500;
-		int higiene = 900;
-		int energia = 900;
+		int salud = 1000;
+		int diversion = 1000;
+		int higiene = 1000;
+		int energia = 1000;
 		
 		int ticks;
 		int edad;
+		
+		int last_time;
 	
 	END
 

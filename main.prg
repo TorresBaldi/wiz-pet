@@ -33,6 +33,14 @@ END
 
 /* ------------------------------------------------------------------------- */
 
+GLOBAL
+
+	time_delta;
+
+END
+
+/* ------------------------------------------------------------------------- */
+
 include "prg/globals.prg";
 
 include "prg/time.prg";
@@ -59,13 +67,13 @@ BEGIN
 	
 	//cargo tiempo anterior
 	if ( fexists("time.dat") )
-		load( "time.dat", last_time );
+		load( "time.dat", stats );
 	else
-		last_time = time();
+		stats.last_time = time();
 	end
 	
 	// calculo el tiempo que paso
-	time_delta = time() - last_time;
+	time_delta = time() - stats.last_time;
 	
 	// modifico los stats
 	calcular_ticks ( time_delta );
@@ -77,9 +85,9 @@ BEGIN
 
 		IF ( EXIT_STATUS OR KEY(_ESC) )
 			
-			last_time = time();
+			stats.last_time = time();
 			
-			save( "time.dat", last_time );
+			save( "time.dat", stats );
 		
 			exit();
 			
