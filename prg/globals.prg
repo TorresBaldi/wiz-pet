@@ -25,6 +25,7 @@ GLOBAL
 
 	// unidad de tiempo del juego
 	int tick = 100;
+	int ticks_per_age = 50;
 	
 	STRUCT stats
 	

@@ -27,7 +27,7 @@ CONST
 	SCREEN_FPS	= 60;	// frames
 	SCREEN_SKIP	= 0;	// frameskip
 	
-	SCREEN_MODE = MODE_WINDOW;	// modo de pantalla
+	SCREEN_MODE = MODE_WINDOW + WAITVSYNC;	// modo de pantalla
 
 END
 
