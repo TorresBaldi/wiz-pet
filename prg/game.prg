@@ -40,6 +40,14 @@ BEGIN
 		
 		ticks--;
 		
+		stats.ticks++;
+		
+		//crezco
+		if ( stats.ticks % 10 == 0 )
+			stats.edad++;
+			if ( stats.edad > AGES-1 ) stats.edad = AGES-1; end // limite
+		end
+		
 		//hambre
 		if ( stats.diversion > 500 )
 			stats.hambre -= 10;

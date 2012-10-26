@@ -1,4 +1,16 @@
 /* ------------------------------------------------------------------------- */
+CONST
+
+	//edades de la mascota
+	AGES = 5;
+	AGE_BABY 	= 0;
+	AGE_CHILD	= 1;
+	AGE_TEEN	= 2;
+	AGE_ADULT	= 3;
+	AGE_OLD		= 4;
+
+END
+/* ------------------------------------------------------------------------- */
 TYPE hms
 
 	// tipo de dato hms para guardar tiempos
@@ -26,7 +38,8 @@ GLOBAL
 		int higiene = 900;
 		int energia = 900;
 		
-		hms edad;
+		int ticks;
+		int edad;
 	
 	END
 

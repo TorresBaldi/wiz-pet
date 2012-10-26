@@ -2,7 +2,9 @@ process mostrar_hud()
 
 private
 
-	int txt_id[5];
+	int txt_id[10];
+	
+	int i;
 
 end
 
@@ -19,14 +21,17 @@ begin
 		txt_id[2] = write( 0, 0, 40, 0, (stats.diversion / 10) + " diversion" );
 		txt_id[3] = write( 0, 0, 50, 0, (stats.higiene / 10) + " higiene" );
 		txt_id[4] = write( 0, 0, 60, 0, (stats.energia / 10) + " energia" );
+		txt_id[5] = write( 0, 0, 70, 0, (stats.edad) + " edad" );
+		txt_id[6] = write( 0, 0, 80, 0, (stats.ticks) + " ticks" );
 		
 		frame;
 		
-		delete_text( txt_id[0] );
-		delete_text( txt_id[1] );
-		delete_text( txt_id[2] );
-		delete_text( txt_id[3] );
-		delete_text( txt_id[4] );
+		for ( i=0; i<10; i++ )
+			if ( txt_id[i] )
+				delete_text( txt_id[ i ] );
+				txt_id[i] = 0;
+			end
+		end
 		
 	end
 

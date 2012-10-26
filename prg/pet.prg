@@ -3,23 +3,35 @@ PROCESS mascota()
 
 PRIVATE
 
-	int png[2];
 	int i;
-	int png_frame;
+	
+	int grafico[AGES][2];
+	int grafico_frame;
 	
 	int direccion;
 
 END
 
 BEGIN
-
-	png[0] = load_png("png-sources/baby_1.png");
-	png[1] = load_png("png-sources/baby_2.png");
+	
+	// valores en el fpg
+	grafico[AGE_BABY][0] 	= 10;
+	grafico[AGE_BABY][1] 	= 11;
+	grafico[AGE_CHILD][0] 	= 20;
+	grafico[AGE_CHILD][1] 	= 21;
+	grafico[AGE_TEEN][0] 	= 30;
+	grafico[AGE_TEEN][1] 	= 31;
+	grafico[AGE_ADULT][0] 	= 40;
+	grafico[AGE_ADULT][1] 	= 41;
+	grafico[AGE_OLD][0] 	= 50;
+	grafico[AGE_OLD][1] 	= 51;
 	
 	x = 100;
 	y = 100;
 	
-	graph = png[0];
+	file = load_fpg("fpg/pet.fpg");
+	graph = grafico[stats.edad][0];
+	
 
 	LOOP
 	
@@ -27,8 +39,8 @@ BEGIN
 		
 		if ( i>20 )
 			i=0;
-			png_frame++;
-			graph = png[ png_frame % 2 ];
+			grafico_frame++;
+			graph = grafico[stats.edad][ grafico_frame % 2 ];
 		end
 		
 		if ( i % 2 == 0 )
