@@ -1,3 +1,4 @@
+/* ------------------------------------------------------------------------- */
 process mostrar_hud()
 
 private
@@ -14,7 +15,14 @@ begin
 	
 	write_var(0,screen_X,0,2,timer[0]);
 
+	file = 0;
+	x = 80;
+	y = 23;
+	
 	loop
+	
+		map_unload( 0, graph );
+		graph = draw_bar( stats.hambre / 10 );
 	
 		txt_id[0] = write( 0, 0, 20, 0, (stats.hambre / 10) + " hambre" );
 		txt_id[1] = write( 0, 0, 30, 0, (stats.salud / 10) + " salud" );
