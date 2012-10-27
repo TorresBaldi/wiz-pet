@@ -46,6 +46,8 @@ include "prg/globals.prg";
 include "prg/time.prg";
 include "prg/gui.prg";
 include "prg/hud.prg";
+include "prg/actions.prg";
+
 include "prg/game.prg";
 include "prg/pet.prg";
 

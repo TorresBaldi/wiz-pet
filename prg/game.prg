@@ -8,6 +8,8 @@ BEGIN
 	
 	botones();
 	
+	actions_manager();
+	
 	put( load_fpg("fpg/bg.fpg"), stats.lugar+1, screen_x/2, screen_y/2 );
 
 	loop
