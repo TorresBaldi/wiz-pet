@@ -1,4 +1,71 @@
 import "mod_draw";
+/* ------------------------------------------------------------------------- */
+process botones() 
+
+private
+
+	int key_lock;
+
+end
+
+begin
+
+	loop
+	
+		if ( key_lock == false )
+		
+			if ( key(_a) )
+			
+				say("Comida!");
+				key_lock = true;
+				
+				stats.hambre += 200;
+				
+			elseif ( key(_s) )
+			
+				say("Medicina!");
+				key_lock = true;
+				
+				stats.salud += 200;
+			
+			elseif ( key(_d) )
+			
+				say("Juegos!");
+				key_lock = true;
+				
+				stats.diversion += 200;
+			
+			elseif ( key(_f) )
+			
+				say("Ducha!");
+				key_lock = true;
+				
+				stats.higiene += 200;
+			
+			elseif ( key(_g) )
+			
+				say("Dormir!");
+				key_lock = true;
+				
+				stats.energia += 200;
+			
+			end
+		
+		else
+		
+			if ( !key (_a) and !key(_s) and !key(_d) and !key(_f) and !key(_g) )
+			
+				key_lock = false;
+				
+			end
+		
+		end
+	
+		frame;
+		
+	end
+
+end
 
 /* ------------------------------------------------------------------------- */
 function int draw_bar( int value )

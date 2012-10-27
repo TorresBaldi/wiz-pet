@@ -5,6 +5,8 @@ BEGIN
 
 	// inicializacion del juego
 	mascota();
+	
+	botones();
 
 	loop
 	
@@ -34,7 +36,7 @@ PROCESS calcular_ticks( int ticks )
 
 BEGIN
 
-	say( ticks + " ticks" );
+	//say( ticks + " ticks" );
 
 	WHILE ( ticks > 0 )
 		

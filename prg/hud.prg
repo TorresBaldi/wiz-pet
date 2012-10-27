@@ -14,6 +14,9 @@ begin
 	write_var(0,0,0,0,fps);
 	
 	write_var(0,screen_X,0,2,timer[0]);
+	
+	
+	write(0,screen_X/2,screen_y,7, "[A] [S] [D] [F] [G] Cambiar Stats" );
 
 	file = 0;
 	x = 80;
