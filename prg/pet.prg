@@ -1,7 +1,27 @@
 /* ------------------------------------------------------------------------- */
+CONST
+
+	// estados de la mascota
+	est_feliz	= 0;
+	est_triste	= 1;
+	est_muerto	= 2;
+	est_cagando	= 3;
+	est_ducha	= 4;
+	est_sucio	= 5;
+	
+	// ubicacion
+	lugar_interior	= 0;
+	lugar_exterior	= 1;
+
+END
+
+/* ------------------------------------------------------------------------- */
 PROCESS mascota()
 
 PRIVATE
+
+	int estado;
+	int lugar;
 
 	int i;
 	
@@ -27,7 +47,7 @@ BEGIN
 	grafico[AGE_OLD][1] 	= 51;
 	
 	x = 100;
-	y = 100;
+	y = 160;
 	
 	file = load_fpg("fpg/pet.fpg");
 	graph = grafico[stats.edad][0];

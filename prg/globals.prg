@@ -38,6 +38,9 @@ GLOBAL
 		int ticks;
 		int edad;
 		
+		int estado;
+		int lugar;
+		
 		int last_time;
 	
 	END
