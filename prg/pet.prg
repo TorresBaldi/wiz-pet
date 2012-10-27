@@ -20,9 +20,6 @@ PROCESS mascota()
 
 PRIVATE
 
-	int estado;
-	int lugar;
-
 	int i;
 	
 	int grafico[AGES][2];

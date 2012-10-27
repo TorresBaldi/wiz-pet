@@ -59,8 +59,8 @@ BEGIN
 	set_mode(SCREEN_X, SCREEN_Y, SCREEN_D, SCREEN_MODE);
 	set_fps(SCREEN_FPS,2);
 	
-	// test
-	say ( hms_a_seg( seg_a_hms( 199 ) ) );
+	// test hms
+	//say ( hms_a_seg( seg_a_hms( 199 ) ) );
 	
 	// mostrar hud
 	mostrar_hud();

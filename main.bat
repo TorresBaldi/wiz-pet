@@ -1,5 +1,6 @@
 @echo off
 cd /d %~dp0
+cls
 
 :: COMPILO PRG
 ..\..\bin\bgdc.exe -g main.prg
