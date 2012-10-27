@@ -18,11 +18,11 @@ begin
 	write(0,screen_X/2,screen_y,7, "[A] [S] [D] [F] [G] Cambiar Stats" );
 	
 	// muestro las barras
-	hud_show_hbar( 100, 20, &stats.hambre );
-	hud_show_hbar( 100, 30, &stats.salud );
-	hud_show_hbar( 100, 40, &stats.diversion );
-	hud_show_hbar( 100, 50, &stats.higiene );
-	hud_show_hbar( 100, 60, &stats.energia );
+	hud_show_hbar( 150, 20, &stats.hambre );
+	hud_show_hbar( 150, 30, &stats.salud );
+	hud_show_hbar( 150, 40, &stats.diversion );
+	hud_show_hbar( 150, 50, &stats.higiene );
+	hud_show_hbar( 150, 60, &stats.energia );
 	
 	loop
 	
