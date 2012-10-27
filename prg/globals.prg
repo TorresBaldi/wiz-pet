@@ -29,11 +29,11 @@ GLOBAL
 	
 	STRUCT stats
 	
-		int hambre = 1000;
-		int salud = 1000;
-		int diversion = 1000;
-		int higiene = 1000;
-		int energia = 1000;
+		float hambre = 100;
+		float salud = 100;
+		float diversion = 100;
+		float higiene = 100;
+		float energia = 100;
 		
 		int ticks;
 		int edad;

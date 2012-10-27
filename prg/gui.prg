@@ -19,35 +19,35 @@ begin
 				say("Comida!");
 				key_lock = true;
 				
-				stats.hambre += 200;
+				stats.hambre += 20;
 				
 			elseif ( key(_s) )
 			
 				say("Medicina!");
 				key_lock = true;
 				
-				stats.salud += 200;
+				stats.salud += 20;
 			
 			elseif ( key(_d) )
 			
 				say("Juegos!");
 				key_lock = true;
 				
-				stats.diversion += 200;
+				stats.diversion += 20;
 			
 			elseif ( key(_f) )
 			
 				say("Ducha!");
 				key_lock = true;
 				
-				stats.higiene += 200;
+				stats.higiene += 20;
 			
 			elseif ( key(_g) )
 			
 				say("Dormir!");
 				key_lock = true;
 				
-				stats.energia += 200;
+				stats.energia += 20;
 			
 			end
 		
@@ -73,7 +73,7 @@ function int draw_bar( int value )
 private
 
 	int x0 = 10;
-	int x1 = 30;
+	int x1 = 50;
 	
 	int y0 = 100;
 	int y1 = 110;
