@@ -112,7 +112,7 @@ begin
 				end
 				
 				// agrego items
-				if ( jkeys_state[_JKEY_SELECT] )
+				if ( jkeys_state[_JKEY_SELECT] AND tabla[seleccion_x][seleccion_y] == 0 )
 				
 					key_lock = true;
 					
