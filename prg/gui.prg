@@ -1,13 +1,17 @@
 import "mod_draw";
 /* ------------------------------------------------------------------------- */
 
-GLOBAL
+CONST
 
-	int boton_comer_activado;
-	int boton_curar_activado;
-	
-	int boton_comer_seleccionado;
-	int boton_curar_seleccionado;
+	BTN_FOOD 	= 0;
+	BTN_MED 	= 1;
+	BTN_PLAY 	= 2;
+	BTN_BATH 	= 3;
+	BTN_SLEEP 	= 4;
+
+END
+
+GLOBAL
 	
 	int i;
 	int select[4];
@@ -30,15 +34,15 @@ begin
 
 	select[i] = true;
 
-	boton_comer_seleccionado = true;
-
-	gui_button(40, 180, 0, &select[0], &active[0] );
-	gui_button(120, 180, 0, &select[1], &active[1] );
-	gui_button(200, 180, 0, &select[2], &active[2] );
-	gui_button(280, 180, 0, &select[3], &active[3] );
+	gui_button(64 -32, 180, 0, &select[0], &active[0] );
+	gui_button(128 -32, 180, 0, &select[1], &active[1] );
+	gui_button(192 -32, 180, 0, &select[2], &active[2] );
+	gui_button(256 -32, 180, 0, &select[3], &active[3] );
+	gui_button(320 -32, 180, 0, &select[4], &active[4] );
 
 	loop
 	
+		// selecciono los distintos botones
 		if ( (key( _left ) or key(_right) ) and !key_lock )
 		
 			key_lock = true;
@@ -60,6 +64,29 @@ begin
 			end
 			
 		end
+
+		// acciones de los botones
+		IF ( active[BTN_FOOD] )
+		
+			stats.hambre += 20;
+			
+		ELSEIF ( active[BTN_MED] )
+		
+			stats.salud += 20;
+			
+		ELSEIF ( active[BTN_PLAY] )
+		
+			stats.diversion += 20;
+			
+		ELSEIF ( active[BTN_BATH] )
+		
+			stats.higiene += 20;
+			
+		ELSEIF ( active[BTN_SLEEP] )
+		
+			stats.energia += 20;
+			
+		END
 	
 		frame;
 		
