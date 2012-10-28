@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------------- */
-function play_tateti()
+function action_play_tateti()
 
 private
 

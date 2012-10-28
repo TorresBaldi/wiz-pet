@@ -50,6 +50,7 @@ include "prg/gui.prg";
 include "prg/hud.prg";
 include "prg/actions.prg";
 include "prg/actions_tateti.prg";
+include "prg/actions_move.prg";
 include "prg/game.prg";
 include "prg/ticks.prg";
 include "prg/pet.prg";

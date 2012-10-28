@@ -17,13 +17,25 @@ begin
 				//
 				case ACTN_PLAY:
 				
-					play_tateti();
+					action_play_tateti();
+				
+				end
+			
+			
+				//
+				//	MOVER
+				//
+				case ACTN_MOVE:
+				
+					action_move();
 				
 				end
 			
 			end
 			
 			do_action = false;
+			
+			say( "action done!" );
 	
 		end
 	

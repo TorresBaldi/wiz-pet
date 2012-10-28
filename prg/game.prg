@@ -18,6 +18,10 @@ BEGIN
 	botones();
 	actions_manager();
 	
+	//dibujo el fondo
+	fpg_bg = load_fpg( "fpg/bg.fpg" );
+	put( fpg_bg, stats.lugar, 160, 120 );
+	
 	loop
 	
 		// cada tick

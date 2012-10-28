@@ -12,6 +12,7 @@ CONST
 	// acciones disponibles
 	ACTN_FOOD = 1;
 	ACTN_PLAY = 2;
+	ACTN_MOVE = 3;
 
 END
 
@@ -37,11 +38,14 @@ GLOBAL
 		int edad;
 		
 		int estado;
-		int lugar;
+		int lugar = 1;
 		
 		int first_time;
 		int last_time;
 	
 	END
+	
+	// recursos
+	int fpg_bg;
 
 END

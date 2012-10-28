@@ -8,14 +8,17 @@ CONST
 	BTN_PLAY 	= 2;
 	BTN_BATH 	= 3;
 	BTN_SLEEP 	= 4;
+	BTN_MOVE 	= 5;
+	
+	BTN_COUNT = 6;	// cantidad de botones
 
 END
 
 GLOBAL
 	
 	int i;
-	int select[4];
-	int active[4];
+	int select[BTN_COUNT];
+	int active[BTN_COUNT];
 	
 	int j;
 
@@ -39,6 +42,8 @@ begin
 	gui_button(192 -32, 208, 0, &select[2], &active[2] );
 	gui_button(256 -32, 208, 0, &select[3], &active[3] );
 	gui_button(320 -32, 208, 0, &select[4], &active[4] );
+	
+	gui_button(320 -32, 32, 0, &select[5], &active[5] );
 
 	loop
 	
@@ -49,7 +54,7 @@ begin
 			
 			select[i] = false;
 			
-			i = (i+1) % 5;
+			i = (i+1) % BTN_COUNT;
 			
 			select[i] = true;
 			
@@ -59,8 +64,8 @@ begin
 			
 			select[i] = false;
 			
-			i = (i-1) % 5;
-			if (i<0) i= 4; end
+			i = (i-1) % BTN_COUNT;
+			if (i<0) i= BTN_COUNT-1; end
 			
 			select[i] = true;
 			
@@ -71,7 +76,7 @@ begin
 		end
 		
 		// muestro que se activo algun boton
-		for( j=0; j<5; j++ )
+		for( j=0; j<BTN_COUNT; j++ )
 			
 			if ( active[j] )
 				say( J + " ACTIVE" );
@@ -114,6 +119,13 @@ begin
 			//	DORMIR
 			//
 			stats.energia += 20;
+			
+		ELSEIF ( active[BTN_MOVE] )
+		
+			//
+			//	SALIR / ENTRAR
+			//
+			do_action = ACTN_MOVE;
 			
 		END
 	
