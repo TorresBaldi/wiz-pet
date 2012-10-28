@@ -15,8 +15,6 @@ begin
 	
 	write_var(0,screen_X,0,2,timer[0]);
 	
-	write(0,screen_X/2,screen_y,7, "[A] [S] [D] [F] [G] Cambiar Stats" );
-	
 	// muestro las barras
 	hud_show_hbar( 150, 20, &stats.hambre );
 	hud_show_hbar( 150, 30, &stats.salud );

@@ -34,11 +34,11 @@ begin
 
 	select[i] = true;
 
-	gui_button(64 -32, 180, 0, &select[0], &active[0] );
-	gui_button(128 -32, 180, 0, &select[1], &active[1] );
-	gui_button(192 -32, 180, 0, &select[2], &active[2] );
-	gui_button(256 -32, 180, 0, &select[3], &active[3] );
-	gui_button(320 -32, 180, 0, &select[4], &active[4] );
+	gui_button(64 -32, 208, 0, &select[0], &active[0] );
+	gui_button(128 -32, 208, 0, &select[1], &active[1] );
+	gui_button(192 -32, 208, 0, &select[2], &active[2] );
+	gui_button(256 -32, 208, 0, &select[3], &active[3] );
+	gui_button(320 -32, 208, 0, &select[4], &active[4] );
 
 	loop
 	
@@ -48,12 +48,25 @@ begin
 			key_lock = true;
 			
 			select[i] = false;
+			
 			i = (i+1) % 5;
+			
+			select[i] = true;
+			
+		elseif ( jkeys_state[_JKEY_LEFT] and !key_lock )
+		
+			key_lock = true;
+			
+			select[i] = false;
+			
+			i = (i-1) % 5;
+			if (i<0) i= 4; end
+			
 			select[i] = true;
 			
 		end
 		
-		if ( !jkeys_state[_JKEY_RIGHT] )
+		if ( !jkeys_state[_JKEY_LEFT] AND !jkeys_state[_JKEY_RIGHT] )
 			key_lock = false;
 		end
 		

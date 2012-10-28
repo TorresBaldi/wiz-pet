@@ -44,7 +44,7 @@ BEGIN
 	grafico[AGE_OLD][1] 	= 51;
 	
 	x = 100;
-	y = 160;
+	y = 120;
 	
 	file = load_fpg("fpg/pet.fpg");
 	graph = grafico[stats.edad][0];
