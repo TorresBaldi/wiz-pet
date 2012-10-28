@@ -41,6 +41,8 @@ END
 
 /* ------------------------------------------------------------------------- */
 
+include "prg/jkeys.prg";
+
 include "prg/globals.prg";
 
 include "prg/time.prg";
@@ -76,9 +78,9 @@ BEGIN
 		end
 	
 	end
-
-	// test hms
-	//say ( hms_a_seg( seg_a_hms( 199 ) ) );
+	
+	jkeys_set_default_keys();
+    jkeys_init();
 	
 	// mostrar hud
 	mostrar_hud();
@@ -101,7 +103,7 @@ BEGIN
 
 	LOOP
 
-		IF ( EXIT_STATUS OR KEY(_ESC) )
+		IF ( EXIT_STATUS OR jkeys_state[ _JKEY_MENU ] )
 			
 			stats.last_time = time();
 			

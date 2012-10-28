@@ -24,7 +24,7 @@ BEGIN
 		END
 		
 		//debug
-		if ( key(_space) )
+		if ( jkeys_state[ _JKEY_R ] )
 			calcular_ticks(5);
 		end
 		

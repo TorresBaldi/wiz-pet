@@ -43,17 +43,17 @@ begin
 	loop
 	
 		// selecciono los distintos botones
-		if ( (key( _left ) or key(_right) ) and !key_lock )
+		if ( jkeys_state[_JKEY_RIGHT] and !key_lock )
 		
 			key_lock = true;
 			
 			select[i] = false;
-			i = (i+1) % 4;
+			i = (i+1) % 5;
 			select[i] = true;
 			
 		end
 		
-		if ( !key(_left) and !key(_right) )
+		if ( !jkeys_state[_JKEY_RIGHT] )
 			key_lock = false;
 		end
 		
@@ -156,19 +156,19 @@ begin
 		end
 		
 		// compruebo si se presiono con el dedo
-		if ( collision ( type mouse ) )
+		if ( collision ( type mouse ) and mouse.left )
 			state = 2;
 		end
 		
 		// activo el boton
-		if ( state == 2 and mouse.left )
+		if ( state == 2 )
 			activated++;
-		elseif ( state == 1 and key(_enter) )
+		elseif ( state == 1 and jkeys_state[ _JKEY_SELECT ] )
 			activated++;
 		end
 		
 		//desactivo el boton
-		if ( !mouse.left and not key(_enter) )
+		if ( !mouse.left and not jkeys_state[ _JKEY_SELECT ] )
 			activated = 0;
 		end
 		
