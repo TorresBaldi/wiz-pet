@@ -70,7 +70,8 @@ begin
 			key_lock = false;
 		end
 		
-		for( j=0; j<4; j++ )
+		// muestro que se activo algun boton
+		for( j=0; j<5; j++ )
 			
 			if ( active[j] )
 				say( J + " ACTIVE" );
@@ -81,23 +82,37 @@ begin
 		// acciones de los botones
 		IF ( active[BTN_FOOD] )
 		
+			//
+			//	COMER
+			//
 			stats.hambre += 20;
 			
 		ELSEIF ( active[BTN_MED] )
 		
+			//
+			//	MEDICINA
+			//
 			stats.salud += 20;
 			
 		ELSEIF ( active[BTN_PLAY] )
 		
-			//stats.diversion += 20;
-			do_action = 1;
+			//
+			//	JUGAR
+			//
+			do_action = ACTN_PLAY;
 			
 		ELSEIF ( active[BTN_BATH] )
 		
+			//
+			//	BAÑAR
+			//
 			stats.higiene += 20;
 			
 		ELSEIF ( active[BTN_SLEEP] )
 		
+			//
+			//	DORMIR
+			//
 			stats.energia += 20;
 			
 		END

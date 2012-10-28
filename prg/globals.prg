@@ -8,6 +8,10 @@ CONST
 	AGE_TEEN	= 2;
 	AGE_ADULT	= 3;
 	AGE_OLD		= 4;
+	
+	// acciones disponibles
+	ACTN_FOOD = 1;
+	ACTN_PLAY = 3;
 
 END
 
