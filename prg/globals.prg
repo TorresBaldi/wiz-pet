@@ -24,7 +24,7 @@ END
 GLOBAL
 
 	// unidad de tiempo del juego
-	int tick = 100;
+	int tick = 3;	// un tick cada 3 segundos
 	int ticks_per_age = 50;
 	
 	//iniciar acciones

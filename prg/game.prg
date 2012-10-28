@@ -27,9 +27,9 @@ BEGIN
 	
 		// cada tick
 		if ( !busy )
-			IF ( timer[0] >= tick )
+			IF ( timer[0] >= tick * 100 )
 			
-				timer[0] -= tick;
+				timer[0] -= tick * 100;
 				
 				calcular_ticks(1);
 			
@@ -37,7 +37,7 @@ BEGIN
 			
 			//debug
 			if ( jkeys_state[ _JKEY_R ] )
-				calcular_ticks(5);
+				calcular_ticks(1);
 			end
 			
 			if ( jkeys_state[ _JKEY_L ] )
@@ -89,18 +89,18 @@ BEGIN
 		end
 		
 		//hambre
-		if ( stats.diversion > 50 )
-			stats.hambre -= 1;
+		if ( stats.diversion < 50 )
+			stats.hambre -= 0.6;
 		else
-			stats.hambre -= 0.5;
+			stats.hambre -= 0.1;
 		end
 		
 		//salud 
 		if ( stats.hambre < 10 )
-			stats.salud -= 1;
-		elseif ( stats.hambre < 30 )
-			stats.salud -= 0.5;
-		else
+			stats.salud -= 0.8;
+		elseif ( stats.hambre < 50 )
+			stats.salud -= 0.2;
+		elseif ( stats.hambre < 60 )
 		
 			// probabilidad de enfermedad
 			if ( rand(1,100) > 99 )
@@ -110,13 +110,13 @@ BEGIN
 		end
 		
 		// diversion
-		stats.diversion -= rand(1,6) * 0.1;
+		stats.diversion -= rand(1,8) * 0.1;
 		
 		// higiene
-		stats.higiene -= 0.2;
+		stats.higiene -= 0.4;
 		
 		// energia
-		stats.energia -= 0.2;
+		stats.energia -= 0.6;
 		
 		// limites
 		if ( stats.hambre > 100 ) stats.hambre = 100;

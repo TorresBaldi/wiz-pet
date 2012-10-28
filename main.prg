@@ -97,7 +97,7 @@ BEGIN
 	time_delta = time() - stats.last_time;
 	
 	// modifico los stats
-	calcular_ticks ( time_delta );
+	calcular_ticks ( time_delta / tick );
 	
 	// inicio el bucle del juego
 	game_loop();

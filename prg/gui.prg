@@ -113,7 +113,7 @@ function int draw_bar( int value )
 
 private
 
-	int width = 100;
+	int width = 50;
 	int height = 8;
 	
 	int width_value;
