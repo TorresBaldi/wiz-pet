@@ -65,6 +65,7 @@ begin
 			
 		end
 		
+		/*
 		// muestro que se activo algun boton
 		for( j=0; j<BTN_COUNT; j++ )
 			
@@ -73,6 +74,7 @@ begin
 			end
 			
 		end
+		*/
 
 		// acciones de los botones
 		IF ( active[BTN_FOOD] )

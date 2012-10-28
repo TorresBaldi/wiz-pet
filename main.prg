@@ -36,7 +36,6 @@ END
 GLOBAL
 
 	time_delta;
-	i;
 
 END
 
@@ -91,8 +90,10 @@ BEGIN
 	if ( fexists("time.dat") )
 		load( "time.dat", stats );
 	else
+		// inicio el tiempo nuevo
 		stats.first_time = time();
 		stats.last_time = time();
+		
 	end
 	
 	// calculo el tiempo que paso
@@ -124,7 +125,15 @@ BEGIN
 
 END
 
+/* ------------------------------------------------------------------------- */
+/*
+	Controla que se suelten todas las teclas para liberar key_lock
+	Se llama en cada frame
+*/
 function global_key_lock()
+private
+	int i;
+end
 begin
 
 	// global_key_lock check
@@ -140,13 +149,15 @@ begin
 		else
 			for ( i=0; i< _JKEY_LAST-2; i++ )
 				if ( jkeys_state[i] )
+				
 					global_key_lock = true;
 					break;
+					
 				end
 			end
 		end
 		
-		say(global_key_lock);
+		//say(global_key_lock);
 		
 	END
 end

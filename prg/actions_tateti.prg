@@ -18,6 +18,7 @@ private
 	
 	int check_tateti;
 	
+	int game_result;
 	int game_end;
 	
 end
@@ -42,8 +43,25 @@ begin
 	
 		// fin del juego
 		if ( key( _t ) OR vacios==0 OR game_end )
+		
+			switch (game_result)
 			
-			stats.diversion += 30;
+				case 0:
+					say("EMPATE");
+					stats.diversion += 5;
+				end
+				
+				case 1:
+					say("GANA JUGADOR");
+					stats.diversion += 30;
+				end
+				
+				case 2:
+					say("GANA CPU");
+					stats.diversion += 40;
+				end
+				
+			end
 			
 			break;
 			
@@ -116,7 +134,12 @@ begin
 		
 			check_tateti = false;
 			
-			game_end = check_tateti( &tabla );
+			game_result = check_tateti( &tabla );
+			
+			// si hay un ganador termino el juego
+			if ( game_result )
+				game_end = true;
+			end
 			
 		end
 		
@@ -162,6 +185,7 @@ onexit
 end
 
 
+/* ------------------------------------------------------------------------- */
 process piece(x,y,turn)
 
 begin
@@ -220,7 +244,7 @@ begin
 			// compruebo tateti
 			if ( tabla[(i*3) + 0] == tabla[(i*3) + 1] AND tabla[(i*3) + 0] == tabla[(i*3) + 2] )
 				say( "TATETI VERTICAL!!!" );
-				tateti_found = true;
+				tateti_found = tabla[(i*3) + 0];
 			end
 			
 		end
@@ -231,7 +255,7 @@ begin
 			// compruebo tateti
 			if ( tabla[(0*3) + i] == tabla[(1*3) + i] AND tabla[(0*3) + i] == tabla[(2*3) + i] )
 				say( "TATETI HORIZONTAL!!!" );
-				tateti_found = true;
+				tateti_found = tabla[(0*3) + i];
 			end
 			
 		end
@@ -243,12 +267,12 @@ begin
 		
 		if ( tabla[(0*3) + 0] == tabla[(1*3) + 1] AND tabla[(1*3) + 1] == tabla[(2*3) + 2] )
 			say( "TATETI DIAGONAL!!!" );
-			tateti_found = true;
+			tateti_found = tabla[(0*3) + 0];
 		end
 		
 		if ( tabla[(2*3) + 0] == tabla[(1*3) + 1] AND tabla[(1*3) + 1] == tabla[(0*3) + 2] )
 			say( "TATETI DIAGONAL!!!" );
-			tateti_found = true;
+			tateti_found = tabla[(2*3) + 0];
 		end
 	
 	end
