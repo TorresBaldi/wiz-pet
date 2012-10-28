@@ -23,7 +23,6 @@ begin
 			
 			end
 			
-			say("action done!");
 			do_action = false;
 	
 		end

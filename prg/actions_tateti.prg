@@ -16,6 +16,10 @@ private
 	
 	int turn = 2;
 	
+	int check_tateti;
+	
+	int game_end;
+	
 end
 
 begin
@@ -34,8 +38,8 @@ begin
 	
 	loop
 	
-		// aborto
-		if ( key( _t ) or vacios == 0)
+		// fin del juego
+		if ( key( _t ) OR vacios==0 OR game_end )
 			
 			stats.diversion += 30;
 			
@@ -50,7 +54,6 @@ begin
 			end
 			
 		else
-		
 		
 			if ( turn == 1 )
 				
@@ -82,6 +85,8 @@ begin
 					
 					vacios--;
 					
+					check_tateti = true;
+					
 					turn = 2;
 				
 				end
@@ -103,10 +108,20 @@ begin
 				
 				vacios--;
 				
+				check_tateti = true;
+				
 				turn = 1;
 			
 			end
 		
+		end
+		
+		if ( check_tateti )
+		
+			check_tateti = false;
+			
+			game_end = check_tateti( &tabla );
+			
 		end
 		
 		// muevo el cursor en la pantalla
@@ -133,7 +148,7 @@ begin
 	loop
 	
 		if ( !exists( father ) )
-			say("borro cursor");
+			//say("borro cursor");
 			break;
 		end
 	
@@ -158,11 +173,86 @@ begin
 	loop
 	
 		if ( !exists( father ) )
-			say("borro fichita");
+			//say("borro fichita");
 			break;
 		end
 	
 		frame;
 	end
+
+end
+
+function int check_tateti( int pointer tabla )
+
+private
+
+	int tateti_found;
+
+	string line;
+	
+	int i;
+
+end
+
+begin
+	
+	/*
+	// muestro la matriz por consola
+	for ( y=0; y<3; y++ )
+	
+		for( x=0; x<3; x++)
+			line += "[" + tabla[(x*3) + y] + "] ";
+		end
+		
+		say( line );
+		line = "";
+		
+	end
+	say("");
+	*/
+	
+	// compruebo coincidencias
+	for ( i=0; i<3; i++ )
+	
+		// verticales
+		if ( tabla[(i*3) + 0] + tabla[(i*3) + 0] + tabla[(i*3) + 0] >= 3  )	// compruebo si la linea esta completa
+			
+			// compruebo tateti
+			if ( tabla[(i*3) + 0] == tabla[(i*3) + 1] AND tabla[(i*3) + 0] == tabla[(i*3) + 2] )
+				say( "TATETI VERTICAL!!!" );
+				tateti_found = true;
+			end
+			
+		end
+		
+		// horizontales
+		if ( tabla[(0*3) + i] + tabla[(1*3) + i] + tabla[(2*3) + i] >= 3  )	// compruebo si la linea esta completa
+			
+			// compruebo tateti
+			if ( tabla[(0*3) + i] == tabla[(1*3) + i] AND tabla[(0*3) + i] == tabla[(2*3) + i] )
+				say( "TATETI HORIZONTAL!!!" );
+				tateti_found = true;
+			end
+			
+		end
+	
+	end
+	
+	// diagonal
+	if ( tabla[(1*3) + 1] )	// compruebo si se ocupo el centro
+		
+		if ( tabla[(0*3) + 0] == tabla[(1*3) + 1] AND tabla[(1*3) + 1] == tabla[(2*3) + 2] )
+			say( "TATETI DIAGONAL!!!" );
+			tateti_found = true;
+		end
+		
+		if ( tabla[(2*3) + 0] == tabla[(1*3) + 1] AND tabla[(1*3) + 1] == tabla[(0*3) + 2] )
+			say( "TATETI DIAGONAL!!!" );
+			tateti_found = true;
+		end
+	
+	end
+	
+	return tateti_found;
 
 end

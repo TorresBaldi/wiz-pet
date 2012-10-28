@@ -11,7 +11,7 @@ CONST
 	
 	// acciones disponibles
 	ACTN_FOOD = 1;
-	ACTN_PLAY = 3;
+	ACTN_PLAY = 2;
 
 END
 
