@@ -23,6 +23,9 @@ GLOBAL
 	int tick = 3;	// un tick cada 3 segundos
 	int ticks_per_age = 50;
 	
+	// manejo de teclado
+	int global_key_lock;
+	
 	//iniciar acciones
 	int do_action;
 	int action_transition;

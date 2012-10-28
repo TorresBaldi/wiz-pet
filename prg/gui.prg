@@ -14,22 +14,16 @@ CONST
 
 END
 
-GLOBAL
-	
-	int i;
-	int select[BTN_COUNT];
-	int active[BTN_COUNT];
-	
-	int j;
-
-END
-
 /* ------------------------------------------------------------------------- */
 process botones() 
 
 private
 
-	int key_lock;
+	int i;
+	int j;
+		
+	int select[BTN_COUNT];
+	int active[BTN_COUNT];
 	
 end
 
@@ -48,9 +42,9 @@ begin
 	loop
 	
 		// selecciono los distintos botones
-		if ( jkeys_state[_JKEY_RIGHT] and !key_lock )
+		if ( jkeys_state[_JKEY_RIGHT] and !global_key_lock )
 		
-			key_lock = true;
+			global_key_lock = true;
 			
 			select[i] = false;
 			
@@ -58,9 +52,9 @@ begin
 			
 			select[i] = true;
 			
-		elseif ( jkeys_state[_JKEY_LEFT] and !key_lock )
+		elseif ( jkeys_state[_JKEY_LEFT] and !global_key_lock )
 		
-			key_lock = true;
+			global_key_lock = true;
 			
 			select[i] = false;
 			
@@ -69,10 +63,6 @@ begin
 			
 			select[i] = true;
 			
-		end
-		
-		if ( !jkeys_state[_JKEY_LEFT] AND !jkeys_state[_JKEY_RIGHT] )
-			key_lock = false;
 		end
 		
 		// muestro que se activo algun boton
@@ -202,10 +192,11 @@ begin
 		end
 		
 		// activo el boton
-		if ( state == 2 )
+		if ( (state == 1 and jkeys_state[ _JKEY_SELECT ]) OR state == 2 )
+		
+			global_key_lock = true;
 			activated++;
-		elseif ( state == 1 and jkeys_state[ _JKEY_SELECT ] )
-			activated++;
+			
 		end
 		
 		//desactivo el boton

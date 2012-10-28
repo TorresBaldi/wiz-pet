@@ -46,30 +46,24 @@ begin
 			break;
 			
 		end
-		
-		if ( key_lock )
 			
-			if ( !jkeys_state[_JKEY_DOWN] AND !jkeys_state[_JKEY_RIGHT] AND !jkeys_state[_JKEY_UP] AND !jkeys_state[_JKEY_LEFT] AND !jkeys_state[_JKEY_SELECT])
-				key_lock = false;
-			end
-			
-		else
+		if ( !global_key_lock )
 		
 			if ( turn == 1 )
 				
 				// movimiento del cursor
 				if ( jkeys_state[_JKEY_RIGHT] )
-					key_lock = true;
+					global_key_lock = true;
 					seleccion_x = (seleccion_x+1)%3;
 				elseif (jkeys_state[_JKEY_LEFT] )
-					key_lock = true;
+					global_key_lock = true;
 					seleccion_x--;
 					if ( seleccion_x<0 ) seleccion_x = 2; end
 				elseif (jkeys_state[_JKEY_DOWN] )
-					key_lock = true;
+					global_key_lock = true;
 					seleccion_y = (seleccion_y+1)%3;
 				elseif (jkeys_state[_JKEY_UP] )
-					key_lock = true;
+					global_key_lock = true;
 					seleccion_y--;
 					if ( seleccion_y<0 ) seleccion_y = 2; end
 				end
@@ -77,7 +71,7 @@ begin
 				// agrego items
 				if ( jkeys_state[_JKEY_SELECT] AND tabla[seleccion_x][seleccion_y] == 0 )
 				
-					key_lock = true;
+					global_key_lock = true;
 					
 					piece( 90 + ( seleccion_x * 70 ), 50 + ( seleccion_y * 70 ), turn );
 					

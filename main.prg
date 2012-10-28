@@ -36,6 +36,7 @@ END
 GLOBAL
 
 	time_delta;
+	i;
 
 END
 
@@ -104,6 +105,30 @@ BEGIN
 	game_loop();
 
 	LOOP
+	
+		// global_key_lock
+		IF( global_key_lock )
+		
+			global_key_lock = false;
+			
+			// si hay alguna tecla presionada, vuelvo a bloquear
+			if ( mouse.left )
+			
+				global_key_lock = true;
+				break;
+				
+			else
+				for ( i=0; i< _JKEY_LAST-2; i++ )
+					if ( jkeys_state[i] )
+						global_key_lock = true;
+						break;
+					end
+				end
+			end
+			
+			say(global_key_lock);
+			
+		END
 
 		IF ( EXIT_STATUS OR jkeys_state[ _JKEY_MENU ] )
 			

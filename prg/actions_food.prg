@@ -61,17 +61,17 @@ begin
 		// seleccion de la comida
 		if ( !confirmed )
 			
-			if ( !key_lock AND jkeys_state[_JKEY_LEFT] )
-				key_lock = true;
+			if ( !global_key_lock AND jkeys_state[_JKEY_LEFT] )
+				global_key_lock = true;
 				seleccion--;
 				if ( seleccion < 0 ) seleccion = 3; end
-			elseif ( !key_lock AND jkeys_state[_JKEY_RIGHT] )
-				key_lock = true;
+			elseif ( !global_key_lock AND jkeys_state[_JKEY_RIGHT] )
+				global_key_lock = true;
 				seleccion = (seleccion+1) %4;
 			end
 			
 			// confirmacion de la comida
-			if ( !key_lock AND jkeys_state[_JKEY_SELECT] )
+			if ( !global_key_lock AND jkeys_state[_JKEY_SELECT] )
 				confirmed = true;
 			end
 			
@@ -101,10 +101,6 @@ begin
 			
 			end
 		
-		end
-	
-		if ( key_lock AND !(jkeys_state[_JKEY_LEFT] OR jkeys_state[_JKEY_RIGHT] OR jkeys_state[_JKEY_SELECT] ) )
-			key_lock = false;
 		end
 		
 		graph = food[seleccion].graph;
