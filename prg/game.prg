@@ -1,7 +1,18 @@
 /* ------------------------------------------------------------------------- */
 PROCESS game_loop()
 
+PRIVATE
+
+	int active = true;
+	int key_lock;
+	
+	int temp_timer;
+
+END
+
 BEGIN
+
+	signal_action( S_SLEEP_TREE, S_IGN);
 
 	// inicializacion del juego
 	mascota();
@@ -15,21 +26,42 @@ BEGIN
 	loop
 	
 		// cada tick
-		IF ( timer[0] >= tick )
-		
-			timer[0] -= tick;
+		if ( active )
+			IF ( timer[0] >= tick )
 			
-			calcular_ticks(1);
-		
-		END
-		
-		//debug
-		if ( jkeys_state[ _JKEY_R ] )
-			calcular_ticks(5);
+				timer[0] -= tick;
+				
+				calcular_ticks(1);
+			
+			END
+			
+			//debug
+			if ( jkeys_state[ _JKEY_R ] )
+				calcular_ticks(5);
+			end
+			
+			if ( jkeys_state[ _JKEY_L ] )
+				reset();
+			end
 		end
 		
-		if ( jkeys_state[ _JKEY_L ] )
-			reset();
+		if ( jkeys_state[ _JKEY_X ] and !key_lock)
+		
+			key_lock = true;
+		
+			if ( active )
+			
+				active = false;
+				signal(id, S_SLEEP_TREE );
+			
+			else
+			
+				active = true;
+				signal ( id, S_WAKEUP_TREE );
+				
+			end
+		elseif ( !jkeys_state[ _JKEY_X ] and key_lock )
+			key_lock = false;
 		end
 		
 		frame;
