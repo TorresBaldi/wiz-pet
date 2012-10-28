@@ -101,18 +101,18 @@ BEGIN
 		if ( stats.hambre < 10 )
 			stats.salud -= 1;
 		elseif ( stats.hambre < 30 )
-			stats.salud -= 5;
+			stats.salud -= 0.5;
 		else
 		
 			// probabilidad de enfermedad
-			if ( rand(1,100) > 98 )
+			if ( rand(1,100) > 99 )
 				stats.salud -= 20;
 			end
 		
 		end
 		
 		// diversion
-		stats.diversion -= rand(0,5);
+		stats.diversion -= rand(1,6) * 0.1;
 		
 		// higiene
 		stats.higiene -= 0.2;
