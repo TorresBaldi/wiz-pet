@@ -41,6 +41,7 @@ GLOBAL
 		int estado;
 		int lugar;
 		
+		int first_time;
 		int last_time;
 	
 	END

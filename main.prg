@@ -89,6 +89,7 @@ BEGIN
 	if ( fexists("time.dat") )
 		load( "time.dat", stats );
 	else
+		stats.first_time = time();
 		stats.last_time = time();
 	end
 	
