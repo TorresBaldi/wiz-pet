@@ -18,11 +18,11 @@ begin
 	write_var(0,screen_X,0,2,timer[0]);
 	
 	// muestro las barras
-	hud_show_hbar( 36 + 000, 220, &stats.hambre );
-	hud_show_hbar( 36 + 050, 220, &stats.salud );
-	hud_show_hbar( 36 + 100, 220, &stats.diversion );
-	hud_show_hbar( 36 + 200, 220, &stats.higiene );
-	hud_show_hbar( 36 + 250, 220, &stats.energia );
+	hud_show_hbar( 36 + 000, 232, &stats.hambre );
+	hud_show_hbar( 36 + 050, 232, &stats.diversion );
+	hud_show_hbar( 36 + 100, 232, &stats.salud );
+	hud_show_hbar( 36 + 200, 232, &stats.higiene );
+	hud_show_hbar( 36 + 250, 232, &stats.energia );
 	
 	loop
 	

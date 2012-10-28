@@ -9,6 +9,9 @@ private
 	
 	int confirmed;
 	
+	int button_sel[2];
+	int button_act[2];
+	
 	struct food[3]
 	
 		int hambre;
@@ -52,6 +55,11 @@ begin
 	y = 120;
 	size = 200;
 	
+	// creo los botones
+	gui_button(20, 120, 100, &button_sel[0], &button_act[0]);
+	gui_button(300, 120, 110, &button_sel[1], &button_act[1]);
+	gui_button(160, 120, 120, &button_sel[2], &button_act[2]);
+	
 	while ( jkeys_state[_JKEY_SELECT] or mouse.left )
 		frame;
 	end
@@ -63,19 +71,25 @@ begin
 		// seleccion de la comida
 		if ( !confirmed )
 			
-			if ( !global_key_lock AND jkeys_state[_JKEY_LEFT] )
+			if ( (!global_key_lock AND jkeys_state[_JKEY_LEFT]) OR button_act[0] )
+			
 				global_key_lock = true;
 				seleccion--;
 				if ( seleccion < 0 ) seleccion = 3; end
-			elseif ( !global_key_lock AND jkeys_state[_JKEY_RIGHT] )
+				
+			elseif ( (!global_key_lock AND jkeys_state[_JKEY_RIGHT]) OR button_act[1] )
+			
 				global_key_lock = true;
 				seleccion = (seleccion+1) %4;
+				
 			end
 			
 			// confirmacion de la comida
-			if ( !global_key_lock AND jkeys_state[_JKEY_SELECT] )
+			if ( (!global_key_lock AND jkeys_state[_JKEY_SELECT]) OR button_act[2] )
+			
 				global_key_lock = true;
 				confirmed = true;
+				
 			end
 			
 		else

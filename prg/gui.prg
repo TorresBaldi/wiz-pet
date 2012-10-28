@@ -165,6 +165,11 @@ begin
 
 	loop
 	
+		// compruebo si el padre sigue vivo
+		if ( !exists(father) )
+			break;
+		end
+	
 		// compruebo si se selecciono desde afuera
 		if ( *selected_flag )
 			state = 1;
