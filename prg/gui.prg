@@ -90,7 +90,7 @@ begin
 			//
 			//	COMER
 			//
-			stats.hambre += 20;
+			do_action = ACTN_FOOD;
 			
 		ELSEIF ( active[BTN_MED] )
 		

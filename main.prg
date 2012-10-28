@@ -49,6 +49,7 @@ include "prg/debug.prg";
 include "prg/gui.prg";
 include "prg/hud.prg";
 include "prg/actions.prg";
+include "prg/actions_food.prg";
 include "prg/actions_tateti.prg";
 include "prg/actions_move.prg";
 include "prg/game.prg";

@@ -12,8 +12,6 @@ begin
 	
 		if ( do_action )
 		
-			screen_transition();
-		
 			switch ( do_action )
 			
 				//
@@ -22,6 +20,16 @@ begin
 				case ACTN_PLAY:
 				
 					action_play_tateti();
+				
+				end
+			
+			
+				//
+				//	COMEr
+				//
+				case ACTN_FOOD:
+				
+					action_food();
 				
 				end
 			
@@ -40,8 +48,6 @@ begin
 			do_action = false;
 			
 			say( "action done!" );
-			
-			screen_transition();
 	
 		end
 	
@@ -63,6 +69,9 @@ begin
 	graph = screen_get();
 	
 	action_transition = true;
+	
+	// game_loop no duerme al proceso
+	signal_action( S_SLEEP_TREE, S_IGN);
 	
 	loop
 	

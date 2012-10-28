@@ -32,7 +32,7 @@ begin
 	
 	cursor_id = cursor(90,50);
 	
-	while ( jkeys_state[_JKEY_SELECT] )
+	while ( jkeys_state[_JKEY_SELECT] or mouse.left )
 		frame;
 	end
 	
@@ -131,6 +131,10 @@ begin
 		frame;
 		
 	end
+	
+onexit
+
+	unload_fpg (file);
 
 end
 
