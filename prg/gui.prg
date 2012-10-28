@@ -89,7 +89,8 @@ begin
 			
 		ELSEIF ( active[BTN_PLAY] )
 		
-			stats.diversion += 20;
+			//stats.diversion += 20;
+			do_action = 1;
 			
 		ELSEIF ( active[BTN_BATH] )
 		

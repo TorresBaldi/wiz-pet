@@ -27,6 +27,9 @@ GLOBAL
 	int tick = 100;
 	int ticks_per_age = 50;
 	
+	//iniciar acciones
+	int do_action;
+	
 	STRUCT stats
 	
 		float hambre = 100;

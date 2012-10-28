@@ -45,23 +45,21 @@ BEGIN
 			end
 		end
 		
-		if ( jkeys_state[ _JKEY_X ] and !key_lock)
+
+		if ( do_action AND !active )
 		
-			key_lock = true;
+			active++;
+			
+			signal(id, S_SLEEP_TREE );
+			
+		end
 		
-			if ( active )
+		// reactivo al terminar la accion
+		if ( active AND !do_action )
+		
+			active = 0;
+			signal ( id, S_WAKEUP_TREE );
 			
-				active = false;
-				signal(id, S_SLEEP_TREE );
-			
-			else
-			
-				active = true;
-				signal ( id, S_WAKEUP_TREE );
-				
-			end
-		elseif ( !jkeys_state[ _JKEY_X ] and key_lock )
-			key_lock = false;
 		end
 		
 		frame;
