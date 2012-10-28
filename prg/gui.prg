@@ -1,64 +1,64 @@
 import "mod_draw";
 /* ------------------------------------------------------------------------- */
+
+GLOBAL
+
+	int boton_comer_activado;
+	int boton_curar_activado;
+	
+	int boton_comer_seleccionado;
+	int boton_curar_seleccionado;
+	
+	int i;
+	int select[4];
+	int active[4];
+	
+	int j;
+
+END
+
+/* ------------------------------------------------------------------------- */
 process botones() 
 
 private
 
 	int key_lock;
-
+	
 end
 
 begin
 
+	select[i] = true;
+
+	boton_comer_seleccionado = true;
+
+	gui_button(40, 180, 0, &select[0], &active[0] );
+	gui_button(120, 180, 0, &select[1], &active[1] );
+	gui_button(200, 180, 0, &select[2], &active[2] );
+	gui_button(280, 180, 0, &select[3], &active[3] );
+
 	loop
 	
-		if ( key_lock == false )
+		if ( (key( _left ) or key(_right) ) and !key_lock )
 		
-			if ( key(_a) )
+			key_lock = true;
 			
-				say("Comida!");
-				key_lock = true;
-				
-				stats.hambre += 20;
-				
-			elseif ( key(_s) )
+			select[i] = false;
+			i = (i+1) % 4;
+			select[i] = true;
 			
-				say("Medicina!");
-				key_lock = true;
-				
-				stats.salud += 20;
+		end
+		
+		if ( !key(_left) and !key(_right) )
+			key_lock = false;
+		end
+		
+		for( j=0; j<4; j++ )
 			
-			elseif ( key(_d) )
-			
-				say("Juegos!");
-				key_lock = true;
-				
-				stats.diversion += 20;
-			
-			elseif ( key(_f) )
-			
-				say("Ducha!");
-				key_lock = true;
-				
-				stats.higiene += 20;
-			
-			elseif ( key(_g) )
-			
-				say("Dormir!");
-				key_lock = true;
-				
-				stats.energia += 20;
-			
+			if ( active[j] )
+				say( J + " ACTIVE" );
 			end
-		
-		else
-		
-			if ( !key (_a) and !key(_s) and !key(_d) and !key(_f) and !key(_g) )
 			
-				key_lock = false;
-				
-			end
-		
 		end
 	
 		frame;
@@ -100,5 +100,65 @@ begin
 	end
 	
 	return map_id;
+
+end
+
+/* ------------------------------------------------------------------------- */
+// boton que se puede activar de forma tactil, o al seleccionarlo desde afuera
+process gui_button( int x, int y, int icon, int pointer selected_flag, int pointer active_flag )
+
+private
+
+	state = 0;
+	last_state = 0;
+	
+	activated = false;
+
+end
+
+begin
+
+	file = load_fpg("fpg/system.fpg");
+	graph = 10;
+
+	loop
+	
+		// compruebo si se selecciono desde afuera
+		if ( *selected_flag )
+			state = 1;
+		end
+		
+		// compruebo si se presiono con el dedo
+		if ( collision ( type mouse ) )
+			state = 2;
+		end
+		
+		// activo el boton
+		if ( state == 2 and mouse.left )
+			activated++;
+		elseif ( state == 1 and key(_enter) )
+			activated++;
+		end
+		
+		//desactivo el boton
+		if ( !mouse.left and not key(_enter) )
+			activated = 0;
+		end
+		
+		if ( activated == 1 )
+			*active_flag = 1;
+		else
+			*active_flag = 0;
+		end	
+			
+		// actualizo el grafico
+		graph = 10 + state;
+	
+		frame;
+		
+		last_state = state;
+		state = 0;
+		
+	end
 
 end
