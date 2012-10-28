@@ -106,29 +106,7 @@ BEGIN
 
 	LOOP
 	
-		// global_key_lock
-		IF( global_key_lock )
-		
-			global_key_lock = false;
-			
-			// si hay alguna tecla presionada, vuelvo a bloquear
-			if ( mouse.left )
-			
-				global_key_lock = true;
-				break;
-				
-			else
-				for ( i=0; i< _JKEY_LAST-2; i++ )
-					if ( jkeys_state[i] )
-						global_key_lock = true;
-						break;
-					end
-				end
-			end
-			
-			say(global_key_lock);
-			
-		END
+		global_key_lock();
 
 		IF ( EXIT_STATUS OR jkeys_state[ _JKEY_MENU ] )
 			
@@ -144,5 +122,31 @@ BEGIN
 
 	END
 
-
 END
+
+function global_key_lock()
+begin
+
+	// global_key_lock check
+	IF( global_key_lock )
+	
+		global_key_lock = false;
+		
+		// si hay alguna tecla presionada, vuelvo a bloquear
+		if ( mouse.left )
+		
+			global_key_lock = true;
+			
+		else
+			for ( i=0; i< _JKEY_LAST-2; i++ )
+				if ( jkeys_state[i] )
+					global_key_lock = true;
+					break;
+				end
+			end
+		end
+		
+		say(global_key_lock);
+		
+	END
+end

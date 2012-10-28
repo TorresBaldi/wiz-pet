@@ -38,6 +38,8 @@ begin
 	
 	loop
 	
+		global_key_lock();
+	
 		// fin del juego
 		if ( key( _t ) OR vacios==0 OR game_end )
 			

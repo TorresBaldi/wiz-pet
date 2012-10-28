@@ -45,8 +45,14 @@ begin
 			
 			end
 			
-			do_action = false;
+			//global_key_lock();
+			while ( global_key_lock )
+				global_key_lock();
+				frame;
+			end
 			
+			do_action = false;
+
 			say( "action done!" );
 	
 		end

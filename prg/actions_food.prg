@@ -58,6 +58,8 @@ begin
 
 	loop
 	
+		global_key_lock();
+	
 		// seleccion de la comida
 		if ( !confirmed )
 			
@@ -72,6 +74,7 @@ begin
 			
 			// confirmacion de la comida
 			if ( !global_key_lock AND jkeys_state[_JKEY_SELECT] )
+				global_key_lock = true;
 				confirmed = true;
 			end
 			
