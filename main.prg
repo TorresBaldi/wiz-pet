@@ -45,11 +45,9 @@ include "prg/jkeys.prg";
 
 include "prg/globals.prg";
 
-include "prg/time.prg";
 include "prg/gui.prg";
 include "prg/hud.prg";
 include "prg/actions.prg";
-
 include "prg/game.prg";
 include "prg/pet.prg";
 
@@ -58,7 +56,7 @@ include "prg/pet.prg";
 
 BEGIN
 
-	// inicializo dependiendo el OS
+	// inicializo video dependiendo el OS
 	switch ( OS_ID )
 	
 		case OS_GP2X_WIZ:
@@ -79,11 +77,9 @@ BEGIN
 	
 	end
 	
+	// inicializacion de teclas
 	jkeys_set_default_keys();
-    jkeys_init();
-	
-	// mostrar hud
-	mostrar_hud();
+	jkeys_init();
 	
 	//cargo tiempo anterior
 	if ( fexists("time.dat") )

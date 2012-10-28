@@ -4,25 +4,20 @@ PROCESS game_loop()
 PRIVATE
 
 	int busy = false;
-	int key_lock;
-	
-	int temp_timer;
 
 END
 
 BEGIN
 
+	// el proceso no se duerme a si mismo
 	signal_action( S_SLEEP_TREE, S_IGN);
 
 	// inicializacion del juego
+	mostrar_hud();
 	mascota();
-	
 	botones();
-	
 	actions_manager();
 	
-	put( load_fpg("fpg/bg.fpg"), stats.lugar+1, screen_x/2, screen_y/2 );
-
 	loop
 	
 		// cada tick
@@ -39,13 +34,13 @@ BEGIN
 			if ( jkeys_state[ _JKEY_R ] )
 				calcular_ticks(1);
 			end
-			
 			if ( jkeys_state[ _JKEY_L ] )
 				reset();
 			end
 		end
 		
 
+		// al activar una accion, duermo el juego
 		if ( do_action AND !busy )
 		
 			busy++;
@@ -54,7 +49,7 @@ BEGIN
 			
 		end
 		
-		// reactivo al terminar la accion
+		// reactivo el juego al terminar la accion
 		if ( busy AND !do_action )
 		
 			busy = 0;
