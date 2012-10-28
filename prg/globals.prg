@@ -10,9 +10,24 @@ CONST
 	AGE_OLD		= 4;
 	
 	// acciones disponibles
-	ACTN_FOOD = 1;
-	ACTN_PLAY = 2;
-	ACTN_MOVE = 3;
+	ACTN_FOOD	= 1;
+	ACTN_PLAY	= 2;
+	ACTN_MOVE	= 3;
+	ACTN_HEAL	= 4;
+	ACTN_CLEAN	= 5;
+	ACTN_SLEEP	= 6;
+	ACTN_SHOWER	= 6;
+	
+	// botones disponibles
+	BTN_FOOD	= 0;
+	BTN_PLAY	= 1;
+	BTN_HEAL	= 2;
+	BTN_CLEAN	= 3;
+	BTN_SHOWER	= 4;
+	BTN_SLEEP	= 5;
+	BTN_MOVE	= 6;
+	
+	BTN_COUNT = 7;	// cantidad de botones
 
 END
 

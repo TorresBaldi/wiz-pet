@@ -1,18 +1,4 @@
 import "mod_draw";
-/* ------------------------------------------------------------------------- */
-
-CONST
-
-	BTN_FOOD 	= 0;
-	BTN_MED 	= 1;
-	BTN_PLAY 	= 2;
-	BTN_BATH 	= 3;
-	BTN_SLEEP 	= 4;
-	BTN_MOVE 	= 5;
-	
-	BTN_COUNT = 6;	// cantidad de botones
-
-END
 
 /* ------------------------------------------------------------------------- */
 process botones() 
@@ -31,13 +17,14 @@ begin
 
 	select[i] = true;
 
-	gui_button(64 -32, 208, 0, &select[0], &active[0] );
-	gui_button(128 -32, 208, 0, &select[1], &active[1] );
-	gui_button(192 -32, 208, 0, &select[2], &active[2] );
-	gui_button(256 -32, 208, 0, &select[3], &active[3] );
-	gui_button(320 -32, 208, 0, &select[4], &active[4] );
+	gui_button(36 + 000, 208, 10, &select[BTN_FOOD], &active[BTN_FOOD] );
+	gui_button(36 + 050, 208, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
+	gui_button(36 + 100, 208, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
+	gui_button(36 + 150, 208, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
+	gui_button(36 + 200, 208, 50, &select[BTN_SHOWER], &active[BTN_SHOWER] );
+	gui_button(36 + 250, 208, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
 	
-	gui_button(320 -32, 32, 0, &select[5], &active[5] );
+	gui_button(320-25, 25, 70, &select[BTN_MOVE], &active[BTN_MOVE] );
 
 	loop
 	
@@ -64,17 +51,6 @@ begin
 			select[i] = true;
 			
 		end
-		
-		/*
-		// muestro que se activo algun boton
-		for( j=0; j<BTN_COUNT; j++ )
-			
-			if ( active[j] )
-				say( J + " ACTIVE" );
-			end
-			
-		end
-		*/
 
 		// acciones de los botones
 		IF ( active[BTN_FOOD] )
@@ -84,13 +60,6 @@ begin
 			//
 			do_action = ACTN_FOOD;
 			
-		ELSEIF ( active[BTN_MED] )
-		
-			//
-			//	MEDICINA
-			//
-			stats.salud += 20;
-			
 		ELSEIF ( active[BTN_PLAY] )
 		
 			//
@@ -98,12 +67,26 @@ begin
 			//
 			do_action = ACTN_PLAY;
 			
-		ELSEIF ( active[BTN_BATH] )
+		ELSEIF ( active[BTN_MOVE] )
 		
 			//
-			//	BAÑAR
+			//	SALIR / ENTRAR
 			//
-			stats.higiene += 20;
+			do_action = ACTN_MOVE;
+			
+		ELSEIF ( active[BTN_HEAL] )
+		
+			//
+			//	MEDICINA
+			//
+			stats.salud += 20;
+			
+		ELSEIF ( active[BTN_CLEAN] )
+		
+			//
+			//	LIMPIAR / BARRER
+			//
+			//stats.energia += 20;
 			
 		ELSEIF ( active[BTN_SLEEP] )
 		
@@ -112,12 +95,12 @@ begin
 			//
 			stats.energia += 20;
 			
-		ELSEIF ( active[BTN_MOVE] )
+		ELSEIF ( active[BTN_SHOWER] )
 		
 			//
-			//	SALIR / ENTRAR
+			//	BAÑAR
 			//
-			do_action = ACTN_MOVE;
+			stats.higiene += 20;
 			
 		END
 	
@@ -132,7 +115,7 @@ function int draw_bar( int value )
 
 private
 
-	int width = 50;
+	int width = 40;
 	int height = 8;
 	
 	int width_value;
@@ -165,7 +148,7 @@ end
 
 /* ------------------------------------------------------------------------- */
 // boton que se puede activar de forma tactil, o al seleccionarlo desde afuera
-process gui_button( int x, int y, int icon, int pointer selected_flag, int pointer active_flag )
+process gui_button( int x, int y, int button_graph, int pointer selected_flag, int pointer active_flag )
 
 private
 
@@ -179,7 +162,6 @@ end
 begin
 
 	file = load_fpg("fpg/system.fpg");
-	graph = 10;
 
 	loop
 	
@@ -213,7 +195,8 @@ begin
 		end	
 			
 		// actualizo el grafico
-		graph = 10 + state;
+		graph = button_graph;
+		if ( state ) graph++; end
 	
 		frame;
 		

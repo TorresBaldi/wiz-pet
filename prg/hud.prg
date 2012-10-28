@@ -6,6 +6,8 @@ private
 	int txt_id[10];
 	
 	int i;
+	
+	int show = false;
 
 end
 
@@ -16,21 +18,23 @@ begin
 	write_var(0,screen_X,0,2,timer[0]);
 	
 	// muestro las barras
-	hud_show_hbar( 150, 20, &stats.hambre );
-	hud_show_hbar( 150, 30, &stats.salud );
-	hud_show_hbar( 150, 40, &stats.diversion );
-	hud_show_hbar( 150, 50, &stats.higiene );
-	hud_show_hbar( 150, 60, &stats.energia );
+	hud_show_hbar( 36 + 000, 220, &stats.hambre );
+	hud_show_hbar( 36 + 050, 220, &stats.salud );
+	hud_show_hbar( 36 + 100, 220, &stats.diversion );
+	hud_show_hbar( 36 + 200, 220, &stats.higiene );
+	hud_show_hbar( 36 + 250, 220, &stats.energia );
 	
 	loop
 	
-		txt_id[0] = write( 0, 0, 20, 3, (stats.hambre) + " hambre" );
-		txt_id[1] = write( 0, 0, 30, 3, (stats.salud) + " salud" );
-		txt_id[2] = write( 0, 0, 40, 3, (stats.diversion) + " diversion" );
-		txt_id[3] = write( 0, 0, 50, 3, (stats.higiene) + " higiene" );
-		txt_id[4] = write( 0, 0, 60, 3, (stats.energia) + " energia" );
-		txt_id[5] = write( 0, 0, 70, 3, (stats.edad) + " edad" );
-		txt_id[6] = write( 0, 0, 80, 3, (stats.ticks) + " ticks" );
+		if ( show )
+			txt_id[0] = write( 0, 0, 20, 3, (stats.hambre) + " hambre" );
+			txt_id[1] = write( 0, 0, 30, 3, (stats.salud) + " salud" );
+			txt_id[2] = write( 0, 0, 40, 3, (stats.diversion) + " diversion" );
+			txt_id[3] = write( 0, 0, 50, 3, (stats.higiene) + " higiene" );
+			txt_id[4] = write( 0, 0, 60, 3, (stats.energia) + " energia" );
+			txt_id[5] = write( 0, 0, 70, 3, (stats.edad) + " edad" );
+			txt_id[6] = write( 0, 0, 80, 3, (stats.ticks) + " ticks" );
+		end
 		
 		frame;
 		
