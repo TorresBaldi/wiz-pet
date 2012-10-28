@@ -44,11 +44,13 @@ END
 include "prg/jkeys.prg";
 
 include "prg/globals.prg";
+include "prg/debug.prg";
 
 include "prg/gui.prg";
 include "prg/hud.prg";
 include "prg/actions.prg";
 include "prg/game.prg";
+include "prg/ticks.prg";
 include "prg/pet.prg";
 
 /* ------------------------------------------------------------------------- */
