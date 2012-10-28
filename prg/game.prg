@@ -13,7 +13,7 @@ BEGIN
 	signal_action( S_SLEEP_TREE, S_IGN);
 
 	// inicializacion del juego
-	//mostrar_hud();
+	mostrar_hud();
 	mascota();
 	botones();
 	actions_manager();

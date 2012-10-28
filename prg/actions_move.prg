@@ -4,46 +4,27 @@ function action_move()
 begin
 
 	if ( stats.lugar == 1 )
+		y = 1;
 		stats.lugar = 2;
 	else
+		y = 2;
 		stats.lugar = 1;
 	end
-
-	function_screen_transition();
 	
-	put( fpg_bg, stats.lugar, 160, 120 );
-	
-	screen_transition();
-
-end
-
-function function_screen_transition()
-
-begin
-
-	screen_transition();
-
-end
-
-process screen_transition()
-
-begin
-
-	file = 0;
+	while ( action_transition )
+		frame;
+	end
 	
 	x = 160;
-	y = 120;
+	while ( x < 320 + 160 )
 	
-	graph = screen_get();
-	
-	loop
-	
-		alpha -= 8;
+		x += 5;
 		
-		if ( alpha <= 0 ) break; end
-	
+		put( fpg_bg, y, x, 120 );
+		put( fpg_bg, stats.lugar, -320 + x, 120 );
+		
 		frame;
 		
 	end
-
+	
 end
