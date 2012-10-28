@@ -3,7 +3,7 @@ PROCESS game_loop()
 
 PRIVATE
 
-	int active = true;
+	int busy = false;
 	int key_lock;
 	
 	int temp_timer;
@@ -26,7 +26,7 @@ BEGIN
 	loop
 	
 		// cada tick
-		if ( active )
+		if ( !busy )
 			IF ( timer[0] >= tick )
 			
 				timer[0] -= tick;
@@ -46,18 +46,18 @@ BEGIN
 		end
 		
 
-		if ( do_action AND !active )
+		if ( do_action AND !busy )
 		
-			active++;
+			busy++;
 			
 			signal(id, S_SLEEP_TREE );
 			
 		end
 		
 		// reactivo al terminar la accion
-		if ( active AND !do_action )
+		if ( busy AND !do_action )
 		
-			active = 0;
+			busy = 0;
 			signal ( id, S_WAKEUP_TREE );
 			
 		end
