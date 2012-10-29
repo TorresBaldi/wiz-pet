@@ -48,17 +48,17 @@ begin
 			
 				case 0:
 					say("EMPATE");
-					stats.diversion += 5;
+					stats.fun += 5;
 				end
 				
 				case 1:
 					say("GANA JUGADOR");
-					stats.diversion += 30;
+					stats.fun += 30;
 				end
 				
 				case 2:
 					say("GANA CPU");
-					stats.diversion += 40;
+					stats.fun += 40;
 				end
 				
 			end

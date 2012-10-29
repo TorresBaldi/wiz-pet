@@ -47,7 +47,7 @@ BEGIN
 	y = 120;
 	
 	file = load_fpg("fpg/pet.fpg");
-	graph = grafico[stats.edad][0];
+	graph = grafico[stats.age][0];
 	
 
 	LOOP
@@ -57,7 +57,7 @@ BEGIN
 		if ( i>20 )
 			i=0;
 			grafico_frame++;
-			graph = grafico[stats.edad][ grafico_frame % 2 ];
+			graph = grafico[stats.age][ grafico_frame % 2 ];
 		end
 		
 		if ( i % 2 == 0 )

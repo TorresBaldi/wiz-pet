@@ -3,12 +3,12 @@ function action_move()
 
 begin
 
-	if ( stats.lugar == 1 )
+	if ( stats.location == 1 )
 		y = 1;
-		stats.lugar = 2;
+		stats.location = 2;
 	else
 		y = 2;
-		stats.lugar = 1;
+		stats.location = 1;
 	end
 	
 	while ( action_transition )
@@ -21,7 +21,7 @@ begin
 		x += 5;
 		
 		put( fpg_bg, y, x, 120 );
-		put( fpg_bg, stats.lugar, -320 + x, 120 );
+		put( fpg_bg, stats.location, -320 + x, 120 );
 		
 		frame;
 		

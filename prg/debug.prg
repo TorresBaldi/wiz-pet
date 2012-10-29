@@ -3,14 +3,14 @@ function reset()
 
 begin
 
-	stats.hambre = 100;
-	stats.salud = 100;
-	stats.diversion = 100;
-	stats.higiene = 100;
-	stats.energia = 100;
+	stats.food = 100;
+	stats.health = 100;
+	stats.fun = 100;
+	stats.clean = 100;
+	stats.sleep = 100;
 	
 	stats.ticks = 0;
-	stats.edad = 0;
+	stats.age = 0;
 	
 	stats.first_time = time();
 	stats.last_time = time();

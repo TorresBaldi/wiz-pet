@@ -79,28 +79,28 @@ begin
 			//
 			//	MEDICINA
 			//
-			stats.salud += 20;
+			stats.health += 20;
 			
 		ELSEIF ( active[BTN_CLEAN] )
 		
 			//
 			//	LIMPIAR / BARRER
 			//
-			//stats.energia += 20;
+			//stats.sleep += 20;
 			
 		ELSEIF ( active[BTN_SLEEP] )
 		
 			//
 			//	DORMIR
 			//
-			stats.energia += 20;
+			stats.sleep += 20;
 			
 		ELSEIF ( active[BTN_SHOWER] )
 		
 			//
 			//	BAÑAR
 			//
-			stats.higiene += 20;
+			stats.clean += 20;
 			
 		END
 	

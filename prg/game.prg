@@ -20,7 +20,7 @@ BEGIN
 	
 	//dibujo el fondo
 	fpg_bg = load_fpg( "fpg/bg.fpg" );
-	put( fpg_bg, stats.lugar, 160, 120 );
+	put( fpg_bg, stats.location, 160, 120 );
 	
 	loop
 	

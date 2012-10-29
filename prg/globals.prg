@@ -47,20 +47,31 @@ GLOBAL
 	
 	STRUCT stats
 	
-		float hambre = 100;
-		float salud = 100;
-		float diversion = 100;
-		float higiene = 100;
-		float energia = 100;
+		// stats de la criatura
+		float food 		= 100;
+		float health 	= 100;
+		float fun 		= 100;
+		float clean 	= 100;
+		float sleep 	= 100;
 		
+		// cacas en el mapa
+		int dump_inside[5];
+		int dump_inside_x[5];
+		int dump_inside_y[5];
+		int dump_outside[5];
+		int dump_outside_x[5];
+		int dump_outside_y[5];
+		
+		// vida
 		int ticks;
-		int edad;
+		int age;
+
+		int location = 1;
 		
-		int estado;
-		int lugar = 1;
-		
+		// fechas
 		int first_time;
 		int last_time;
+		int death_time;
 	
 	END
 	
