@@ -52,6 +52,7 @@ include "prg/actions.prg";
 include "prg/actions_food.prg";
 include "prg/actions_tateti.prg";
 include "prg/actions_move.prg";
+include "prg/actions_heal.prg";
 include "prg/caca.prg";
 include "prg/game.prg";
 include "prg/ticks.prg";

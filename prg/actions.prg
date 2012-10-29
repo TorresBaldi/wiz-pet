@@ -41,6 +41,15 @@ begin
 
 				end
 
+				//
+				//	CURAR
+				//
+				case ACTN_HEAL:
+
+					action_heal();
+
+				end
+
 			end
 
 			//global_key_lock();

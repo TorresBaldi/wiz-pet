@@ -79,7 +79,7 @@ begin
 			//
 			//	MEDICINA
 			//
-			stats.health += 20;
+			do_action = ACTN_HEAL;
 
 		ELSEIF ( active[BTN_CLEAN] )
 
