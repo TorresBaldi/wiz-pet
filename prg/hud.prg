@@ -21,6 +21,7 @@ begin
 	hud_show_hbar( 36 + 000, 232, &stats.food );
 	hud_show_hbar( 36 + 050, 232, &stats.fun );
 	hud_show_hbar( 36 + 100, 232, &stats.health );
+	
 	hud_show_hbar( 36 + 200, 232, &stats.clean );
 	hud_show_hbar( 36 + 250, 232, &stats.sleep );
 	

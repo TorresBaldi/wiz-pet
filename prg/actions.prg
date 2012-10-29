@@ -3,8 +3,6 @@ process actions_manager()
 
 begin
 
-	priority = 100;
-
 	// game_loop no duerme al proceso
 	signal_action( S_SLEEP_TREE, S_IGN);
 
@@ -60,35 +58,5 @@ begin
 		frame;
 		
 	end
-
-end
-
-process screen_transition()
-
-begin
-
-	file = 0;
-	
-	x = 160;
-	y = 120;
-	
-	graph = screen_get();
-	
-	action_transition = true;
-	
-	// game_loop no duerme al proceso
-	signal_action( S_SLEEP_TREE, S_IGN);
-	
-	loop
-	
-		alpha -= 8;
-		
-		if ( alpha <= 0 ) break; end
-	
-		frame;
-		
-	end
-	
-	action_transition = false;
 
 end

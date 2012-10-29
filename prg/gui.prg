@@ -87,6 +87,7 @@ begin
 			//	LIMPIAR / BARRER
 			//
 			//stats.sleep += 20;
+			clean_caca( stats.location );
 			
 		ELSEIF ( active[BTN_SLEEP] )
 		

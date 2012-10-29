@@ -47,7 +47,6 @@ GLOBAL
 	
 	//iniciar acciones
 	int do_action;
-	int action_transition;
 	
 	int caca_updated;
 	

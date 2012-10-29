@@ -2,8 +2,6 @@
 function action_move()
 
 begin
-
-	caca_updated = true;
 	
 	if ( stats.location == LOC_INSIDE )
 		y = 1;
@@ -11,10 +9,6 @@ begin
 	else
 		y = 2;
 		stats.location = LOC_INSIDE;
-	end
-	
-	while ( action_transition )
-		frame;
 	end
 	
 	x = 160;
@@ -28,5 +22,7 @@ begin
 		frame;
 		
 	end
+	
+	//debug;
 	
 end
