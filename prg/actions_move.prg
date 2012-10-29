@@ -3,12 +3,12 @@ function action_move()
 
 begin
 
-	if ( stats.location == 1 )
+	if ( stats.location == LOC_INSIDE )
 		y = 1;
-		stats.location = 2;
+		stats.location = LOC_OUTSIDE;
 	else
 		y = 2;
-		stats.location = 1;
+		stats.location = LOC_INSIDE;
 	end
 	
 	while ( action_transition )

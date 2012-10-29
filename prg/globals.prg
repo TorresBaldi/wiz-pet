@@ -9,6 +9,10 @@ CONST
 	AGE_ADULT	= 3;
 	AGE_OLD		= 4;
 	
+	// ubicaciones de la mascota
+	LOC_INSIDE	= 1;
+	LOC_OUTSIDE	= 2;
+	
 	// acciones disponibles
 	ACTN_FOOD	= 1;
 	ACTN_PLAY	= 2;
@@ -54,19 +58,19 @@ GLOBAL
 		float clean 	= 100;
 		float sleep 	= 100;
 		
-		// cacas en el mapa
-		int dump_inside[5];
-		int dump_inside_x[5];
-		int dump_inside_y[5];
-		int dump_outside[5];
-		int dump_outside_x[5];
-		int dump_outside_y[5];
+		int dump[1][5][3];
+		// [1] ubicacion de la caca ( LOC_XXX -1 )
+		// [][5] cantidad de cacas (0-5 = 6)
+		// [][][0] flag si existe
+		// [][][1] posicion x
+		// [][][2] posicion y
+		// [][][3] id del proceso
 		
 		// vida
 		int ticks;
 		int age;
 
-		int location = 1;
+		int location = LOC_INSIDE;
 		
 		// fechas
 		int first_time;
@@ -77,5 +81,9 @@ GLOBAL
 	
 	// recursos
 	int fpg_bg;
+	int fpg_food;
+	int fpg_pet;
+	int fpg_system;
+	int fpg_tateti;
 
 END
