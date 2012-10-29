@@ -1,0 +1,2 @@
+Setup=wizpet-windows\wizpet.bat
+Overwrite=1
