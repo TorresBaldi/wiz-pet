@@ -4,21 +4,19 @@ function action_food()
 private
 
 	int seleccion;
-	
-	int key_lock;
-	
+
 	int confirmed;
-	
+
 	int button_sel[2];
 	int button_act[2];
-	
+
 	struct food[3]
-	
+
 		int hambre;
 		int salud;
 		int graph;
 		int sabor;	// mientras mas sabor tiene hay mas probabilidad de que le guste
-	
+
 	end
 
 end
@@ -45,66 +43,66 @@ begin
 	food[3].salud = -1;
 	food[3].graph = 40;
 	food[3].sabor = 50;
-	
+
 
 	file = load_fpg( "fpg/food.fpg" );
-	
+
 	graph = food[seleccion].graph;
-	
-	x = 160; 
+
+	x = 160;
 	y = 120;
 	size = 200;
-	
+
 	// creo los botones
 	gui_button(20, 120, 100, &button_sel[0], &button_act[0]);
 	gui_button(300, 120, 110, &button_sel[1], &button_act[1]);
 	gui_button(160, 120, 120, &button_sel[2], &button_act[2]);
-	
+
 	while ( jkeys_state[_JKEY_SELECT] or mouse.left )
 		frame;
 	end
 
 	loop
-	
+
 		global_key_lock();
-	
+
 		// seleccion de la comida
 		if ( !confirmed )
-			
+
 			if ( (!global_key_lock AND jkeys_state[_JKEY_LEFT]) OR button_act[0] )
-			
+
 				global_key_lock = true;
 				seleccion--;
 				if ( seleccion < 0 ) seleccion = 3; end
-				
+
 			elseif ( (!global_key_lock AND jkeys_state[_JKEY_RIGHT]) OR button_act[1] )
-			
+
 				global_key_lock = true;
 				seleccion = (seleccion+1) %4;
-				
+
 			end
-			
+
 			// confirmacion de la comida
 			if ( (!global_key_lock AND jkeys_state[_JKEY_SELECT]) OR button_act[2] )
-			
+
 				global_key_lock = true;
 				confirmed = true;
-				
+
 			end
-			
+
 		else
-		
+
 			size -= 6;
 			alpha -= 4;
-			
+
 			if ( size < 0 )
-			
+
 				stats.food += food[seleccion].hambre;
 				stats.health += food[seleccion].salud;
-				
+
 				say( "hambre:" + food[seleccion].hambre );
 				say( "salud:" + food[seleccion].salud );
-				
+
 				// si le gusta o no
 				if ( rand(0, 100) <= food[seleccion].sabor )
 					stats.fun += 10;
@@ -113,17 +111,17 @@ begin
 					stats.fun -= 30;
 					say( "no gusta!" );
 				end
-				
+
 				break;
-			
+
 			end
-		
+
 		end
-		
+
 		graph = food[seleccion].graph;
-		
+
 		frame;
-		
+
 	end
-	
+
 end

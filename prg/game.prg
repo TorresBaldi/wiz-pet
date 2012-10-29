@@ -13,7 +13,7 @@ BEGIN
 	signal_action( S_SLEEP_TREE, S_IGN);
 
 	//cargo recursos
-	fpg_bg 	= load_fpg( "fpg/bg.fpg" );	
+	fpg_bg 	= load_fpg( "fpg/bg.fpg" );
 	fpg_pet	= load_fpg( "fpg/pet.fpg" );
 
 	// inicializacion del juego
@@ -25,19 +25,19 @@ BEGIN
 
 	//dibujo el fondo
 	put( fpg_bg, stats.location, 160, 120 );
-	
+
 	loop
-	
+
 		// cada tick
 		if ( !busy )
 			IF ( timer[0] >= tick * 100 )
-			
+
 				timer[0] -= tick * 100;
-				
+
 				calcular_ticks(1);
-			
+
 			END
-			
+
 			//debug
 			if ( jkeys_state[ _JKEY_R ] )
 				calcular_ticks(1);
@@ -46,38 +46,38 @@ BEGIN
 				reset();
 			end
 		end
-		
+
 
 		// al activar una accion, duermo el juego
 		if ( do_action AND !busy )
-		
+
 			if ( busy == 0 )
-			
+
 				//debug;
 				//kill_cacas();
 				signal(id, S_SLEEP_TREE );
-				
+
 			end
-			
+
 			busy++;
-			
+
 		end
-		
+
 		// reactivo el juego al terminar la accion
 		if ( busy AND !do_action )
-		
+
 			busy = 0;
-			signal ( id, S_WAKEUP_TREE );	
-			
+			signal ( id, S_WAKEUP_TREE );
+
 			kill_cacas();
 			caca_updated = true;
-			
+
 			//debug;
-			
+
 		end
-		
+
 		frame;
-	
+
 	end
 
 END
