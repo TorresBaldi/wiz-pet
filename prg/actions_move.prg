@@ -3,6 +3,8 @@ function action_move()
 
 begin
 
+	caca_updated = true;
+	
 	if ( stats.location == LOC_INSIDE )
 		y = 1;
 		stats.location = LOC_OUTSIDE;

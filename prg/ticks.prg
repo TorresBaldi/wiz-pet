@@ -48,6 +48,11 @@ BEGIN
 		// energia
 		stats.sleep -= 0.6;
 		
+		// hago caca
+		if ( rand(0,100) > 98 )
+			do_caca();
+		end
+		
 		// limites de stats
 		if ( stats.food > 100 ) stats.food = 100;
 		elseif ( stats.food < 0 ) stats.food = 0; end

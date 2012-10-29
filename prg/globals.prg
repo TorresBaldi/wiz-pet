@@ -49,6 +49,8 @@ GLOBAL
 	int do_action;
 	int action_transition;
 	
+	int caca_updated;
+	
 	STRUCT stats
 	
 		// stats de la criatura

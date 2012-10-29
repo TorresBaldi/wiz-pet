@@ -101,6 +101,7 @@ BEGIN
 	
 	// modifico los stats
 	calcular_ticks ( time_delta / tick );
+	caca_updated = true;
 	
 	// inicio el bucle del juego
 	game_loop();
