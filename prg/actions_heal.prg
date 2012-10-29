@@ -45,7 +45,7 @@ begin
 		
 		cursor_id.x = 160 + pos;
 		
-		if ( key(_enter) and !global_key_lock )
+		if ( !global_key_lock AND jkeys_state[_JKEY_SELECT] )
 			
 			global_key_lock = true;
 			
@@ -86,10 +86,10 @@ begin
 		
 	end
 	
-	while ( key(_enter) )
+	while ( jkeys_state[_JKEY_SELECT] OR mouse.left )
 		frame;
 	end
-	while ( !key(_enter) )
+	while ( !jkeys_state[_JKEY_SELECT] AND !mouse.left )
 		frame;
 	end
 

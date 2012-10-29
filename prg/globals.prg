@@ -48,7 +48,7 @@ GLOBAL
 	//iniciar acciones
 	int do_action;
 
-	int caca_updated;
+	int caca_updated = true;
 
 	STRUCT stats
 

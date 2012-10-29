@@ -87,23 +87,9 @@ BEGIN
 	// inicializacion de teclas
 	jkeys_set_default_keys();
 	jkeys_init();
+	
+	load_data();
 
-	//cargo tiempo anterior
-	if ( fexists("time.dat") )
-		load( "time.dat", stats );
-	else
-		// inicio el tiempo nuevo
-		stats.first_time = time();
-		stats.last_time = time();
-
-	end
-
-	// calculo el tiempo que paso
-	time_delta = time() - stats.last_time;
-
-	// modifico los stats
-	calcular_ticks ( time_delta / tick );
-	caca_updated = true;
 
 	// inicio el bucle del juego
 	game_loop();
@@ -127,6 +113,41 @@ BEGIN
 	END
 
 END
+
+function load_data()
+
+private
+	int i;
+end
+
+begin
+
+	//cargo tiempo anterior
+	if ( fexists("time.dat") )
+	
+		load( "time.dat", stats );
+		
+	else
+	
+		// inicio el tiempo nuevo
+		stats.first_time = time();
+		stats.last_time = time();
+
+	end
+
+	// calculo el tiempo que paso
+	time_delta = time() - stats.last_time;
+
+	// modifico los stats
+	calcular_ticks ( time_delta / tick );
+	
+	//elimino las cacas que pueden haber quedado
+	for( i=0; i <= 5; i++ )
+		stats.dump[0][i][3] = false;
+		stats.dump[1][i][3] = false;
+	end
+
+end
 
 /* ------------------------------------------------------------------------- */
 /*

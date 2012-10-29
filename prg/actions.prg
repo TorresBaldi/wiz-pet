@@ -23,7 +23,7 @@ begin
 
 
 				//
-				//	COMEr
+				//	COMER
 				//
 				case ACTN_FOOD:
 
