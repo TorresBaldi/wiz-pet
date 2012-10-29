@@ -17,12 +17,12 @@ begin
 
 	select[i] = true;
 
-	gui_button(36 + 000, 208, 10, &select[BTN_FOOD], &active[BTN_FOOD] );
-	gui_button(36 + 050, 208, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
-	gui_button(36 + 100, 208, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
-	gui_button(36 + 150, 208, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
-	gui_button(36 + 200, 208, 50, &select[BTN_SHOWER], &active[BTN_SHOWER] );
-	gui_button(36 + 250, 208, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
+	gui_button(36 + 000, 225, 10, &select[BTN_FOOD], &active[BTN_FOOD] );
+	gui_button(36 + 050, 225, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
+	gui_button(36 + 100, 225, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
+	gui_button(36 + 150, 225, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
+	gui_button(36 + 200, 225, 50, &select[BTN_SHOWER], &active[BTN_SHOWER] );
+	gui_button(36 + 250, 225, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
 	
 	gui_button(320-25, 25, 70, &select[BTN_MOVE], &active[BTN_MOVE] );
 
@@ -115,7 +115,7 @@ function int draw_bar( int value )
 
 private
 
-	int width = 40;
+	int width = 30;
 	int height = 8;
 	
 	int width_value;

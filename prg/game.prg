@@ -104,16 +104,25 @@ begin
 				// si se hizo caca
 				if ( stats.dump[l][i][0] )
 				
+					x = stats.dump[l][i][1];
+					y = stats.dump[l][i][2];
+				
 					// si no fue creada la crea
 					if ( !stats.dump[l][i][3] )
+					
 						// creo [id] = caca( [x],[y] )
-						stats.dump[l][i][3] = caca( stats.dump[l][i][1], stats.dump[l][i][2]);
+						stats.dump[l][i][3] = caca( x, y);
+						say("creo caca nueva en " + x + "," + y);
+						
 					end
 					
 					// si no existe el proceso que figura
 					if ( !exists(stats.dump[l][i][3]) )
-						stats.dump[l][i][3] = caca( stats.dump[l][i][1], stats.dump[l][i][2]);
+					
+						stats.dump[l][i][3] = caca( x, y);
+						say("creo caca muerta en " + x + "," + y);
 						//say( stats.dump[l][i][3].reserved.process_type );
+						
 					end
 				
 				// si la caca fue limpiada
