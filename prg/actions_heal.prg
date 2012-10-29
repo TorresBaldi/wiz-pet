@@ -36,6 +36,8 @@ begin
 	
 	while ( !stop )
 	
+		global_key_lock();
+	
 		i += speed;
 		if ( i> 360000 ) i -= 360000; say("angle reset"); end
 		
@@ -45,7 +47,7 @@ begin
 		
 		cursor_id.x = 160 + pos;
 		
-		if ( !global_key_lock AND jkeys_state[_JKEY_SELECT] )
+		if ( (!global_key_lock AND jkeys_state[_JKEY_SELECT]) OR mouse.left )
 			
 			global_key_lock = true;
 			
@@ -86,11 +88,21 @@ begin
 		
 	end
 	
-	while ( jkeys_state[_JKEY_SELECT] OR mouse.left )
+	// espero a que suelte el boton
+	while ( global_key_lock )
 		frame;
+		global_key_lock();
 	end
-	while ( !jkeys_state[_JKEY_SELECT] AND !mouse.left )
+	
+	// espero a que presione boton para salir
+	while ( !global_key_lock )
 		frame;
+		global_key_lock();
+		
+		if ( (!global_key_lock AND jkeys_state[_JKEY_SELECT]) OR mouse.left )
+			global_key_lock = true;
+		end
+		
 	end
 
 end
