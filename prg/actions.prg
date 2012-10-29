@@ -50,6 +50,15 @@ begin
 
 				end
 
+				//
+				//	BAÑARSE
+				//
+				case ACTN_SHOWER:
+
+					action_bath();
+
+				end
+
 			end
 
 			//global_key_lock();

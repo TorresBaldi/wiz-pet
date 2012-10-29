@@ -94,7 +94,8 @@ begin
 			//
 			//	BAÑAR
 			//
-			stats.shower += 20;
+			//stats.shower += 20;
+			do_action = ACTN_SHOWER;
 
 		ELSEIF ( active[BTN_SLEEP] )
 
@@ -112,12 +113,12 @@ begin
 end
 
 /* ------------------------------------------------------------------------- */
-function int draw_bar( int value )
+function int draw_bar( int value, width, height )
 
 private
 
-	int width = 30;
-	int height = 8;
+	//int width = 30;
+	//int height = 8;
 
 	int width_value;
 

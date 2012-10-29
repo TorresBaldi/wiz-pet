@@ -63,7 +63,7 @@ end
 begin
 
 	current_value = *value;
-	graph = draw_bar( current_value );
+	graph = draw_bar( current_value, 30, 8 );
 
 	loop
 
@@ -73,7 +73,7 @@ begin
 		if ( current_value <> last_value )
 
 			map_unload( 0, graph );
-			graph = draw_bar( current_value );
+			graph = draw_bar( current_value, 30, 8 );
 
 		end
 
