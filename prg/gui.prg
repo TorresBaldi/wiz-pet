@@ -89,19 +89,19 @@ begin
 			//stats.sleep += 20;
 			clean_caca( stats.location );
 			
+		ELSEIF ( active[BTN_SHOWER] )
+		
+			//
+			//	BAÑAR
+			//
+			stats.shower += 20;
+			
 		ELSEIF ( active[BTN_SLEEP] )
 		
 			//
 			//	DORMIR
 			//
 			stats.sleep += 20;
-			
-		ELSEIF ( active[BTN_SHOWER] )
-		
-			//
-			//	BAÑAR
-			//
-			stats.clean += 20;
 			
 		END
 	

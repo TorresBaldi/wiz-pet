@@ -11,6 +11,19 @@ begin
 		stats.location = LOC_INSIDE;
 	end
 	
+	// actualizo la limpieza del lugar
+	z = 0;	// uso z como i;
+	stats.clean = 100;
+	for ( z=0; z <= 5; z++ )
+		
+		if ( stats.dump[stats.location -1][z][0] )
+		
+			stats.clean -= 20;
+		
+		end
+		
+	end
+	
 	x = 160;
 	while ( x < 320 + 160 )
 	

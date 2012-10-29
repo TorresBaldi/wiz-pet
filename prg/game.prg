@@ -67,9 +67,10 @@ BEGIN
 		if ( busy AND !do_action )
 		
 			busy = 0;
-			caca_updated = true;
-			signal ( id, S_WAKEUP_TREE );			
+			signal ( id, S_WAKEUP_TREE );	
+			
 			kill_cacas();
+			caca_updated = true;
 			
 			//debug;
 			

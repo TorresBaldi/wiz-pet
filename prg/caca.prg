@@ -42,7 +42,7 @@ begin
 					
 						// creo [id] = caca( [x],[y] )
 						stats.dump[l][i][3] = caca( x, y);
-						say("creo caca nueva en " + x + "," + y);
+						//say("creo caca nueva en " + x + "," + y);
 						
 					end
 					
@@ -50,7 +50,7 @@ begin
 					if ( !exists(stats.dump[l][i][3]) )
 					
 						stats.dump[l][i][3] = caca( x, y);
-						say("creo caca muerta en " + x + "," + y);
+						//say("creo caca muerta en " + x + "," + y);
 						//say( stats.dump[l][i][3].reserved.process_type );
 						
 					end
@@ -106,6 +106,8 @@ begin
 		stats.dump[ stats.location -1 ][i][2] = rand(100,150);
 		
 		caca_updated = true;
+		
+		stats.clean -= 20;
 	
 	end
 
@@ -129,6 +131,8 @@ begin
 		
 	end
 	
+	stats.clean = 100;
+	
 	caca_updated = true;
 
 end
@@ -148,7 +152,7 @@ begin
 		signal( caca_id, S_KILL );
 	end
 	
-	say( "cacas muertas" );
+	//say( "cacas muertas" );
 	
 end
 

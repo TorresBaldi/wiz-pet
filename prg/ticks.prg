@@ -43,7 +43,7 @@ BEGIN
 		stats.fun -= rand(1,8) * 0.1;
 		
 		// higiene
-		stats.clean -= 0.4;
+		stats.shower -= 0.4;
 		
 		// energia
 		stats.sleep -= 0.6;
@@ -65,6 +65,9 @@ BEGIN
 	
 		if ( stats.clean > 100 ) stats.clean = 100;
 		elseif ( stats.clean < 0 ) stats.clean = 0; end
+	
+		if ( stats.shower > 100 ) stats.shower = 100;
+		elseif ( stats.shower < 0 ) stats.shower = 0; end
 	
 		if ( stats.sleep > 100 ) stats.sleep = 100;
 		elseif ( stats.sleep < 0 ) stats.sleep = 0; end

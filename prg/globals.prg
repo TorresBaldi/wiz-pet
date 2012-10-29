@@ -57,6 +57,7 @@ GLOBAL
 		float health 	= 100;
 		float fun 		= 100;
 		float clean 	= 100;
+		float shower 	= 100;
 		float sleep 	= 100;
 		
 		int dump[1][5][3];
