@@ -17,14 +17,14 @@ begin
 
 	select[i] = true;
 
-	gui_button(36 + 000, 225, 10, &select[BTN_FOOD], &active[BTN_FOOD] );
-	gui_button(36 + 050, 225, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
-	gui_button(36 + 100, 225, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
-	gui_button(36 + 150, 225, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
-	gui_button(36 + 200, 225, 50, &select[BTN_SHOWER], &active[BTN_SHOWER] );
-	gui_button(36 + 250, 225, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
+	gui_button(36 + 000, 225, fpg_system, 10, &select[BTN_FOOD], &active[BTN_FOOD] );
+	gui_button(36 + 050, 225, fpg_system, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
+	gui_button(36 + 100, 225, fpg_system, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
+	gui_button(36 + 150, 225, fpg_system, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
+	gui_button(36 + 200, 225, fpg_system, 50, &select[BTN_SHOWER], &active[BTN_SHOWER] );
+	gui_button(36 + 250, 225, fpg_system, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
 
-	gui_button(320-25, 25, 70, &select[BTN_MOVE], &active[BTN_MOVE] );
+	gui_button(320-25, 25, fpg_system, 70, &select[BTN_MOVE], &active[BTN_MOVE] );
 
 	loop
 
@@ -150,7 +150,7 @@ end
 
 /* ------------------------------------------------------------------------- */
 // boton que se puede activar de forma tactil, o al seleccionarlo desde afuera
-process gui_button( int x, int y, int button_graph, int pointer selected_flag, int pointer active_flag )
+process gui_button( int x, int y, int file, int button_graph, int pointer selected_flag, int pointer active_flag )
 
 private
 
@@ -162,8 +162,6 @@ private
 end
 
 begin
-
-	file = fpg_system;
 
 	loop
 

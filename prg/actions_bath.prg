@@ -27,6 +27,6 @@ begin
 	
 	end
 	
-	stats.shower += 20;
+	stats.shower += 50;
 
 end

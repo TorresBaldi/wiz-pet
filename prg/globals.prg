@@ -99,6 +99,7 @@ GLOBAL
 	int fpg_food;
 	int fpg_pet;
 	int fpg_system;
+	int fpg_menu;
 	int fpg_tateti;
 	int fpg_health;
 

@@ -9,6 +9,8 @@ private
 	btn_activated[2][2];
 	
 	int activated;
+	
+	int button_graph;
 
 	int seleccion_x;
 	int seleccion_y;
@@ -43,13 +45,13 @@ begin
 		
 			// alterno los colores
 			if ( (x%2 + y%2) == 1 )
-				graph = 200;
+				button_graph = 200;
 			else
-				graph = 202;
+				button_graph = 202;
 			end
 			
 			// creo los botones
-			gui_button( 90 + ( x * 70), 50 + (y * 70), graph, &btn_selected[x][y], &btn_activated[x][y] );
+			gui_button( 90 + ( x * 70), 50 + (y * 70), fpg_tateti, button_graph, &btn_selected[x][y], &btn_activated[x][y] );
 			
 			//say( x + ", "+ y + ": " + graph );
 			

@@ -92,9 +92,9 @@ BEGIN
 	
 	load_data();
 
-
 	// inicio el bucle del juego
 	game_loop();
+	
 
 	LOOP
 
