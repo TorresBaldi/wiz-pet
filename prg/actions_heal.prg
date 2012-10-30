@@ -21,9 +21,14 @@ end
 
 begin
 
-	fpg_health = load_fpg("fpg/health.fpg");
-	
+	fpg_health = load_fpg("fpg/health.fpg");	
 	file = fpg_health;
+
+	// espero a que suelte el boton
+	while ( global_key_lock )
+		frame;
+		global_key_lock();
+	end
 	
 	graph = 1;
 	
@@ -33,6 +38,7 @@ begin
 	cursor_id = action_heal_cursor();
 	
 	cursor_id.y = 120;
+	
 	
 	while ( !stop )
 	
