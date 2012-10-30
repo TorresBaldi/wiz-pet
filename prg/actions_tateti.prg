@@ -4,6 +4,11 @@ function action_play_tateti()
 private
 
 	tabla[2][2];
+	
+	btn_selected[2][2];
+	btn_activated[2][2];
+	
+	int activated;
 
 	int cursor_id;
 
@@ -12,7 +17,7 @@ private
 
 	int key_lock;
 
-	int vacios = 9;
+	int empty = 9;
 
 	int turn = 2;
 
@@ -26,23 +31,40 @@ end
 begin
 
 	file = load_fpg( "fpg/tateti.fpg" );
-	graph = 1;
 
-	x = 160;
-	y = 120;
-
-	cursor_id = cursor(90,50);
+	//cursor_id = cursor(90,50);
 
 	while ( jkeys_state[_JKEY_SELECT] or mouse.left )
 		frame;
 	end
+	
+	btn_selected[0][0] = true;
+	
+	for ( x=0; x<3; x++ )
+		for ( y=0; y<3; y++ )
+		
+			// alterno los colores
+			if ( (x%2 + y%2) == 1 )
+				graph = 200;
+			else
+				graph = 202;
+			end
+			
+			// creo los botones
+			gui_button( 90 + ( x * 70), 50 + (y * 70), graph, &btn_selected[x][y], &btn_activated[x][y] );
+			
+			//say( x + ", "+ y + ": " + graph );
+			
+		end
+	end
+	
 
 	loop
 
 		global_key_lock();
 
 		// fin del juego
-		if ( key( _t ) OR vacios==0 OR game_end )
+		if ( empty==0 OR game_end )
 
 			switch (game_result)
 
@@ -69,42 +91,61 @@ begin
 
 		if ( !global_key_lock )
 
+			// jugador humano
 			if ( turn == 1 )
-
-				// movimiento del cursor
-				if ( jkeys_state[_JKEY_RIGHT] )
-					global_key_lock = true;
-					seleccion_x = (seleccion_x+1)%3;
-				elseif (jkeys_state[_JKEY_LEFT] )
-					global_key_lock = true;
-					seleccion_x--;
-					if ( seleccion_x<0 ) seleccion_x = 2; end
-				elseif (jkeys_state[_JKEY_DOWN] )
-					global_key_lock = true;
-					seleccion_y = (seleccion_y+1)%3;
-				elseif (jkeys_state[_JKEY_UP] )
-					global_key_lock = true;
-					seleccion_y--;
-					if ( seleccion_y<0 ) seleccion_y = 2; end
-				end
+			
+				// actualizo seleccion
+				//unselect_all( &btn_selected );
+				
 
 				// agrego items
-				if ( jkeys_state[_JKEY_SELECT] AND tabla[seleccion_x][seleccion_y] == 0 )
+				if ( tabla[seleccion_x][seleccion_y] == 0 AND activated )
 
 					global_key_lock = true;
+					
+					activated = false;
 
 					piece( 90 + ( seleccion_x * 70 ), 50 + ( seleccion_y * 70 ), turn );
 
 					tabla[seleccion_x][seleccion_y] = turn;
 
-					vacios--;
+					empty--;
 
 					check_tateti = true;
 
 					turn = 2;
 
+				// si no se agrego item muevo cursor
+				else
+					
+					// movimiento del cursor
+					if ( jkeys_state[_JKEY_RIGHT] )
+						global_key_lock = true;
+						
+						seleccion_x = (seleccion_x+1)%3;
+						
+					elseif (jkeys_state[_JKEY_LEFT] )
+						global_key_lock = true;
+						
+						seleccion_x--;
+						if ( seleccion_x<0 ) seleccion_x = 2; end
+						
+					elseif (jkeys_state[_JKEY_DOWN] )
+						global_key_lock = true;
+						
+						seleccion_y = (seleccion_y+1)%3;
+						
+					elseif (jkeys_state[_JKEY_UP] )
+						global_key_lock = true;
+						seleccion_y--;
+						
+						if ( seleccion_y<0 ) seleccion_y = 2; end
+						
+					end
+					
 				end
 
+			// cpu
 			else
 
 				// turno de la maquina
@@ -120,7 +161,7 @@ begin
 
 				tabla[seleccion_x][seleccion_y] = turn;
 
-				vacios--;
+				empty--;
 
 				check_tateti = true;
 
@@ -142,13 +183,23 @@ begin
 			end
 
 		end
-
-		// muevo el cursor en la pantalla
-		cursor_id.x = 90 + ( seleccion_x * 70 );
-		cursor_id.y = 50 + ( seleccion_y * 70 );
-
+		
 		frame;
-
+		
+		// compruebo si hay algun boton activado
+		for ( x=0; x<3; x++)
+			for ( y=0; y<3; y++ )
+				if ( btn_activated[x][y] )
+					activated = true;
+					seleccion_x = x;
+					seleccion_y = y;
+				end
+			end
+		end
+			
+		unselect_all( &btn_selected );
+		btn_selected[seleccion_x][seleccion_y] = true;
+		
 	end
 
 onexit
@@ -156,34 +207,6 @@ onexit
 	unload_fpg (file);
 
 end
-
-/* ------------------------------------------------------------------------- */
-process cursor(x,y)
-
-begin
-
-	graph = map_new(20,20,16);
-
-	z = father.z - 10;
-
-	map_clear( 0, graph, rgb(255,255,0) );
-
-	loop
-
-		if ( !exists( father ) )
-			//say("borro cursor");
-			break;
-		end
-
-		frame;
-	end
-
-onexit
-
-	map_unload( 0, graph );
-
-end
-
 
 /* ------------------------------------------------------------------------- */
 process piece(x,y,turn)
@@ -278,5 +301,38 @@ begin
 	end
 
 	return tateti_found;
+
+end
+
+function unselect_all( int pointer table )
+
+begin
+
+	for ( x=0; x<3; x++)
+		for ( y=0; y<3; y++ )
+		
+			table[(x * 3) + y] = false;
+			
+		end
+	end
+
+end
+
+function check_button_activation( int pointer table )
+
+begin
+
+	for ( x=0; x<3; x++)
+		for ( y=0; y<3; y++ )
+		
+			if (table[(x * 3) + y] )
+				say( "return true" );
+				return true;
+			end
+			
+		end
+	end
+	
+	return false;
 
 end
