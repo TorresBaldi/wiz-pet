@@ -1,13 +1,17 @@
 @echo off
 Title BUILDBOT
 
+:::::::::::: CONFIGURACIONES
 set gamename=wizpet
 
 set windows=1
-set exe=1
+set exe=0
 set linux=0
+set source=1
 set wiz=1
 set canoo=0
+
+
 
 :::::::::::: PREGUNTO VERSION
 cls
@@ -17,6 +21,12 @@ mkdir %ver%
 
 ::preparo el winrar
 set path=%path%;"C:\Archivos de programa\WinRAR"
+
+
+:::::::::::: CONSTRUYO LA RELEASE
+cd ..
+..\..\bin\bgdc.exe -a main.prg
+cd releases\
 
 
 :::::::::::: RECORRO TODAS LAS PLATAFORMAS
@@ -56,15 +66,36 @@ IF %canoo% == 0 GOTO skip_canoo
 	GOTO copy_files
 :skip_canoo
 
+IF %source% == 0 GOTO skip_source
+	SET source=0
+	SET platform=source
+	GOTO copy_source
+:skip_source
+
 :: termie con todas las plataformas
 GOTO bot_end
 
 
-:::::::::::: CONSTRUYO LA RELEASE
+:::::::::::: EMPAQUETO LA RELEASE
 :copy_files
-
 SET URL=%gamename%-%platform%\%gamename%
 IF %short_path% == 1 SET URL=%gamename%-%platform%
+
+copy ..\main.dcb %URL%\
+
+winRAR a -cl -m5 -r %ver%\%gamename%-%ver%-%platform%.zip %gamename%-%platform%\*
+IF %exe% == 2 winRAR s -zsfx.txt %ver%\%gamename%-%ver%-%platform%.zip
+
+del %URL%\main.dcb
+
+GOTO bot_begin
+
+
+
+:::::::::::: CONSTRUYO EL SOURCE
+:copy_source
+
+SET URL=%gamename%-%platform%
 
 echo copio Archivos a %url%
 
@@ -72,14 +103,7 @@ copy ..\main.prg %URL%\
 xcopy "..\fpg" /E /D /I "%URL%\fpg"
 xcopy "..\prg" /E /D /I "%URL%\prg"
 
-::del %URL%\data\config.dat
-
-echo genero archivo %ver%\%gamename%-%ver%-%platform%.zip
-
 winRAR a -cl -m5 -r %ver%\%gamename%-%ver%-%platform%.zip %gamename%-%platform%\*
-IF %exe% == 2 winRAR s -zsfx.txt %ver%\%gamename%-%ver%-%platform%.zip
-
-echo limpio carpeta
 
 del %URL%\main.prg
 del /f/q %URL%\fpg
@@ -89,4 +113,5 @@ rd %URL%\prg
 
 GOTO bot_begin
 
+:::::::::::: FINAL
 :bot_end
