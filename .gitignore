@@ -1,9 +1,13 @@
 # Proyecto
 time.dat
 png-sources/
+fpg-sources/
 
 # BennuGD
 *.dcb
+
+#sync data
+sync.ffs_db
 
 # github wiki
 wiki/
