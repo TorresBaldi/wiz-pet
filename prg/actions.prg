@@ -77,6 +77,8 @@ begin
 			end
 
 			do_action = false;
+			
+			update_mood();
 
 			say( "action done!" );
 

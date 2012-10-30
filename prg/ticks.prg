@@ -75,21 +75,29 @@ BEGIN
 		if ( stats.sleep > 100 ) stats.sleep = 100;
 		elseif ( stats.sleep < 0 ) stats.sleep = 0; end
 		
-		
-		// calculo el estado de animo de la mascota
-		stats.status = STA_NORMAL;
-		if ( stats.fun > 75 )
-			stats.status = STA_HAPPY;
-		elseif ( stats.fun < 25 )
-			stats.status = STA_SAD;
-		end
-		if ( stats.clean < 25 OR stats.shower < 25 )
-			stats.status = STA_DIRTY;
-		end
-		if ( stats.health < 25 )
-			stats.status = STA_ILL;
-		end
+		update_mood();
 		
 	END
 
 END
+
+function update_mood()
+
+begin
+	
+	// calculo el estado de animo de la mascota
+	stats.status = STA_NORMAL;
+	if ( stats.fun > 75 )
+		stats.status = STA_HAPPY;
+	elseif ( stats.fun < 25 )
+		stats.status = STA_SAD;
+	end
+	if ( stats.clean < 25 OR stats.shower < 25 )
+		stats.status = STA_DIRTY;
+	end
+	if ( stats.health < 25 )
+		stats.status = STA_ILL;
+	end
+	
+
+end
