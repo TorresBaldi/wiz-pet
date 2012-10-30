@@ -59,6 +59,15 @@ begin
 
 				end
 
+				//
+				//	MORIR
+				//
+				case ACTN_DIE:
+
+					action_die();
+
+				end
+
 			end
 
 			//global_key_lock();

@@ -12,6 +12,14 @@ CONST
 	// ubicaciones de la mascota
 	LOC_INSIDE	= 1;
 	LOC_OUTSIDE	= 2;
+	
+	// estados de la mascota
+	STA_NORMAL	= 0;
+	STA_HAPPY	= 1;
+	STA_SAD		= 2;
+	STA_DIRTY	= 3;
+	STA_ILL		= 4;
+	STA_DEAD	= 5;
 
 	// acciones disponibles
 	ACTN_FOOD	= 1;
@@ -20,7 +28,8 @@ CONST
 	ACTN_HEAL	= 4;
 	ACTN_CLEAN	= 5;
 	ACTN_SLEEP	= 6;
-	ACTN_SHOWER	= 6;
+	ACTN_SHOWER	= 7;
+	ACTN_DIE	= 8;
 
 	// botones disponibles
 	BTN_FOOD	= 0;
@@ -71,6 +80,9 @@ GLOBAL
 		// vida
 		int ticks;
 		int age;
+		
+		// estado de la mascota
+		int status;
 
 		int location = LOC_INSIDE;
 

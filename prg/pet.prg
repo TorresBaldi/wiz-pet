@@ -10,6 +10,8 @@ PRIVATE
 	int grafico_frame;
 
 	int direccion;
+	
+	int txt_id;
 
 END
 
@@ -32,37 +34,46 @@ BEGIN
 
 	file = fpg_pet;
 	graph = grafico[stats.age][0];
-
+	
+	txt_id = write(0, x, y-20, 4, "STATUS: " + stats.status );
 
 	LOOP
+	
+		if ( stats.status <> STA_DEAD )
 
-		i++;
+			i++;
 
-		if ( i>20 )
-			i=0;
-			grafico_frame++;
-			graph = grafico[stats.age][ grafico_frame % 2 ];
-		end
-
-		if ( i % 2 == 0 )
-			if ( direccion )
-				x++;
-
-				if ( x > 250 )
-					direccion = !direccion;
-				end
-
-			else
-				x--;
-
-				if ( x < 70 )
-					direccion = !direccion;
-				end
-
+			if ( i>20 )
+				i=0;
+				grafico_frame++;
+				graph = grafico[stats.age][ grafico_frame % 2 ];
 			end
+
+			if ( i % 2 == 0 )
+				if ( direccion )
+					x++;
+
+					if ( x > 250 )
+						direccion = !direccion;
+					end
+
+				else
+					x--;
+
+					if ( x < 70 )
+						direccion = !direccion;
+					end
+
+				end
+			end
+		
 		end
+		
+		delete_text( txt_id );
+		txt_id = write(0, x, y-20, 4, "STATUS: " + stats.status );
 
 		FRAME;
+		
 
 	END
 
