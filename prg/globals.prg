@@ -16,10 +16,11 @@ CONST
 	// estados de la mascota
 	STA_NORMAL	= 0;
 	STA_HAPPY	= 1;
-	STA_SAD		= 2;
-	STA_DIRTY	= 3;
-	STA_ILL		= 4;
-	STA_DEAD	= 5;
+	STA_HUNGRY	= 2;
+	STA_SAD		= 3;
+	STA_DIRTY	= 4;
+	STA_ILL		= 5;
+	STA_DEAD	= 6;
 
 	// acciones disponibles
 	ACTN_FOOD	= 1;

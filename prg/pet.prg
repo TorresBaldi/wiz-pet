@@ -12,6 +12,8 @@ PRIVATE
 	int direccion;
 	
 	int txt_id;
+	
+	string string_status;
 
 END
 
@@ -70,7 +72,17 @@ BEGIN
 		end
 		
 		delete_text( txt_id );
-		txt_id = write(0, x, y-20, 4, "STATUS: " + stats.status );
+		switch ( stats.status )
+			case STA_NORMAL:	string_status = "NORMAL"; end 		
+			case STA_HAPPY:		string_status = "HAPPY"; end 		
+			case STA_SAD:		string_status = "SAD"; end 		
+			case STA_HUNGRY:	string_status = "HUNGRY"; end 		
+			case STA_DIRTY:		string_status = "DIRTY"; end 		
+			case STA_ILL:		string_status = "ILL"; end 		
+			case STA_DEAD:		string_status = "DEAD"; end 		
+		end
+		
+		txt_id = write(0, x, y-20, 4, string_status );
 
 		FRAME;
 		

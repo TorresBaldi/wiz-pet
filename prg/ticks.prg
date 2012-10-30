@@ -89,7 +89,12 @@ begin
 	stats.status = STA_NORMAL;
 	if ( stats.fun > 75 )
 		stats.status = STA_HAPPY;
-	elseif ( stats.fun < 25 )
+	end
+	
+	if ( stats.food < 25 )
+		stats.status = STA_HUNGRY;
+	end
+	if ( stats.fun < 25 )
 		stats.status = STA_SAD;
 	end
 	if ( stats.clean < 25 OR stats.shower < 25 )
