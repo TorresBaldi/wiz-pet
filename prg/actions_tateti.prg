@@ -10,16 +10,12 @@ private
 	
 	int activated;
 
-	int cursor_id;
-
 	int seleccion_x;
 	int seleccion_y;
 
-	int key_lock;
-
 	int empty = 9;
 
-	int turn = 2;
+	int turn;
 
 	int check_tateti;
 
@@ -30,9 +26,11 @@ end
 
 begin
 
-	file = load_fpg( "fpg/tateti.fpg" );
+	turn = rand(1,2);
 
-	//cursor_id = cursor(90,50);
+	fpg_tateti = load_fpg( "fpg/tateti.fpg" );
+	
+	file = fpg_tateti;
 
 	while ( jkeys_state[_JKEY_SELECT] or mouse.left )
 		frame;
@@ -205,6 +203,7 @@ begin
 onexit
 
 	unload_fpg (file);
+	signal(id, S_KILL_TREE);
 
 end
 
@@ -218,12 +217,6 @@ begin
 	graph = turn+1;
 
 	loop
-
-		if ( !exists( father ) )
-			//say("borro fichita");
-			break;
-		end
-
 		frame;
 	end
 
@@ -234,29 +227,11 @@ function int check_tateti( int pointer tabla )
 private
 
 	int tateti_found;
-
-	string line;
-
 	int i;
 
 end
 
 begin
-
-	/*
-	// muestro la matriz por consola
-	for ( y=0; y<3; y++ )
-
-		for( x=0; x<3; x++)
-			line += "[" + tabla[(x*3) + y] + "] ";
-		end
-
-		say( line );
-		line = "";
-
-	end
-	say("");
-	*/
 
 	// compruebo coincidencias
 	for ( i=0; i<3; i++ )
@@ -315,24 +290,5 @@ begin
 			
 		end
 	end
-
-end
-
-function check_button_activation( int pointer table )
-
-begin
-
-	for ( x=0; x<3; x++)
-		for ( y=0; y<3; y++ )
-		
-			if (table[(x * 3) + y] )
-				say( "return true" );
-				return true;
-			end
-			
-		end
-	end
-	
-	return false;
 
 end

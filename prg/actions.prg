@@ -16,7 +16,7 @@ begin
 				//	JUGAR
 				//
 				case ACTN_PLAY:
-
+				
 					action_play_tateti();
 
 				end

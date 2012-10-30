@@ -163,7 +163,7 @@ end
 
 begin
 
-	file = load_fpg("fpg/system.fpg");
+	file = fpg_system;
 
 	loop
 

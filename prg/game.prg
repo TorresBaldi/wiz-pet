@@ -13,8 +13,9 @@ BEGIN
 	signal_action( S_SLEEP_TREE, S_IGN);
 
 	//cargo recursos
-	fpg_bg 	= load_fpg( "fpg/bg.fpg" );
-	fpg_pet	= load_fpg( "fpg/pet.fpg" );
+	fpg_system 	= load_fpg( "fpg/system.fpg" );
+	fpg_bg 		= load_fpg( "fpg/bg.fpg" );
+	fpg_pet		= load_fpg( "fpg/pet.fpg" );
 
 	// inicializacion del juego
 	mostrar_hud();
