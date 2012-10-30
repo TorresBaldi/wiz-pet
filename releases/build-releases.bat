@@ -5,11 +5,11 @@ Title BUILDBOT
 set gamename=wizpet
 
 set windows=1
-set exe=0
+set exe=1
 set linux=0
 set source=1
 set wiz=1
-set canoo=0
+set canoo=1
 
 
 
@@ -25,7 +25,7 @@ set path=%path%;"C:\Archivos de programa\WinRAR"
 
 :::::::::::: CONSTRUYO LA RELEASE
 cd ..
-..\..\bin\bgdc.exe -a main.prg
+releases\wizpet-windows\bin\bgdc.exe -a main.prg
 cd releases\
 
 
@@ -115,3 +115,6 @@ GOTO bot_begin
 
 :::::::::::: FINAL
 :bot_end
+
+::creo un archivo con todas las releases juntas
+winRAR a -cl -m5 -r -ep1 %ver%\%gamename%-all.zip %ver%\*
