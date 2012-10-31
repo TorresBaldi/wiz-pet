@@ -39,7 +39,9 @@ begin
 	
 	cursor_id.y = 120;
 	
-	
+	// pongo el fondo para los botones
+	put(fpg_system, 125, 160, 120);
+
 	while ( !stop )
 	
 		global_key_lock();

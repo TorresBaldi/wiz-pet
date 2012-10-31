@@ -59,6 +59,7 @@ include "prg/caca.prg";
 include "prg/game.prg";
 include "prg/ticks.prg";
 include "prg/pet.prg";
+include "prg/menu.prg";
 
 /* ------------------------------------------------------------------------- */
 
@@ -91,9 +92,14 @@ BEGIN
 	jkeys_init();
 	
 	load_data();
+	
+	//cargo recursos
+	fpg_system	= load_fpg("fpg/system.fpg");
+	fpg_bg		= load_fpg("fpg/bg.fpg");
 
 	// inicio el bucle del juego
-	game_loop();
+	//game_loop();
+	game_controller();
 	
 
 	LOOP

@@ -13,8 +13,6 @@ BEGIN
 	signal_action( S_SLEEP_TREE, S_IGN);
 
 	//cargo recursos
-	fpg_system 	= load_fpg( "fpg/system.fpg" );
-	fpg_bg 		= load_fpg( "fpg/bg.fpg" );
 	fpg_pet		= load_fpg( "fpg/pet.fpg" );
 
 	// inicializacion del juego
@@ -57,6 +55,8 @@ BEGIN
 				//debug;
 				//kill_cacas();
 				signal(id, S_SLEEP_TREE );
+				
+				put( fpg_bg, 10, 160, 120 );
 
 			end
 
@@ -69,6 +69,8 @@ BEGIN
 
 			busy = 0;
 			signal ( id, S_WAKEUP_TREE );
+			
+			put( fpg_bg, stats.location, 160, 120 );
 
 			kill_cacas();
 			caca_updated = true;

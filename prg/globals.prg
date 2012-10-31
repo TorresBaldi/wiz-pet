@@ -3,11 +3,11 @@ CONST
 
 	//edades de la mascota
 	AGES = 5;
-	AGE_BABY 	= 0;
-	AGE_CHILD	= 1;
-	AGE_TEEN	= 2;
-	AGE_ADULT	= 3;
-	AGE_OLD		= 4;
+	AGE_BABY 	= 1;
+	AGE_CHILD	= 2;
+	AGE_TEEN	= 3;
+	AGE_ADULT	= 4;
+	AGE_OLD		= 5;
 
 	// ubicaciones de la mascota
 	LOC_INSIDE	= 1;
@@ -42,6 +42,16 @@ CONST
 	BTN_MOVE	= 6;
 
 	BTN_COUNT = 7;	// cantidad de botones
+	
+	// opciones del menu principal
+	MENU_START		= 0;
+	MENU_GRAVEYARD	= 1;
+	MENU_CREDITS	= 2;
+	MENU_EXIT		= 3;
+	MENU_OPTIONS	= 4;
+	MENU_CONTINUE	= 5;
+	
+	MENU_COUNT = 6;
 
 END
 
@@ -59,6 +69,10 @@ GLOBAL
 	int do_action;
 
 	int caca_updated = true;
+	
+	// opciones habilitadas en el menu
+	int open_main_menu = true;
+	int menu_avaliable[ MENU_COUNT-1 ];
 
 	STRUCT stats
 

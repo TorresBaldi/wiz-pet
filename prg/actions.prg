@@ -9,6 +9,8 @@ begin
 	loop
 
 		if ( do_action )
+		
+			//put( fpg_bg, 10, 160, 120 );
 
 			switch ( do_action )
 
@@ -71,6 +73,7 @@ begin
 			end
 
 			//global_key_lock();
+			// espero a que se suelten los botones antes de reanudar el juego
 			while ( global_key_lock )
 				global_key_lock();
 				frame;

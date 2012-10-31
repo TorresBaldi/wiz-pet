@@ -46,6 +46,9 @@ begin
 
 
 	fpg_food = load_fpg( "fpg/food.fpg" );
+	
+	// pongo el fondo para los botones
+	put(fpg_system, 125, 160, 120);
 
 	file = fpg_food;
 	graph = food[seleccion].graph;
@@ -55,8 +58,9 @@ begin
 	size = 200;
 
 	// creo los botones
-	gui_button(20, 120, fpg_food, 100, &button_sel[0], &button_act[0]);
-	gui_button(300, 120, fpg_food, 110, &button_sel[1], &button_act[1]);
+	gui_button(30, 120, fpg_system, 100, &button_sel[0], &button_act[0]);
+	gui_button(290, 120, fpg_system, 110, &button_sel[1], &button_act[1]);
+	
 	gui_button(160, 120, fpg_food, 120, &button_sel[2], &button_act[2]);
 
 	while ( jkeys_state[_JKEY_SELECT] or mouse.left )
