@@ -64,6 +64,8 @@ begin
 	
 	x = 160; 
 	y = 120;
+	
+	z = -500;
 
 	while ( alpha > 0 )
 	
