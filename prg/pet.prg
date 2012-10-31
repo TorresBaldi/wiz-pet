@@ -19,11 +19,11 @@ END
 BEGIN
 
 	x = 100;
-	y = 120;
+	y = 130;
 
 	file = fpg_pet;
 	
-	graph = (stats.age * 100);
+	graph = (stats.age * 100) + (stats.status * 10);
 	
 	txt_id = write(0, x, y-20, 4, "STATUS: " + stats.status );
 
@@ -38,7 +38,7 @@ BEGIN
 				i=0;
 				grafico_frame++;
 				
-				graph = (stats.age * 100);
+				graph = (stats.age * 100) + (stats.status * 10);
 				
 			end
 
@@ -59,6 +59,10 @@ BEGIN
 
 				end
 			end
+			
+		else
+		
+			graph = (stats.age * 100) + (stats.status * 10);
 		
 		end
 		
@@ -73,7 +77,7 @@ BEGIN
 			case STA_DEAD:		string_status = "DEAD"; end 		
 		end
 		
-		txt_id = write(0, x, y-20, 4, string_status );
+		txt_id = write(0, x, y-40, 4, string_status );
 
 		FRAME;
 		

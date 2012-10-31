@@ -15,7 +15,7 @@ BEGIN
 		//crezco
 		if ( stats.ticks % ticks_per_age == 0 )
 			stats.age = stats.ticks / ticks_per_age;
-			if ( stats.age > AGES-1 ) stats.age = AGES-1; end // limite
+			if ( stats.age > AGES ) stats.age = AGES; end // limite
 		end
 
 		//hambre
@@ -38,7 +38,7 @@ BEGIN
 			end
 
 		end
-		if ( stats.health <=0 )
+		if ( stats.health <=0 AND stats.status <> STA_DEAD )
 			do_action = ACTN_DIE;
 		end
 
@@ -86,23 +86,26 @@ function update_mood()
 begin
 	
 	// calculo el estado de animo de la mascota
-	stats.status = STA_NORMAL;
-	if ( stats.fun > 75 )
-		stats.status = STA_HAPPY;
-	end
+	IF ( stats.status <> STA_DEAD )
 	
-	if ( stats.food < 25 )
-		stats.status = STA_HUNGRY;
-	end
-	if ( stats.fun < 25 )
-		stats.status = STA_SAD;
-	end
-	if ( stats.clean < 25 OR stats.shower < 25 )
-		stats.status = STA_DIRTY;
-	end
-	if ( stats.health < 25 )
-		stats.status = STA_ILL;
-	end
-	
+		stats.status = STA_NORMAL;
+		if ( stats.fun > 75 )
+			stats.status = STA_HAPPY;
+		end
+		
+		if ( stats.food < 25 )
+			stats.status = STA_HUNGRY;
+		end
+		if ( stats.fun < 25 )
+			stats.status = STA_SAD;
+		end
+		if ( stats.clean < 25 OR stats.shower < 25 )
+			stats.status = STA_DIRTY;
+		end
+		if ( stats.health < 25 )
+			stats.status = STA_ILL;
+		end
+		
+	END
 
 end

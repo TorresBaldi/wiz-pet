@@ -11,7 +11,10 @@ begin
 	stats.sleep = 100;
 
 	stats.ticks = 0;
-	stats.age = 0;
+	stats.age = AGE_BABY;
+	
+	// lo revivo
+	stats.status = STA_NORMAL;
 
 	clean_caca(0);
 	clean_caca(1);
