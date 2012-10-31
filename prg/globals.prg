@@ -116,6 +116,7 @@ GLOBAL
 	int fpg_menu;
 	int fpg_tateti;
 	int fpg_health;
+	int fpg_shower;
 	
 	int ogg_dst_dreamingreen;
 

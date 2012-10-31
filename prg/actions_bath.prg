@@ -6,27 +6,95 @@ private
 	int seleccion;
 	
 	int counter;
+	
+	int counter_total = 200;
 
 end
 
 begin
 
-	x = 160;
-	y = 120;
-	
-	graph = draw_bar(counter, 200, 50);
+	fpg_shower = load_fpg( "fpg/shower.fpg" );
 
-	while ( counter < 100 )
+	x = 160;
+	y = 20;
+	
+	bath_water();
+	bath_pet();
+
+	while ( stats.shower < 100 )
+	
+		stats.shower += 0.5;
+		counter = stats.shower;
 	
 		unload_map( 0, graph );
-		graph = draw_bar(counter, 200, 50);
-		
-		counter++;
+		graph = draw_bar(counter, 200, 12);
 	
 		frame;
 	
 	end
 	
-	stats.shower += 50;
+ONEXIT
 
+	unload_fpg( fpg_shower );
+	
+	signal( id, S_KILL_TREE );
+
+end
+
+process bath_pet()
+
+begin
+
+	file = fpg_shower;
+	
+	graph = stats.age * 100;
+	
+	x = 160;
+	y = 120;
+
+	loop
+
+		frame;
+		
+	end
+	
+end
+
+process bath_water()
+
+private
+
+	int i;
+
+end
+
+begin
+
+	file = fpg_shower;
+	
+	graph = 1;
+	
+	x = 160;
+	y = 120;
+
+	loop
+	
+		i++;
+		
+		if ( i % 10 == 0 )
+		
+			i=0;
+			
+			graph++;
+			
+			if ( graph > 2 )
+				graph = 1;
+			end
+			
+		end
+
+		frame;
+		
+	end
+	
 end

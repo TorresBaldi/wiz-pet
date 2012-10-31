@@ -145,6 +145,10 @@ PROCESS game_loop()
 PRIVATE
 
 	int busy;
+	
+	int i;
+	int width;
+	int height;
 
 END
 
@@ -155,12 +159,23 @@ BEGIN
 
 	//cargo recursos
 	fpg_pet = load_fpg( "fpg/pet.fpg" );
+	
+	// pongo los puntos de control en los pies de la mascota
+	for( i=0; i<999; i++)
+	
+		if ( map_exists(fpg_pet, i) )
+			width = graphic_info(fpg_pet, i, G_WIDTH );
+			height = graphic_info(fpg_pet, i, G_HEIGHT );
+			set_center( fpg_pet, i, width/2, height );
+		end
+	
+	end
 
-	// inicializacion del juego
+	// inicializacion del juego	
 	mostrar_hud();
-	mascota();
 	botones();
 	caca_manager();	
+	mascota();
 	actions_manager();
 
 	//dibujo el fondo
@@ -216,13 +231,16 @@ BEGIN
 		if ( busy AND !do_action )
 
 			busy = 0;
-			signal ( id, S_WAKEUP_TREE );
+			
+			update_mood();
 			
 			put_screen( fpg_bg, stats.location);
 
 			kill_cacas();
 			
 			caca_updated = true;
+			
+			signal ( id, S_WAKEUP_TREE );
 
 			//debug;
 

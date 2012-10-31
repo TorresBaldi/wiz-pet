@@ -11,6 +11,7 @@ begin
 		if ( do_action )
 		
 			//put( fpg_bg, 10, 160, 120 );
+			intro_transition(12);
 
 			switch ( do_action )
 
@@ -78,7 +79,9 @@ begin
 				global_key_lock();
 				frame;
 			end
-
+			
+			intro_transition(12);
+			
 			do_action = false;
 			
 			update_mood();

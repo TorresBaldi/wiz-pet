@@ -32,5 +32,7 @@ begin
 	
 	menu_avaliable[MENU_CONTINUE] = FALSE;
 	menu_avaliable[MENU_START] = TRUE;
+	
+	//debug;
 
 end

@@ -19,7 +19,7 @@ END
 BEGIN
 
 	x = 100;
-	y = 130;
+	y = 180;
 
 	file = fpg_pet;
 	
@@ -36,9 +36,10 @@ BEGIN
 			if ( i>20 )
 			
 				i=0;
+				
 				grafico_frame++;
 				
-				graph = (stats.age * 100) + (stats.status * 10);
+				graph = (stats.age * 100) + (stats.status * 10) + grafico_frame%2;
 				
 			end
 
