@@ -28,9 +28,9 @@ begin
 
 	// invierto la condicion
 	if ( stats.location == LOC_OUTSIDE )
-		button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
-	else
 		button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
+	else
+		button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
 	end
 
 	loop
@@ -85,15 +85,9 @@ begin
 			button_move.alpha = -20;
 			
 			if ( stats.location == LOC_INSIDE )
-			
-				// dibujo la puerta dentro para salir
-				button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
-			
-			else
-			
-				// dibujo la puerta afuera para entrar
 				button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
-				
+			else
+				button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
 			end
 			
 			do_action = ACTN_MOVE;

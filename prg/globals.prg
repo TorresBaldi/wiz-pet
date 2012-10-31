@@ -10,8 +10,8 @@ CONST
 	AGE_OLD		= 5;
 
 	// ubicaciones de la mascota
-	LOC_INSIDE	= 2;
-	LOC_OUTSIDE	= 1;
+	LOC_INSIDE	= 1;
+	LOC_OUTSIDE	= 2;
 	
 	// estados de la mascota
 	STA_NORMAL	= 0;

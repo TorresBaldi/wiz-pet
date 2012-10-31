@@ -1,13 +1,20 @@
 /* ------------------------------------------------------------------------- */
 function action_move()
 
+private
+
+	int next_graph;
+	int movement;
+
+end
+
 begin
 
 	if ( stats.location == LOC_INSIDE )
-		y = 1;
+		next_graph = 1;
 		stats.location = LOC_OUTSIDE;
 	else
-		y = 2;
+		next_graph = 2;
 		stats.location = LOC_INSIDE;
 	end
 
@@ -29,7 +36,7 @@ begin
 
 		x += 5;
 
-		put( fpg_bg, y, x, 120 );
+		put( fpg_bg, next_graph, x, 120 );
 		put( fpg_bg, stats.location, -320 + x, 120 );
 
 		frame;
