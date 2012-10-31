@@ -23,11 +23,11 @@ begin
 	gui_button(36 + 050, 225, fpg_hud, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
 	gui_button(36 + 100, 225, fpg_hud, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
 	gui_button(36 + 150, 225, fpg_hud, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
-	gui_button(36 + 200, 225, fpg_hud, 50, &select[BTN_SHOWER], &active[BTN_SHOWER] );
+	gui_button(36 + 200, 225, fpg_hud, 50, &select[BTN_BATH], &active[BTN_BATH] );
 	gui_button(36 + 250, 225, fpg_hud, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
 
 	// invierto la condicion
-	if ( stats.location == LOC_OUTSIDE )
+	if ( stats.location == LOC_INSIDE )
 		button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
 	else
 		button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
@@ -84,7 +84,7 @@ begin
 			
 			button_move.alpha = -20;
 			
-			if ( stats.location == LOC_INSIDE )
+			if ( stats.location == LOC_OUTSIDE )
 				button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
 			else
 				button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
@@ -108,13 +108,18 @@ begin
 			//stats.sleep += 20;
 			clean_caca( stats.location );
 
-		ELSEIF ( active[BTN_SHOWER] )
+		ELSEIF ( active[BTN_BATH] )
 
 			//
 			//	BAÑAR
 			//
-			//stats.shower += 20;
-			do_action = ACTN_SHOWER;
+			
+			// lo baño solo estando adentro y sucio
+			if ( stats.location == LOC_INSIDE and stats.shower < 95 )
+				do_action = ACTN_BATH;
+			else
+				do_action = ACTN_NOBATH;
+			end
 
 		ELSEIF ( active[BTN_SLEEP] )
 

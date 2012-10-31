@@ -12,7 +12,8 @@ begin
 
 	stats.ticks = 0;
 	stats.age = AGE_BABY;
-	stats.location = LOC_INSIDE;
+	
+	//stats.location = LOC_INSIDE;
 	
 	// lo revivo
 	stats.status = STA_NORMAL;

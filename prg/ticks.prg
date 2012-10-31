@@ -103,7 +103,7 @@ begin
 		if ( stats.fun < 25 )
 			stats.status = STA_SAD;
 		end
-		if ( stats.clean < 25 OR stats.shower < 25 )
+		if ( stats.shower < 25 )
 			stats.status = STA_DIRTY;
 		end
 		if ( stats.health < 25 )

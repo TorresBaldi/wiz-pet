@@ -19,8 +19,8 @@ begin
 	
 	if ( stats.location == LOC_INSIDE )	
 		stats.location = LOC_OUTSIDE;
-		direction = true;
 	else
+		direction = true;
 		stats.location = LOC_INSIDE;
 	end
 

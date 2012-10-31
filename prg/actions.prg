@@ -56,9 +56,18 @@ begin
 				//
 				//	BAÑARSE
 				//
-				case ACTN_SHOWER:
+				case ACTN_BATH:
 
 					action_bath();
+
+				end
+
+				//
+				//	NO PUEDE BAÑARSE AFUERA
+				//
+				case ACTN_NOBATH:
+
+					action_no_bath();
 
 				end
 

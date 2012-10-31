@@ -10,8 +10,8 @@ CONST
 	AGE_OLD		= 5;
 
 	// ubicaciones de la mascota
-	LOC_INSIDE	= 1;
-	LOC_OUTSIDE	= 2;
+	LOC_INSIDE	= 2;
+	LOC_OUTSIDE	= 1;
 	
 	// estados de la mascota
 	STA_NORMAL	= 0;
@@ -29,15 +29,16 @@ CONST
 	ACTN_HEAL	= 4;
 	ACTN_CLEAN	= 5;
 	ACTN_SLEEP	= 6;
-	ACTN_SHOWER	= 7;
-	ACTN_DIE	= 8;
+	ACTN_BATH	= 7;
+	ACTN_NOBATH	= 8;
+	ACTN_DIE	= 9;
 
 	// botones disponibles
 	BTN_FOOD	= 0;
 	BTN_PLAY	= 1;
 	BTN_HEAL	= 2;
 	BTN_CLEAN	= 3;
-	BTN_SHOWER	= 4;
+	BTN_BATH	= 4;
 	BTN_SLEEP	= 5;
 	BTN_MOVE	= 6;
 
