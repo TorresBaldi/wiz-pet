@@ -17,21 +17,27 @@ BEGIN
 	load_data();
 	
 	//cargo recursos
-	fpg_system	= load_fpg("fpg/system.fpg");
-	fpg_bg		= load_fpg("fpg/bg.fpg");
-
+	fpg_system = load_fpg("fpg/system.fpg");
+	fpg_bg = load_fpg("fpg/bg.fpg");
+	fpg_menu = load_fpg("fpg/menu.fpg");
+	
 	LOOP
 	
 		global_key_lock();
-		IF ( EXIT_STATUS OR jkeys_state[ _JKEY_MENU ] )
+		
+		IF ( EXIT_STATUS )
 			do_exit();
 		END
 	
-		if ( open_main_menu )
+		if ( open_main_menu AND !global_key_lock )
 		
 			open_main_menu = false;
 		
+			// elimino todo en el juego
 			let_me_alone();
+			delete_text(ALL_TEXT);
+			clear_screen();
+			
 			say("let_me_alone");
 			
 			// llamo al menu principal
@@ -57,6 +63,17 @@ BEGIN
 					
 					game_loop();
 				
+				end
+				
+				default:
+				
+					// espero a que se suelte el boton para seguir
+					while ( jkeys_state[_JKEY_SELECT] or mouse.left )
+						frame;
+					end
+					
+					open_main_menu = true;
+					
 				end
 			
 			end
@@ -94,8 +111,6 @@ begin
 	menu_avaliable[MENU_EXIT]		= 1;
 	menu_avaliable[MENU_OPTIONS]	= 1;
 	menu_avaliable[MENU_CONTINUE]	= 1;
-
-	fpg_menu = load_fpg("fpg/menu.fpg");
 
 	put_Screen( fpg_bg, 10 );
 	put( fpg_system, 125, 160, 160 );
@@ -156,8 +171,7 @@ begin
 		
 	end
 onexit
-	
-	unload_fpg(fpg_menu);
+
 	signal( id, S_KILL_TREE );
 
 end

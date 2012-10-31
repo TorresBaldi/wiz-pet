@@ -13,7 +13,7 @@ BEGIN
 	signal_action( S_SLEEP_TREE, S_IGN);
 
 	//cargo recursos
-	fpg_pet		= load_fpg( "fpg/pet.fpg" );
+	fpg_pet = load_fpg( "fpg/pet.fpg" );
 
 	// inicializacion del juego
 	mostrar_hud();
@@ -27,16 +27,21 @@ BEGIN
 
 	loop
 
-		// cada tick
+		
 		if ( !busy )
+		
+			// cada tick
 			IF ( timer[0] >= tick * 100 )
-
 				timer[0] -= tick * 100;
-
 				calcular_ticks(1);
-
 			END
 
+			// vuelvo al menu principal
+			IF ( jkeys_state[ _JKEY_MENU ] )
+				global_key_lock = true;
+				open_main_menu = true;
+			END
+			
 			//debug
 			if ( jkeys_state[ _JKEY_R ] )
 				calcular_ticks(1);
@@ -82,5 +87,9 @@ BEGIN
 		frame;
 
 	end
+	
+ONEXIT
+
+	unload_fpg( fpg_pet );
 
 END
