@@ -11,8 +11,8 @@ import "mod_timers";
 import "mod_wm";
 import "mod_file";
 import "mod_debug";
-import "mod_say";
 import "mod_sound";
+//import "mod_say";
 
 /* ------------------------------------------------------------------------- */
 

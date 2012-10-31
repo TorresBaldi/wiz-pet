@@ -83,7 +83,7 @@ begin
 			
 			update_mood();
 
-			say( "action done!" );
+			//say( "action done!" );
 
 		end
 

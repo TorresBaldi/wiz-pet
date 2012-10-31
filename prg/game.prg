@@ -28,6 +28,7 @@ BEGIN
 		menu_avaliable[MENU_START] = TRUE;
 		menu_avaliable[MENU_CONTINUE] = FALSE;
 	end
+	menu_avaliable[MENU_CREDITS] = TRUE;
 	menu_avaliable[MENU_EXIT] = TRUE;
 	
 	//cargo recursos
@@ -61,7 +62,7 @@ BEGIN
 			delete_text(ALL_TEXT);
 			clear_screen();
 			
-			say("let_me_alone");
+			// say("let_me_alone");
 			
 			// si vengo de la intro, hago el efecto lento
 			if ( intro_skippable )
@@ -204,7 +205,7 @@ BEGIN
 			if ( busy == 1 )
 			
 				signal(id, S_SLEEP_TREE );
-				say( "inicio accion" );
+				// say( "inicio accion" );
 
 			end
 

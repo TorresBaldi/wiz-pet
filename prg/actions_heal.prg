@@ -40,7 +40,7 @@ begin
 	cursor_id.y = y;
 	
 	// pongo el fondo para los botones
-	//put(fpg_system, 125, 160, 180);
+	put(fpg_system, 125, 160, 180);
 	put(fpg_health, 3, 160, y);
 	put(fpg_health, 10, 160, 180);
 
@@ -49,7 +49,10 @@ begin
 		global_key_lock();
 	
 		i += speed;
-		if ( i> 360000 ) i -= 360000; say("angle reset"); end
+		if ( i> 360000 )
+			i -= 360000;
+			// say("angle reset");
+		end
 		
 		pos = 100 * sin( i * 1000 );
 		
@@ -63,12 +66,12 @@ begin
 			
 			stop = true;
 			
-			say( pos );
+			// say( pos );
 			
 			switch ( abs(pos) )
 				
 				case 0..15:
-					say("BUENO!");
+					// say("BUENO!");
 					
 					stats.health += 50;
 					stats.fun -= 30;
@@ -76,7 +79,7 @@ begin
 				end
 				
 				case 16..25:
-					say("REGULAR!");
+					// say("REGULAR!");
 					
 					stats.health += 10;
 					stats.fun -= 20;
@@ -84,7 +87,7 @@ begin
 				end
 				
 				default:
-					say("MALO!");
+					// say("MALO!");
 					
 					stats.fun -= 50;
 					

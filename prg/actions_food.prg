@@ -105,16 +105,17 @@ begin
 				stats.food += food[seleccion].hambre;
 				stats.health += food[seleccion].salud;
 
-				say( "hambre:" + food[seleccion].hambre );
-				say( "salud:" + food[seleccion].salud );
+				
+				// say( "hambre:" + food[seleccion].hambre );
+				// say( "salud:" + food[seleccion].salud );
 
 				// si le gusta o no
 				if ( rand(0, 100) <= food[seleccion].sabor )
 					stats.fun += 10;
-					say( "gusta!" );
+					// say( "gusta!" );
 				else
 					stats.fun -= 30;
-					say( "no gusta!" );
+					// say( "no gusta!" );
 				end
 
 				break;

@@ -26,7 +26,7 @@ begin
 		
 	end
 	
-	say("die!");
+	// say("die!");
 	
 	stats.status = STA_DEAD;
 	

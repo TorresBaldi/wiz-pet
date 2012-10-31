@@ -52,7 +52,7 @@ begin
 					if ( selection < 0 ) selection = MENU_COUNT-1; end
 				UNTIL ( menu_avaliable[selection] )
 
-				say(selection);
+				// say(selection);
 				
 			elseif ( (!global_key_lock AND jkeys_state[_JKEY_RIGHT]) OR right_active )
 
@@ -66,7 +66,7 @@ begin
 					if ( selection > MENU_COUNT-1 ) selection = 0; end
 				UNTIL ( menu_avaliable[selection] )
 				
-				say(selection);
+				// say(selection);
 			
 			// elijo la opcion salir
 			elseif ( (!global_key_lock AND jkeys_state[_JKEY_MENU]) )
@@ -75,14 +75,14 @@ begin
 				changed = true;
 				selection = MENU_EXIT;
 				
-				say("elijo salir");
+				// say("elijo salir");
 			
 			end
 		
 		// confirmo la seleccion
 		else
 		
-			say( selection );
+			// say( selection );
 			
 			return selection;
 		
@@ -153,7 +153,7 @@ begin
 		if ( *selection_change )
 		
 			*selection_change = false;
-			say("seleccion cambiada!");
+			// say("seleccion cambiada!");
 			
 			do_animation = true;
 			doing_animation = false;
@@ -172,13 +172,13 @@ begin
 		if ( busy )
 		
 			if ( !doing_animation )
-				size_x -= 10;
+				size_x -= 20;
 				if ( size_x <= 0 )
 					doing_animation = true;
 					graph = 100 + (*selection) * 10;
 				end
 			else
-				size_x += 10;
+				size_x += 20;
 				if ( size_x >= 100 ) busy = false; end
 			end
 		end

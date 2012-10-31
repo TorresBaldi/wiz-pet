@@ -76,17 +76,17 @@ begin
 			switch (game_result)
 
 				case 0:
-					say("EMPATE");
+					// say("EMPATE");
 					stats.fun += 5;
 				end
 
 				case 1:
-					say("GANA JUGADOR");
+					// say("GANA JUGADOR");
 					stats.fun += 30;
 				end
 
 				case 2:
-					say("GANA CPU");
+					// say("GANA CPU");
 					stats.fun += 40;
 				end
 
@@ -254,7 +254,7 @@ begin
 
 			// compruebo tateti
 			if ( tabla[(i*3) + 0] == tabla[(i*3) + 1] AND tabla[(i*3) + 0] == tabla[(i*3) + 2] )
-				say( "TATETI VERTICAL!!!" );
+				// say( "TATETI VERTICAL!!!" );
 				tateti_found = tabla[(i*3) + 0];
 			end
 
@@ -265,7 +265,7 @@ begin
 
 			// compruebo tateti
 			if ( tabla[(0*3) + i] == tabla[(1*3) + i] AND tabla[(0*3) + i] == tabla[(2*3) + i] )
-				say( "TATETI HORIZONTAL!!!" );
+				// say( "TATETI HORIZONTAL!!!" );
 				tateti_found = tabla[(0*3) + i];
 			end
 
@@ -277,12 +277,12 @@ begin
 	if ( tabla[(1*3) + 1] )	// compruebo si se ocupo el centro
 
 		if ( tabla[(0*3) + 0] == tabla[(1*3) + 1] AND tabla[(1*3) + 1] == tabla[(2*3) + 2] )
-			say( "TATETI DIAGONAL!!!" );
+			// say( "TATETI DIAGONAL!!!" );
 			tateti_found = tabla[(0*3) + 0];
 		end
 
 		if ( tabla[(2*3) + 0] == tabla[(1*3) + 1] AND tabla[(1*3) + 1] == tabla[(0*3) + 2] )
-			say( "TATETI DIAGONAL!!!" );
+			// say( "TATETI DIAGONAL!!!" );
 			tateti_found = tabla[(2*3) + 0];
 		end
 
