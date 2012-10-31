@@ -10,8 +10,8 @@ CONST
 	AGE_OLD		= 5;
 
 	// ubicaciones de la mascota
-	LOC_INSIDE	= 1;
-	LOC_OUTSIDE	= 2;
+	LOC_INSIDE	= 2;
+	LOC_OUTSIDE	= 1;
 	
 	// estados de la mascota
 	STA_NORMAL	= 0;
@@ -113,6 +113,7 @@ GLOBAL
 	int fpg_food;
 	int fpg_pet;
 	int fpg_system;
+	int fpg_hud;
 	int fpg_menu;
 	int fpg_tateti;
 	int fpg_health;

@@ -55,7 +55,7 @@ begin
 
 	x = 160;
 	y = 120;
-	size = 200;
+	//size = 200;
 
 	// creo los botones
 	gui_button(30, 120, fpg_system, 100, &button_sel[0], &button_act[0]);

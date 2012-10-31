@@ -33,6 +33,7 @@ BEGIN
 	
 	//cargo recursos
 	fpg_system = load_fpg("fpg/system.fpg");
+	fpg_hud = load_fpg("fpg/hud.fpg");
 	fpg_bg = load_fpg("fpg/bg.fpg");
 	fpg_menu = load_fpg("fpg/menu.fpg");
 	
@@ -179,7 +180,7 @@ BEGIN
 	actions_manager();
 
 	//dibujo el fondo
-	put( fpg_bg, stats.location, 160, 120 );
+	put_screen( fpg_bg, stats.location );
 	
 	//bajo el volumen de la musica
 	set_song_volume(48);

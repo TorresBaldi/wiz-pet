@@ -10,6 +10,8 @@ private
 
 	int select[BTN_COUNT];
 	int active[BTN_COUNT];
+	
+	int button_move;
 
 end
 
@@ -17,14 +19,19 @@ begin
 
 	select[i] = true;
 
-	gui_button(36 + 000, 225, fpg_system, 10, &select[BTN_FOOD], &active[BTN_FOOD] );
-	gui_button(36 + 050, 225, fpg_system, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
-	gui_button(36 + 100, 225, fpg_system, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
-	gui_button(36 + 150, 225, fpg_system, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
-	gui_button(36 + 200, 225, fpg_system, 50, &select[BTN_SHOWER], &active[BTN_SHOWER] );
-	gui_button(36 + 250, 225, fpg_system, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
+	gui_button(36 + 000, 225, fpg_hud, 10, &select[BTN_FOOD], &active[BTN_FOOD] );
+	gui_button(36 + 050, 225, fpg_hud, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
+	gui_button(36 + 100, 225, fpg_hud, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
+	gui_button(36 + 150, 225, fpg_hud, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
+	gui_button(36 + 200, 225, fpg_hud, 50, &select[BTN_SHOWER], &active[BTN_SHOWER] );
+	gui_button(36 + 250, 225, fpg_hud, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
 
-	gui_button(320-25, 25, fpg_system, 70, &select[BTN_MOVE], &active[BTN_MOVE] );
+	// invierto la condicion
+	if ( stats.location == LOC_OUTSIDE )
+		button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
+	else
+		button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
+	end
 
 	loop
 
@@ -72,7 +79,25 @@ begin
 			//
 			//	SALIR / ENTRAR
 			//
+			
+			// vuelvo a crear el boton de mover
+			
+			button_move.alpha = -20;
+			
+			if ( stats.location == LOC_INSIDE )
+			
+				// dibujo la puerta dentro para salir
+				button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
+			
+			else
+			
+				// dibujo la puerta afuera para entrar
+				button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
+				
+			end
+			
 			do_action = ACTN_MOVE;
+			
 
 		ELSEIF ( active[BTN_HEAL] )
 
@@ -166,7 +191,8 @@ begin
 	loop
 
 		// compruebo si el padre sigue vivo
-		if ( !exists(father) )
+		// mato de emergencia
+		if ( !exists(father) or alpha<0 )
 			break;
 		end
 

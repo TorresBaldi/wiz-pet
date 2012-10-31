@@ -164,7 +164,7 @@ process caca(x,y)
 begin
 
 	file = fpg_pet;
-	graph = 1;
+	graph = 10;
 
 	loop
 

@@ -20,6 +20,7 @@ BEGIN
 
 	x = 100;
 	y = 180;
+	z = -200;
 
 	file = fpg_pet;
 	
