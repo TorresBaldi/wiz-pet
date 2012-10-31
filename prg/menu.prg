@@ -7,6 +7,8 @@ PRIVATE
 	
 	int menu_option;
 	
+	int intro_skippable;
+	
 END
 
 BEGIN
@@ -14,12 +16,17 @@ BEGIN
 	// inicializacion
 	jkeys_set_default_keys();
 	jkeys_init();
-	load_data();
+	
+	// si encuentro archivo indico que se puede saltar la intro
+	intro_skippable = load_data();
 	
 	//cargo recursos
 	fpg_system = load_fpg("fpg/system.fpg");
 	fpg_bg = load_fpg("fpg/bg.fpg");
 	fpg_menu = load_fpg("fpg/menu.fpg");
+	
+	// inicio la intro
+	start_intro(intro_skippable);
 	
 	LOOP
 	
@@ -39,6 +46,8 @@ BEGIN
 			clear_screen();
 			
 			say("let_me_alone");
+			
+			intro_transition();
 			
 			// llamo al menu principal
 			menu_option = main_menu();

@@ -48,6 +48,7 @@ include "prg/debug.prg";
 
 include "prg/gui.prg";
 include "prg/hud.prg";
+include "prg/intro.prg";
 include "prg/actions.prg";
 include "prg/actions_food.prg";
 include "prg/actions_tateti.prg";
@@ -96,6 +97,7 @@ function load_data()
 
 private
 	int i;
+	int found;
 end
 
 begin
@@ -104,6 +106,7 @@ begin
 	if ( fexists("time.dat") )
 	
 		load( "time.dat", stats );
+		found = true;
 		
 	else
 	
@@ -124,6 +127,8 @@ begin
 		stats.dump[0][i][3] = false;
 		stats.dump[1][i][3] = false;
 	end
+	
+	return found;
 
 end
 
