@@ -27,6 +27,7 @@ BEGIN
 	
 	// inicio la intro
 	start_intro(intro_skippable);
+	intro_skippable = 1;
 	
 	LOOP
 	
@@ -47,7 +48,13 @@ BEGIN
 			
 			say("let_me_alone");
 			
-			intro_transition();
+			// si vengo de la intro, hago el efecto lento
+			if ( intro_skippable )
+				intro_skippable = false;
+				intro_transition(5);
+			else
+				intro_transition(12);
+			end
 			
 			// llamo al menu principal
 			menu_option = main_menu();
@@ -56,6 +63,8 @@ BEGIN
 			while ( jkeys_state[_JKEY_SELECT] or mouse.left )
 				frame;
 			end
+			
+			intro_transition(12);
 			
 			// llamo a la seccion del juego que corresponda
 			switch ( menu_option )
@@ -114,9 +123,9 @@ end
 
 begin
 
-	menu_avaliable[MENU_START] 		= 1;
-	menu_avaliable[MENU_GRAVEYARD]	= 1;
-	menu_avaliable[MENU_CREDITS]	= 1;
+	menu_avaliable[MENU_START] 		= 0;
+	menu_avaliable[MENU_GRAVEYARD]	= 0;
+	menu_avaliable[MENU_CREDITS]	= 0;
 	menu_avaliable[MENU_EXIT]		= 1;
 	menu_avaliable[MENU_OPTIONS]	= 1;
 	menu_avaliable[MENU_CONTINUE]	= 1;

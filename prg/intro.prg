@@ -2,8 +2,6 @@
 function start_intro( int skippable )
 
 private
-
-	int timer;
 	
 	int current = 1;
 	int max = 3;
@@ -12,19 +10,32 @@ end
 
 begin
 
-	file = load_fpg("intro.fpg");
 	
+	fade_off();
+	while ( fading )
+		frame;
+	end
+	
+	file = load_fpg("intro.fpg");
 	put_screen( file, current );
+	
+	fade(100,100,100,4);
+	while ( fading )
+		frame;
+	end
 
 	loop
 	
-		timer++;
+		// salteo la presentacion
+		if ( skippable AND (jkeys_state[_JKEY_SELECT] or mouse.left) )
+			timer[0] = 400 * current;
+		end
 		
-		if ( timer > 100 )
+		if ( timer[0] > (400 * current) )
 		
-			timer = 0;
 			current++;
-			intro_transition();
+			
+			intro_transition(5);
 			
 			if ( current > max )
 				break;
@@ -44,7 +55,7 @@ onexit
 
 end
 
-process intro_transition()
+process intro_transition( speed )
 
 begin
 
@@ -56,8 +67,8 @@ begin
 
 	while ( alpha > 0 )
 	
-		size += 4;
-		alpha -= 4;
+		size += speed;
+		alpha -= speed;
 		
 		frame;
 		
