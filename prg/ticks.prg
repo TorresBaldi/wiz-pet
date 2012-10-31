@@ -38,8 +38,12 @@ BEGIN
 			end
 
 		end
+		
 		if ( stats.health <=0 AND stats.status <> STA_DEAD )
+		
+			say("se murio!");
 			do_action = ACTN_DIE;
+			
 		end
 
 		// diversion

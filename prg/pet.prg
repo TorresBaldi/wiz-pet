@@ -25,7 +25,7 @@ BEGIN
 	
 	graph = (stats.age * 100) + (stats.status * 10);
 	
-	txt_id = write(0, x, y-20, 4, "STATUS: " + stats.status );
+	//txt_id = write(0, x, y-20, 4, "STATUS: " + stats.status );
 
 	LOOP
 	
@@ -66,6 +66,7 @@ BEGIN
 		
 		end
 		
+		/*
 		delete_text( txt_id );
 		switch ( stats.status )
 			case STA_NORMAL:	string_status = "NORMAL"; end 		
@@ -78,6 +79,7 @@ BEGIN
 		end
 		
 		txt_id = write(0, x, y-40, 4, string_status );
+		*/
 
 		FRAME;
 		

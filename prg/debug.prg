@@ -21,13 +21,7 @@ begin
 
 	stats.first_time = time();
 	stats.last_time = time();
-
-	timer[0] = tick * 100;
 	
 	update_mood();
-
-	while( jkeys_state[ _JKEY_L ] )
-		frame;
-	end
 
 end

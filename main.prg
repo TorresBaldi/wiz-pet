@@ -73,17 +73,17 @@ BEGIN
 
 		case OS_GP2X_WIZ:
 
-			set_mode(320, 240, 16, MODE_FULLSCREEN + WAITVSYNC);
-			set_fps(SCREEN_FPS,2);
+			set_mode(320, 240, 16, MODE_FULLSCREEN);
+			set_fps(SCREEN_FPS,0);
 
 		end
 
 		default:
 
-			set_title("WizPet");
+			set_title("WIZPet");
 			scale_resolution = (SCREEN_X * SCREEN_SCALE) * 10000 + (SCREEN_Y * SCREEN_SCALE);
 			set_mode(SCREEN_X, SCREEN_Y, SCREEN_D, SCREEN_MODE);
-			set_fps(SCREEN_FPS,2);
+			set_fps(SCREEN_FPS,0);
 
 		end
 

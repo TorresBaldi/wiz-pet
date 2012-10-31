@@ -65,9 +65,15 @@ BEGIN
 			
 			// si vengo de la intro, hago el efecto lento
 			if ( intro_skippable )
+			
 				intro_skippable = false;
+				do_action = FALSE;	// evito la muerte repentina
+				stats.status = STA_NORMAL;
+				
 				intro_transition(5);
 			else
+			
+				// todas las demas veces el efecto normal
 				intro_transition(12);
 			end
 			
@@ -80,6 +86,10 @@ BEGIN
 			end
 			
 			intro_transition(12);
+			
+			clear_screen();
+
+			timer[0] = tick * 100;
 			
 			// llamo a la seccion del juego que corresponda
 			switch ( menu_option )
@@ -103,7 +113,7 @@ BEGIN
 				
 				case MENU_CONTINUE:
 				
-					game_loop();
+					game_loop();					
 					
 				end
 				
@@ -133,7 +143,7 @@ PROCESS game_loop()
 
 PRIVATE
 
-	int busy = false;
+	int busy;
 
 END
 
@@ -149,8 +159,8 @@ BEGIN
 	mostrar_hud();
 	mascota();
 	botones();
+	caca_manager();	
 	actions_manager();
-	caca_manager();
 
 	//dibujo el fondo
 	put( fpg_bg, stats.location, 160, 120 );
@@ -186,19 +196,18 @@ BEGIN
 
 
 		// al activar una accion, duermo el juego
-		if ( do_action AND !busy )
+		if ( do_action )
 
-			if ( busy == 0 )
 
-				//debug;
-				//kill_cacas();
+			busy++;
+
+			if ( busy == 1 )
+			
 				signal(id, S_SLEEP_TREE );
-				
-				put( fpg_bg, 10, 160, 120 );
+				say( "inicio accion" );
 
 			end
 
-			busy++;
 
 		end
 
@@ -208,9 +217,10 @@ BEGIN
 			busy = 0;
 			signal ( id, S_WAKEUP_TREE );
 			
-			put( fpg_bg, stats.location, 160, 120 );
+			put_screen( fpg_bg, stats.location);
 
 			kill_cacas();
+			
 			caca_updated = true;
 
 			//debug;
