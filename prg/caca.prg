@@ -161,12 +161,27 @@ end
 /* ------------------------------------------------------------------------- */
 process caca(x,y)
 
+private
+	i;
+end
+
 begin
 
 	file = fpg_pet;
 	graph = 10;
 
 	loop
+	
+		i++;
+		
+		if ( i > 10 )
+			i=0;
+			if ( graph == 10 )
+				graph = 11;
+			else
+				graph = 10;
+			end
+		end
 
 		frame;
 

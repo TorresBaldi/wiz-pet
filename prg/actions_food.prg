@@ -10,7 +10,7 @@ private
 	int button_sel[2];
 	int button_act[2];
 
-	struct food[3]
+	struct food[5]
 
 		int hambre;
 		int salud;
@@ -43,6 +43,16 @@ begin
 	food[3].salud = -1;
 	food[3].graph = 40;
 	food[3].sabor = 50;
+
+	food[4].hambre = 30;
+	food[4].salud = -1;
+	food[4].graph = 50;
+	food[4].sabor = 50;
+
+	food[5].hambre = 30;
+	food[5].salud = -1;
+	food[5].graph = 60;
+	food[5].sabor = 50;
 
 
 	fpg_food = load_fpg( "fpg/food.fpg" );
@@ -78,12 +88,12 @@ begin
 
 				global_key_lock = true;
 				seleccion--;
-				if ( seleccion < 0 ) seleccion = 3; end
+				if ( seleccion < 0 ) seleccion = 5; end
 
 			elseif ( (!global_key_lock AND jkeys_state[_JKEY_RIGHT]) OR button_act[1] )
 
 				global_key_lock = true;
-				seleccion = (seleccion+1) %4;
+				seleccion = (seleccion+1) %6;
 
 			end
 
@@ -97,7 +107,7 @@ begin
 
 		else
 
-			size -= 6;
+			size -= 10;
 			alpha -= 4;
 
 			if ( size < 0 )
