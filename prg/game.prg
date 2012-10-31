@@ -35,6 +35,10 @@ BEGIN
 	fpg_bg = load_fpg("fpg/bg.fpg");
 	fpg_menu = load_fpg("fpg/menu.fpg");
 	
+	//inicio la musica
+	ogg_dst_dreamingreen = load_song( "audio/dst-dreamingreen.ogg" );
+	play_song( ogg_dst_dreamingreen, 0 );
+	
 	// inicio la intro
 	start_intro(intro_skippable);
 	
@@ -150,6 +154,9 @@ BEGIN
 
 	//dibujo el fondo
 	put( fpg_bg, stats.location, 160, 120 );
+	
+	//bajo el volumen de la musica
+	set_song_volume(48);
 
 	loop
 
@@ -217,5 +224,7 @@ BEGIN
 ONEXIT
 
 	unload_fpg( fpg_pet );
-
+	
+	//subo el volumen de la musica
+	set_song_volume(128);
 END

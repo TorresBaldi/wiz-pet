@@ -44,12 +44,12 @@ CONST
 	BTN_COUNT = 7;	// cantidad de botones
 	
 	// opciones del menu principal
-	MENU_START		= 0;
-	MENU_GRAVEYARD	= 1;
-	MENU_CREDITS	= 2;
-	MENU_EXIT		= 3;
+	MENU_CONTINUE	= 0;
+	MENU_START		= 1;
+	MENU_GRAVEYARD	= 2;
+	MENU_CREDITS	= 3;
 	MENU_OPTIONS	= 4;
-	MENU_CONTINUE	= 5;
+	MENU_EXIT		= 5;
 	
 	MENU_COUNT = 6;
 
@@ -116,5 +116,7 @@ GLOBAL
 	int fpg_menu;
 	int fpg_tateti;
 	int fpg_health;
+	
+	int ogg_dst_dreamingreen;
 
 END

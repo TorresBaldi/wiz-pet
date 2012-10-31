@@ -22,9 +22,9 @@ begin
 	put( fpg_system, 125, 160, 160 );
 	
 	// elijo la primera opcion disponible
-	REPEAT
+	WHILE ( !menu_avaliable[selection] )
 		selection++;
-	UNTIL ( menu_avaliable[selection] )
+	END
 
 
 	// creo los botones
@@ -67,7 +67,16 @@ begin
 				UNTIL ( menu_avaliable[selection] )
 				
 				say(selection);
-
+			
+			// elijo la opcion salir
+			elseif ( (!global_key_lock AND jkeys_state[_JKEY_MENU]) )
+			
+				global_key_lock = true;
+				changed = true;
+				selection = MENU_EXIT;
+				
+				say("elijo salir");
+			
 			end
 		
 		// confirmo la seleccion
