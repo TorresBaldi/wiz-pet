@@ -11,15 +11,13 @@ A virtual Pet game for the GP2x WIZ
 
 * ball game
 
-* tactile ta-te-ti
+* menu: pause game
 
-* menus:
+* menu: options screen
 
-title screen
-pause game
-options screen
-intro
-credits
+* menu: intro
+
+* menu: credits
 
 * sound
 
