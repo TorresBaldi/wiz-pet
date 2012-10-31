@@ -5,16 +5,64 @@ PRIVATE
 
 	int i;
 	
+	int menu_option;
+	
 END
 
 BEGIN
-	// al terminar el menu inicio el juego
-	game_loop();
+
+	// inicializacion
+	jkeys_set_default_keys();
+	jkeys_init();
+	load_data();
+	
+	//cargo recursos
+	fpg_system	= load_fpg("fpg/system.fpg");
+	fpg_bg		= load_fpg("fpg/bg.fpg");
 
 	LOOP
 	
-		
+		global_key_lock();
+		IF ( EXIT_STATUS OR jkeys_state[ _JKEY_MENU ] )
+			do_exit();
+		END
 	
+		if ( open_main_menu )
+		
+			open_main_menu = false;
+		
+			let_me_alone();
+			say("let_me_alone");
+			
+			// llamo al menu principal
+			menu_option = main_menu();
+			
+			// espero a que se suelte el boton para seguir
+			while ( jkeys_state[_JKEY_SELECT] or mouse.left )
+				frame;
+			end
+			
+			// llamo a la seccion del juego que corresponda
+			switch ( menu_option )
+			
+				// salgo del juego
+				case MENU_EXIT:
+					do_exit();
+				end
+				
+				case MENU_START:
+				
+					// inicio una nueva partida
+					reset();
+					
+					game_loop();
+				
+				end
+			
+			end
+			
+		end
+			
 		frame;
 		
 	END
@@ -57,7 +105,7 @@ begin
 	gui_button(290, 160, fpg_system, 110, &right_selected, &right_active);
 	
 	menu_logo();
-	menu_central_button( &selection, &changed );
+	menu_central_button( &selection, &changed, &confirmed );
 
 	loop
 	
@@ -94,20 +142,13 @@ begin
 				say(selection);
 
 			end
-
-			// confirmacion de la comida
-			if ( (!global_key_lock AND jkeys_state[_JKEY_SELECT]) OR 0 )
-
-				global_key_lock = true;
-				confirmed = true;
-
-			end
 		
 		// confirmo la seleccion
 		else
 		
 			say( selection );
-			break;
+			
+			return selection;
 		
 		end
 	
@@ -115,7 +156,8 @@ begin
 		
 	end
 onexit
-
+	
+	unload_fpg(fpg_menu);
 	signal( id, S_KILL_TREE );
 
 end
@@ -138,7 +180,7 @@ begin
 
 end
 
-process menu_central_button( int pointer selection, int pointer selection_change )
+process menu_central_button( int pointer selection, int pointer selection_change, int pointer active )
 
 private
 
@@ -150,7 +192,7 @@ private
 	int do_animation;
 	int doing_animation;
 	
-	int speed;
+	int activation;
 
 end
 
@@ -164,6 +206,14 @@ begin
 	y = 160;
 
 	loop
+	
+		*active = false;
+	
+		IF ( (collision ( type mouse ) and mouse.left) OR jkeys_state[ _JKEY_SELECT ] )
+			activation++;
+			if ( activation == 1 ) *active = true; end
+		END
+			
 	
 		if ( *selection_change )
 		

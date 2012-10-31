@@ -87,38 +87,8 @@ BEGIN
 
 	end
 
-	// inicializacion de teclas
-	jkeys_set_default_keys();
-	jkeys_init();
-	
-	load_data();
-	
-	//cargo recursos
-	fpg_system	= load_fpg("fpg/system.fpg");
-	fpg_bg		= load_fpg("fpg/bg.fpg");
-
 	// inicio el bucle del juego
-	//game_loop();
 	game_controller();
-	
-
-	LOOP
-
-		global_key_lock();
-
-		IF ( EXIT_STATUS OR jkeys_state[ _JKEY_MENU ] )
-
-			stats.last_time = time();
-
-			save( "time.dat", stats );
-
-			exit();
-
-		END
-
-		frame;
-
-	END
 
 END
 
@@ -155,6 +125,15 @@ begin
 		stats.dump[1][i][3] = false;
 	end
 
+end
+
+/* ------------------------------------------------------------------------- */
+function do_exit()
+
+begin
+	stats.last_time = time();
+	save( "time.dat", stats );
+	exit();
 end
 
 /* ------------------------------------------------------------------------- */
