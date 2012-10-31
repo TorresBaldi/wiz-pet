@@ -3,6 +3,9 @@ function action_play_tateti()
 
 private
 
+	int i;
+	int j;
+
 	tabla[2][2];
 	
 	btn_selected[2][2];
@@ -33,6 +36,10 @@ begin
 	fpg_tateti = load_fpg( "fpg/tateti.fpg" );
 	
 	file = fpg_tateti;
+	
+	graph = 1;
+	
+	z = 100;
 
 	while ( jkeys_state[_JKEY_SELECT] or mouse.left )
 		frame;
@@ -40,20 +47,20 @@ begin
 	
 	btn_selected[0][0] = true;
 	
-	for ( x=0; x<3; x++ )
-		for ( y=0; y<3; y++ )
+	for ( i=0; i<3; i++ )
+		for ( j=0; j<3; j++ )
 		
 			// alterno los colores
-			if ( (x%2 + y%2) == 1 )
+			if ( (i%2 + j%2) == 1 )
 				button_graph = 200;
 			else
 				button_graph = 202;
 			end
 			
 			// creo los botones
-			gui_button( 90 + ( x * 70), 50 + (y * 70), fpg_tateti, button_graph, &btn_selected[x][y], &btn_activated[x][y] );
+			gui_button( 90 + ( i * 70), 50 + (j * 70), fpg_tateti, button_graph, &btn_selected[i][j], &btn_activated[i][j] );
 			
-			//say( x + ", "+ y + ": " + graph );
+			//saj( i + ", "+ j + ": " + graph );
 			
 		end
 	end
@@ -184,15 +191,19 @@ begin
 
 		end
 		
+		
+		x = 160;
+		y = 120;
+		
 		frame;
 		
 		// compruebo si hay algun boton activado
-		for ( x=0; x<3; x++)
-			for ( y=0; y<3; y++ )
-				if ( btn_activated[x][y] )
+		for ( i=0; i<3; i++)
+			for ( j=0; j<3; j++ )
+				if ( btn_activated[i][j] )
 					activated = true;
-					seleccion_x = x;
-					seleccion_y = y;
+					seleccion_x = i;
+					seleccion_y = j;
 				end
 			end
 		end
@@ -215,7 +226,7 @@ process piece(x,y,turn)
 begin
 
 	file = father.file;
-	z = father.z - 20;
+	z = father.z - 200;
 	graph = turn+1;
 
 	loop

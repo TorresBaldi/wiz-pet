@@ -33,14 +33,16 @@ begin
 	graph = 1;
 	
 	x = 160;
-	y = 120;
+	y = 60;
 	
 	cursor_id = action_heal_cursor();
 	
-	cursor_id.y = 120;
+	cursor_id.y = y;
 	
 	// pongo el fondo para los botones
-	put(fpg_system, 125, 160, 120);
+	//put(fpg_system, 125, 160, 180);
+	put(fpg_health, 3, 160, y);
+	put(fpg_health, 10, 160, 180);
 
 	while ( !stop )
 	
