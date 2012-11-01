@@ -12,6 +12,8 @@ PRIVATE
 	
 	int txt_id;
 	
+	int next_caca;
+	
 	string string_status;
 
 END
@@ -25,6 +27,8 @@ BEGIN
 	file = fpg_pet;
 	
 	graph = (data.age * 100) + (data.status * 10);
+	
+	next_caca = rand (50, 2500);
 	
 	//txt_id = write(0, x, y-20, 4, "STATUS: " + data.status );
 
@@ -61,6 +65,16 @@ BEGIN
 
 				end
 			end
+			
+			// hago caca
+			next_caca--;
+			if ( next_caca == 0 )
+			
+				next_caca = rand (300, 2500);
+				do_caca(x,y);
+				
+			end
+			//say( next_caca );
 			
 		else
 		

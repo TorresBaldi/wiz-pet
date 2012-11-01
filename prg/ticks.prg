@@ -52,10 +52,12 @@ BEGIN
 		// higiene
 		data.shower -= 0.4;
 
+		/*
 		// hago caca
 		if ( rand(0,100) > 98 )
 			do_caca();
 		end
+		*/
 
 		// limites de stats
 		if ( data.food > 100 ) data.food = 100;

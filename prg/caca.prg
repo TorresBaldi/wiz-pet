@@ -80,7 +80,7 @@ end
 /*
 	hace caca
 */
-function do_caca()
+function do_caca(x,y)
 
 private
 	int i;
@@ -102,12 +102,14 @@ begin
 
 		// creo la caca
 		data.dump[ data.location -1 ][i][0] = true;
-		data.dump[ data.location -1 ][i][1] = rand(10,200);
-		data.dump[ data.location -1 ][i][2] = rand(100,150);
+		
+		data.dump[ data.location -1 ][i][1] = x;
+		data.dump[ data.location -1 ][i][2] = y;
 
 		caca_updated = true;
 
 		data.clean -= 20;
+		data.food -= 25;
 
 	end
 
