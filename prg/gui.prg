@@ -19,11 +19,13 @@ begin
 
 	select[i] = true;
 
-	gui_button(36 + 000, 225, fpg_hud, 10, &select[BTN_FOOD], &active[BTN_FOOD] );
-	gui_button(36 + 050, 225, fpg_hud, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
-	gui_button(36 + 100, 225, fpg_hud, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
-	gui_button(36 + 150, 225, fpg_hud, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
-	gui_button(36 + 200, 225, fpg_hud, 50, &select[BTN_BATH], &active[BTN_BATH] );
+	gui_button(32 + 000, 225, fpg_hud, 10, &select[BTN_FOOD], &active[BTN_FOOD] );
+	gui_button(32 + 064, 225, fpg_hud, 20, &select[BTN_PLAY], &active[BTN_PLAY] );
+	gui_button(32 + 128, 225, fpg_hud, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
+	gui_button(32 + 192, 225, fpg_hud, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
+	gui_button(32 + 256, 225, fpg_hud, 50, &select[BTN_BATH], &active[BTN_BATH] );
+	
+	gui_button(22, 23, fpg_hud, 60, &select[BTN_INFO], &active[BTN_INFO] );
 
 	// invierto la condicion
 	if ( data.location == LOC_INSIDE )
@@ -58,69 +60,51 @@ begin
 
 		end
 
-		// acciones de los botones
-		IF ( active[BTN_FOOD] )
-
-			//
-			//	COMER
-			//
-			do_action = ACTN_FOOD;
-
-		ELSEIF ( active[BTN_PLAY] )
-
-			//
-			//	JUGAR
-			//
-			do_action = ACTN_PLAY;
-
-		ELSEIF ( active[BTN_MOVE] )
-
-			//
-			//	SALIR / ENTRAR
-			//
+		// los botones se activan solo si la mascota esta viva
+		if ( data.status <> STA_DEAD )
 			
-			// vuelvo a crear el boton de mover
+			// acciones de los botones
+			IF ( active[BTN_FOOD] )
+
+				do_action = ACTN_FOOD;
+
+			ELSEIF ( active[BTN_PLAY] )
+
+				do_action = ACTN_PLAY;
+
+			ELSEIF ( active[BTN_MOVE] )
+				
+				button_move.alpha = -20;
+				
+				// cre el boton de mover ( puerta )
+				if ( data.location == LOC_OUTSIDE )
+					button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
+				else
+					button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
+				end
+				
+				do_action = ACTN_MOVE;
+
+			ELSEIF ( active[BTN_HEAL] )
 			
-			button_move.alpha = -20;
+				do_action = ACTN_HEAL;
+
+			ELSEIF ( active[BTN_CLEAN] )
 			
-			if ( data.location == LOC_OUTSIDE )
-				button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
-			else
-				button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
-			end
+				clean_caca( data.location );
+				
+			ELSEIF ( active[BTN_BATH] )
 			
-			do_action = ACTN_MOVE;
+				// lo baño solo estando adentro y sucio
+				if ( data.location == LOC_INSIDE and data.shower < 95 )
+					do_action = ACTN_BATH;
+				else
+					do_action = ACTN_NOBATH;
+				end
+
+			END
 			
-
-		ELSEIF ( active[BTN_HEAL] )
-
-			//
-			//	MEDICINA
-			//
-			do_action = ACTN_HEAL;
-
-		ELSEIF ( active[BTN_CLEAN] )
-
-			//
-			//	LIMPIAR / BARRER
-			//
-			//data.sleep += 20;
-			clean_caca( data.location );
-
-		ELSEIF ( active[BTN_BATH] )
-
-			//
-			//	BAÑAR
-			//
-			
-			// lo baño solo estando adentro y sucio
-			if ( data.location == LOC_INSIDE and data.shower < 95 )
-				do_action = ACTN_BATH;
-			else
-				do_action = ACTN_NOBATH;
-			end
-
-		END
+		end
 
 		frame;
 

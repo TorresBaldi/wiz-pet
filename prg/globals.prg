@@ -38,9 +38,10 @@ CONST
 	BTN_HEAL	= 2;
 	BTN_CLEAN	= 3;
 	BTN_BATH	= 4;
-	BTN_MOVE	= 5;
+	BTN_MOVE	= 6;
+	BTN_INFO	= 5;
 
-	BTN_COUNT = 6;	// cantidad de botones
+	BTN_COUNT = 7;	// cantidad de botones
 	
 	// opciones del menu principal
 	MENU_CONTINUE	= 0;
