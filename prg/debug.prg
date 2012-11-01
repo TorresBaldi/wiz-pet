@@ -8,7 +8,6 @@ begin
 	data.fun = 100;
 	data.clean = 100;
 	data.shower = 100;
-	data.sleep = 100;
 
 	data.ticks = 0;
 	data.age = AGE_BABY;

@@ -24,7 +24,6 @@ begin
 	gui_button(36 + 100, 225, fpg_hud, 30, &select[BTN_HEAL], &active[BTN_HEAL] );
 	gui_button(36 + 150, 225, fpg_hud, 40, &select[BTN_CLEAN], &active[BTN_CLEAN] );
 	gui_button(36 + 200, 225, fpg_hud, 50, &select[BTN_BATH], &active[BTN_BATH] );
-	gui_button(36 + 250, 225, fpg_hud, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
 
 	// invierto la condicion
 	if ( data.location == LOC_INSIDE )
@@ -120,13 +119,6 @@ begin
 			else
 				do_action = ACTN_NOBATH;
 			end
-
-		ELSEIF ( active[BTN_SLEEP] )
-
-			//
-			//	DORMIR
-			//
-			data.sleep += 20;
 
 		END
 

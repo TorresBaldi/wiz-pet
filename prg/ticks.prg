@@ -52,9 +52,6 @@ BEGIN
 		// higiene
 		data.shower -= 0.4;
 
-		// energia
-		data.sleep -= 0.6;
-
 		// hago caca
 		if ( rand(0,100) > 98 )
 			do_caca();
@@ -75,9 +72,6 @@ BEGIN
 
 		if ( data.shower > 100 ) data.shower = 100;
 		elseif ( data.shower < 0 ) data.shower = 0; end
-
-		if ( data.sleep > 100 ) data.sleep = 100;
-		elseif ( data.sleep < 0 ) data.sleep = 0; end
 		
 		update_mood();
 		

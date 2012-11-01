@@ -13,17 +13,20 @@ end
 
 begin
 
+	if ( show )
+
 	write_var(0,0,0,0,fps);
 
 	write_var(0,screen_X,0,2,timer[0]);
-
+	
 	// muestro las barras
 	hud_show_hbar( 36 + 000, 232, &data.food );
 	hud_show_hbar( 36 + 050, 232, &data.fun );
 	hud_show_hbar( 36 + 100, 232, &data.health );
 	hud_show_hbar( 36 + 150, 232, &data.clean );
 	hud_show_hbar( 36 + 200, 232, &data.shower );
-	hud_show_hbar( 36 + 250, 232, &data.sleep );
+	
+	end
 
 	loop
 
@@ -33,9 +36,8 @@ begin
 			txt_id[2] = write( 0, 0, 40, 3, (data.fun) + " diversion" );
 			txt_id[3] = write( 0, 0, 50, 3, (data.clean) + " limpieza" );
 			txt_id[3] = write( 0, 0, 60, 3, (data.shower) + " ducha" );
-			txt_id[4] = write( 0, 0, 70, 3, (data.sleep) + " energia" );
-			txt_id[5] = write( 0, 0, 80, 3, (data.age) + " edad" );
-			txt_id[6] = write( 0, 0, 90, 3, (data.ticks) + " ticks" );
+			txt_id[4] = write( 0, 0, 80, 3, (data.age) + " edad" );
+			txt_id[5] = write( 0, 0, 90, 3, (data.ticks) + " ticks" );
 		end
 
 		frame;

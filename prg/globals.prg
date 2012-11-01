@@ -28,10 +28,9 @@ CONST
 	ACTN_MOVE	= 3;
 	ACTN_HEAL	= 4;
 	ACTN_CLEAN	= 5;
-	ACTN_SLEEP	= 6;
-	ACTN_BATH	= 7;
-	ACTN_NOBATH	= 8;
-	ACTN_DIE	= 9;
+	ACTN_BATH	= 6;
+	ACTN_NOBATH	= 7;
+	ACTN_DIE	= 8;
 
 	// botones disponibles
 	BTN_FOOD	= 0;
@@ -39,10 +38,9 @@ CONST
 	BTN_HEAL	= 2;
 	BTN_CLEAN	= 3;
 	BTN_BATH	= 4;
-	BTN_SLEEP	= 5;
-	BTN_MOVE	= 6;
+	BTN_MOVE	= 5;
 
-	BTN_COUNT = 7;	// cantidad de botones
+	BTN_COUNT = 6;	// cantidad de botones
 	
 	// opciones del menu principal
 	MENU_CONTINUE	= 0;
@@ -87,7 +85,6 @@ GLOBAL
 		float fun 		= 100;
 		float clean 	= 100;
 		float shower 	= 100;
-		float sleep 	= 100;
 
 		int dump[1][5][3];
 		// [1] ubicacion de la caca ( LOC_XXX -1 )
