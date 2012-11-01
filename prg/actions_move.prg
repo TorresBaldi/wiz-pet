@@ -25,7 +25,6 @@ begin
 	end
 
 	// actualizo la limpieza del lugar
-	i = 0;	// uso z como i;
 	stats.clean = 100;
 	for ( i=0; i <= 5; i++ )
 		if ( stats.dump[ stats.location-1 ][i][0] )
@@ -35,12 +34,13 @@ begin
 
 	// hago la animacion
 	x = 160;
-	movement = 0;
+	movement = 0; // cantidad de movimiento
 	while ( movement < 320 )
 
 		movement += speed;
 		
-
+		put( fpg_bg, prev_graph,x, 120 );
+		
 		if ( direction )
 			put( fpg_bg, stats.location, x + 320, 120 );
 			x -= speed;
@@ -48,8 +48,6 @@ begin
 			put( fpg_bg, stats.location, x - 320, 120 );
 			x += speed;
 		end
-		
-		put( fpg_bg, prev_graph,x, 120 );
 		
 
 		frame;
