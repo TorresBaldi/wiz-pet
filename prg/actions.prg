@@ -11,7 +11,7 @@ begin
 		if ( do_action )
 		
 			//put( fpg_bg, 10, 160, 120 );
-			intro_transition(25);
+			intro_transition(transition_speed);
 
 			switch ( do_action )
 
@@ -89,7 +89,7 @@ begin
 				frame;
 			end
 			
-			intro_transition(25);
+			intro_transition(transition_speed);
 			
 			do_action = false;
 			

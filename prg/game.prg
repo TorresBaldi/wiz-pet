@@ -76,7 +76,7 @@ BEGIN
 			else
 			
 				// todas las demas veces el efecto normal
-				intro_transition(25);
+				intro_transition(transition_speed);
 			end
 			
 			// llamo al menu principal
@@ -87,7 +87,7 @@ BEGIN
 				frame;
 			end
 			
-			intro_transition(25);
+			intro_transition(transition_speed);
 			
 			clear_screen();
 

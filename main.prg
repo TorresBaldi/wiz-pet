@@ -79,6 +79,8 @@ BEGIN
 
 			set_mode(320, 240, 16, MODE_FULLSCREEN);
 			set_fps(SCREEN_FPS,2);
+			
+			transition_speed = 75;
 
 		end
 
@@ -89,6 +91,8 @@ BEGIN
 			set_mode(SCREEN_X, SCREEN_Y, SCREEN_D, SCREEN_MODE);
 			set_fps(SCREEN_FPS,0);
 
+			transition_speed = 25;
+			
 		end
 
 	end

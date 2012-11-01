@@ -77,6 +77,9 @@ GLOBAL
 	int menu_avaliable[ MENU_COUNT-1 ];
 	
 	int current_volume;
+	
+	int wiz;
+	int transition_speed;
 
 	STRUCT data
 

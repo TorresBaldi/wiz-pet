@@ -35,7 +35,7 @@ begin
 		
 			current++;
 			
-			intro_transition(5);
+			intro_transition(10);
 			
 			if ( current > max )
 				break;
