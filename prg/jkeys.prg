@@ -62,8 +62,8 @@ begin
     jkeys[ _JKEY_B         ] = _D ;
     jkeys[ _JKEY_X         ] = _S ;
     jkeys[ _JKEY_Y         ] = _W ;
-    jkeys[ _JKEY_VOLUP     ] = 0 ;
-    jkeys[ _JKEY_VOLDOWN   ] = 0 ;
+    jkeys[ _JKEY_VOLUP     ] = _R ;
+    jkeys[ _JKEY_VOLDOWN   ] = _E ;
     jkeys[ _JKEY_CLICK     ] = 0 ;
 
 end

@@ -7,7 +7,7 @@ PRIVATE
 	
 	int data_loaded;
 	
-	int first_run = true;;
+	int first_run = true;
 	
 END
 
