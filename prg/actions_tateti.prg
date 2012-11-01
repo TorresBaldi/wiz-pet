@@ -77,17 +77,17 @@ begin
 
 				case 0:
 					// say("EMPATE");
-					stats.fun += 5;
+					data.fun += 5;
 				end
 
 				case 1:
 					// say("GANA JUGADOR");
-					stats.fun += 30;
+					data.fun += 30;
 				end
 
 				case 2:
 					// say("GANA CPU");
-					stats.fun += 40;
+					data.fun += 40;
 				end
 
 			end

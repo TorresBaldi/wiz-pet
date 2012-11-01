@@ -24,13 +24,13 @@ BEGIN
 
 	file = fpg_pet;
 	
-	graph = (stats.age * 100) + (stats.status * 10);
+	graph = (data.age * 100) + (data.status * 10);
 	
-	//txt_id = write(0, x, y-20, 4, "STATUS: " + stats.status );
+	//txt_id = write(0, x, y-20, 4, "STATUS: " + data.status );
 
 	LOOP
 	
-		if ( stats.status <> STA_DEAD )
+		if ( data.status <> STA_DEAD )
 
 			i++;
 
@@ -40,7 +40,7 @@ BEGIN
 				
 				grafico_frame++;
 				
-				graph = (stats.age * 100) + (stats.status * 10) + grafico_frame%2;
+				graph = (data.age * 100) + (data.status * 10) + grafico_frame%2;
 				
 			end
 
@@ -64,13 +64,13 @@ BEGIN
 			
 		else
 		
-			graph = (stats.age * 100) + (stats.status * 10);
+			graph = (data.age * 100) + (data.status * 10);
 		
 		end
 		
 		/*
 		delete_text( txt_id );
-		switch ( stats.status )
+		switch ( data.status )
 			case STA_NORMAL:	string_status = "NORMAL"; end 		
 			case STA_HAPPY:		string_status = "HAPPY"; end 		
 			case STA_SAD:		string_status = "SAD"; end 		

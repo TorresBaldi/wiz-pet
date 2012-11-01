@@ -18,7 +18,7 @@ begin
 		if ( caca_updated )
 
 			caca_updated = false;
-			l = stats.location - 1;
+			l = data.location - 1;
 
 			//say( "ACTUALIZO CACAS LOCATION: " + l );
 
@@ -32,36 +32,36 @@ begin
 			for ( i=0; i <= 5; i++ )
 
 				// si se hizo caca
-				if ( stats.dump[l][i][0] )
+				if ( data.dump[l][i][0] )
 
-					x = stats.dump[l][i][1];
-					y = stats.dump[l][i][2];
+					x = data.dump[l][i][1];
+					y = data.dump[l][i][2];
 
 					// si no fue creada la crea
-					if ( !stats.dump[l][i][3] )
+					if ( !data.dump[l][i][3] )
 
 						// creo [id] = caca( [x],[y] )
-						stats.dump[l][i][3] = caca( x, y);
+						data.dump[l][i][3] = caca( x, y);
 						//say("creo caca nueva en " + x + "," + y);
 
 					end
 
 					// si no existe el proceso que figura
-					if ( !exists(stats.dump[l][i][3]) )
+					if ( !exists(data.dump[l][i][3]) )
 
-						stats.dump[l][i][3] = caca( x, y);
+						data.dump[l][i][3] = caca( x, y);
 						//say("creo caca muerta en " + x + "," + y);
-						//say( stats.dump[l][i][3].reserved.process_type );
+						//say( data.dump[l][i][3].reserved.process_type );
 
 					end
 
 				// si la caca fue limpiada
-				elseif ( !stats.dump[l][i][0] AND stats.dump[l][i][3] )
+				elseif ( !data.dump[l][i][0] AND data.dump[l][i][3] )
 
 					// elimino la caca
-					if ( exists(stats.dump[l][i][3]) )
-						signal( stats.dump[l][i][3], S_KILL );
-						stats.dump[l][i][3] = 0;
+					if ( exists(data.dump[l][i][3]) )
+						signal( data.dump[l][i][3], S_KILL );
+						data.dump[l][i][3] = 0;
 					end
 
 				end
@@ -91,7 +91,7 @@ begin
 	// busco un lugar vacio
 	for( i=0; i <= 5; i++ )
 
-		if ( stats.dump[ stats.location -1 ][i][0] == false )
+		if ( data.dump[ data.location -1 ][i][0] == false )
 			break;
 		end
 
@@ -101,13 +101,13 @@ begin
 	if ( i <= 5 )
 
 		// creo la caca
-		stats.dump[ stats.location -1 ][i][0] = true;
-		stats.dump[ stats.location -1 ][i][1] = rand(10,200);
-		stats.dump[ stats.location -1 ][i][2] = rand(100,150);
+		data.dump[ data.location -1 ][i][0] = true;
+		data.dump[ data.location -1 ][i][1] = rand(10,200);
+		data.dump[ data.location -1 ][i][2] = rand(100,150);
 
 		caca_updated = true;
 
-		stats.clean -= 20;
+		data.clean -= 20;
 
 	end
 
@@ -126,12 +126,12 @@ begin
 	for( i=0; i <= 5; i++ )
 
 		// vacio la lista de cacas
-		stats.dump[ stats.location -1 ][i][0] = false;
-		stats.dump[ stats.location -1 ][i][3] = false;
+		data.dump[ data.location -1 ][i][0] = false;
+		data.dump[ data.location -1 ][i][3] = false;
 
 	end
 
-	stats.clean = 100;
+	data.clean = 100;
 
 	caca_updated = true;
 

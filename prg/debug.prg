@@ -3,26 +3,26 @@ function reset()
 
 begin
 
-	stats.food = 100;
-	stats.health = 100;
-	stats.fun = 100;
-	stats.clean = 100;
-	stats.shower = 100;
-	stats.sleep = 100;
+	data.food = 100;
+	data.health = 100;
+	data.fun = 100;
+	data.clean = 100;
+	data.shower = 100;
+	data.sleep = 100;
 
-	stats.ticks = 0;
-	stats.age = AGE_BABY;
+	data.ticks = 0;
+	data.age = AGE_BABY;
 	
-	//stats.location = LOC_INSIDE;
+	//data.location = LOC_INSIDE;
 	
 	// lo revivo
-	stats.status = STA_NORMAL;
+	data.status = STA_NORMAL;
 
 	clean_caca(0);
 	clean_caca(1);
 
-	stats.first_time = time();
-	stats.last_time = time();
+	data.first_time = time();
+	data.last_time = time();
 	
 	update_mood();
 

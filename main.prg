@@ -107,27 +107,27 @@ begin
 	//cargo tiempo anterior
 	if ( fexists("time.dat") )
 	
-		load( "time.dat", stats );
+		load( "time.dat", data );
 		found = true;
 		
 	else
 	
 		// inicio el tiempo nuevo
-		stats.first_time = time();
-		stats.last_time = time();
+		data.first_time = time();
+		data.last_time = time();
 
 	end
 
 	// calculo el tiempo que paso
-	time_delta = time() - stats.last_time;
+	time_delta = time() - data.last_time;
 
 	// modifico los stats
 	calcular_ticks ( time_delta / tick );
 	
-	//elimino las cacas que pueden haber quedado
+	//elimino las IDs de las cacas que pueden haber quedado
 	for( i=0; i <= 5; i++ )
-		stats.dump[0][i][3] = false;
-		stats.dump[1][i][3] = false;
+		data.dump[0][i][3] = false;
+		data.dump[1][i][3] = false;
 	end
 	
 	return found;
@@ -138,8 +138,8 @@ end
 function do_exit()
 
 begin
-	stats.last_time = time();
-	save( "time.dat", stats );
+	data.last_time = time();
+	save( "time.dat", data );
 	exit();
 end
 

@@ -70,7 +70,7 @@ BEGIN
 			
 				first_run = false;
 				do_action = FALSE;	// evito la muerte repentina
-				stats.status = STA_NORMAL;
+				data.status = STA_NORMAL;
 				
 				intro_transition(5);
 			else
@@ -180,7 +180,7 @@ BEGIN
 	actions_manager();
 
 	//dibujo el fondo
-	put_screen( fpg_bg, stats.location );
+	put_screen( fpg_bg, data.location );
 	
 	//bajo el volumen de la musica
 	set_song_volume(48);
@@ -238,7 +238,7 @@ BEGIN
 			
 			update_mood();
 			
-			put_screen( fpg_bg, stats.location);
+			put_screen( fpg_bg, data.location);
 
 			kill_cacas();
 			

@@ -15,20 +15,20 @@ end
 
 begin
 
-	prev_graph = stats.location;
+	prev_graph = data.location;
 	
-	if ( stats.location == LOC_INSIDE )	
-		stats.location = LOC_OUTSIDE;
+	if ( data.location == LOC_INSIDE )	
+		data.location = LOC_OUTSIDE;
 	else
 		direction = true;
-		stats.location = LOC_INSIDE;
+		data.location = LOC_INSIDE;
 	end
 
 	// actualizo la limpieza del lugar
-	stats.clean = 100;
+	data.clean = 100;
 	for ( i=0; i <= 5; i++ )
-		if ( stats.dump[ stats.location-1 ][i][0] )
-			stats.clean -= 20;
+		if ( data.dump[ data.location-1 ][i][0] )
+			data.clean -= 20;
 		end
 	end
 
@@ -42,10 +42,10 @@ begin
 		put( fpg_bg, prev_graph,x, 120 );
 		
 		if ( direction )
-			put( fpg_bg, stats.location, x + 320, 120 );
+			put( fpg_bg, data.location, x + 320, 120 );
 			x -= speed;
 		else
-			put( fpg_bg, stats.location, x - 320, 120 );
+			put( fpg_bg, data.location, x - 320, 120 );
 			x += speed;
 		end
 		

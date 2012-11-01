@@ -27,7 +27,7 @@ begin
 	gui_button(36 + 250, 225, fpg_hud, 60, &select[BTN_SLEEP], &active[BTN_SLEEP] );
 
 	// invierto la condicion
-	if ( stats.location == LOC_INSIDE )
+	if ( data.location == LOC_INSIDE )
 		button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
 	else
 		button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
@@ -84,7 +84,7 @@ begin
 			
 			button_move.alpha = -20;
 			
-			if ( stats.location == LOC_OUTSIDE )
+			if ( data.location == LOC_OUTSIDE )
 				button_move = gui_button(35, 126, fpg_hud, 200, &select[BTN_MOVE], &active[BTN_MOVE] );
 			else
 				button_move = gui_button(286, 126, fpg_hud, 100, &select[BTN_MOVE], &active[BTN_MOVE] );
@@ -105,8 +105,8 @@ begin
 			//
 			//	LIMPIAR / BARRER
 			//
-			//stats.sleep += 20;
-			clean_caca( stats.location );
+			//data.sleep += 20;
+			clean_caca( data.location );
 
 		ELSEIF ( active[BTN_BATH] )
 
@@ -115,7 +115,7 @@ begin
 			//
 			
 			// lo baño solo estando adentro y sucio
-			if ( stats.location == LOC_INSIDE and stats.shower < 95 )
+			if ( data.location == LOC_INSIDE and data.shower < 95 )
 				do_action = ACTN_BATH;
 			else
 				do_action = ACTN_NOBATH;
@@ -126,7 +126,7 @@ begin
 			//
 			//	DORMIR
 			//
-			stats.sleep += 20;
+			data.sleep += 20;
 
 		END
 

@@ -77,7 +77,7 @@ GLOBAL
 	int open_main_menu = true;
 	int menu_avaliable[ MENU_COUNT-1 ];
 
-	STRUCT stats
+	STRUCT data
 
 		// stats de la criatura
 		float food 		= 100;

@@ -10,36 +10,36 @@ BEGIN
 
 		ticks--;
 
-		stats.ticks++;
+		data.ticks++;
 
 		//crezco
-		if ( stats.ticks % ticks_per_age == 0 )
-			stats.age = stats.ticks / ticks_per_age;
-			if ( stats.age > AGES ) stats.age = AGES; end // limite
+		if ( data.ticks % ticks_per_age == 0 )
+			data.age = data.ticks / ticks_per_age;
+			if ( data.age > AGES ) data.age = AGES; end // limite
 		end
 
 		//hambre
-		if ( stats.fun < 50 )
-			stats.food -= 0.6;
+		if ( data.fun < 50 )
+			data.food -= 0.6;
 		else
-			stats.food -= 0.1;
+			data.food -= 0.1;
 		end
 
 		//salud
-		if ( stats.food < 10 )
-			stats.health -= 0.8;
-		elseif ( stats.food < 50 )
-			stats.health -= 0.2;
-		elseif ( stats.food < 60 )
+		if ( data.food < 10 )
+			data.health -= 0.8;
+		elseif ( data.food < 50 )
+			data.health -= 0.2;
+		elseif ( data.food < 60 )
 
 			// probabilidad de enfermedad
 			if ( rand(1,100) > 99 )
-				stats.health -= 20;
+				data.health -= 20;
 			end
 
 		end
 		
-		if ( stats.health <=0 AND stats.status <> STA_DEAD )
+		if ( data.health <=0 AND data.status <> STA_DEAD )
 		
 			// say("se murio!");
 			do_action = ACTN_DIE;
@@ -47,13 +47,13 @@ BEGIN
 		end
 
 		// diversion
-		stats.fun -= rand(1,8) * 0.1;
+		data.fun -= rand(1,8) * 0.1;
 
 		// higiene
-		stats.shower -= 0.4;
+		data.shower -= 0.4;
 
 		// energia
-		stats.sleep -= 0.6;
+		data.sleep -= 0.6;
 
 		// hago caca
 		if ( rand(0,100) > 98 )
@@ -61,23 +61,23 @@ BEGIN
 		end
 
 		// limites de stats
-		if ( stats.food > 100 ) stats.food = 100;
-		elseif ( stats.food < 0 ) stats.food = 0; end
+		if ( data.food > 100 ) data.food = 100;
+		elseif ( data.food < 0 ) data.food = 0; end
 
-		if ( stats.health > 100 ) stats.health = 100;
-		elseif ( stats.health < 0 ) stats.health = 0; end
+		if ( data.health > 100 ) data.health = 100;
+		elseif ( data.health < 0 ) data.health = 0; end
 
-		if ( stats.fun > 100 ) stats.fun = 100;
-		elseif ( stats.fun < 0 ) stats.fun = 0; end
+		if ( data.fun > 100 ) data.fun = 100;
+		elseif ( data.fun < 0 ) data.fun = 0; end
 
-		if ( stats.clean > 100 ) stats.clean = 100;
-		elseif ( stats.clean < 0 ) stats.clean = 0; end
+		if ( data.clean > 100 ) data.clean = 100;
+		elseif ( data.clean < 0 ) data.clean = 0; end
 
-		if ( stats.shower > 100 ) stats.shower = 100;
-		elseif ( stats.shower < 0 ) stats.shower = 0; end
+		if ( data.shower > 100 ) data.shower = 100;
+		elseif ( data.shower < 0 ) data.shower = 0; end
 
-		if ( stats.sleep > 100 ) stats.sleep = 100;
-		elseif ( stats.sleep < 0 ) stats.sleep = 0; end
+		if ( data.sleep > 100 ) data.sleep = 100;
+		elseif ( data.sleep < 0 ) data.sleep = 0; end
 		
 		update_mood();
 		
@@ -90,24 +90,24 @@ function update_mood()
 begin
 	
 	// calculo el estado de animo de la mascota
-	IF ( stats.status <> STA_DEAD )
+	IF ( data.status <> STA_DEAD )
 	
-		stats.status = STA_NORMAL;
-		if ( stats.fun > 75 )
-			stats.status = STA_HAPPY;
+		data.status = STA_NORMAL;
+		if ( data.fun > 75 )
+			data.status = STA_HAPPY;
 		end
 		
-		if ( stats.food < 25 )
-			stats.status = STA_HUNGRY;
+		if ( data.food < 25 )
+			data.status = STA_HUNGRY;
 		end
-		if ( stats.fun < 25 )
-			stats.status = STA_SAD;
+		if ( data.fun < 25 )
+			data.status = STA_SAD;
 		end
-		if ( stats.shower < 25 )
-			stats.status = STA_DIRTY;
+		if ( data.shower < 25 )
+			data.status = STA_DIRTY;
 		end
-		if ( stats.health < 25 )
-			stats.status = STA_ILL;
+		if ( data.health < 25 )
+			data.status = STA_ILL;
 		end
 		
 	END

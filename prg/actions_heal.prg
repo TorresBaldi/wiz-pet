@@ -73,23 +73,23 @@ begin
 				case 0..15:
 					// say("BUENO!");
 					
-					stats.health += 50;
-					stats.fun -= 30;
+					data.health += 50;
+					data.fun -= 30;
 					
 				end
 				
 				case 16..25:
 					// say("REGULAR!");
 					
-					stats.health += 10;
-					stats.fun -= 20;
+					data.health += 10;
+					data.fun -= 20;
 					
 				end
 				
 				default:
 					// say("MALO!");
 					
-					stats.fun -= 50;
+					data.fun -= 50;
 					
 				end
 			

@@ -21,10 +21,10 @@ begin
 	bath_water();
 	bath_pet();
 
-	while ( stats.shower < 100 )
+	while ( data.shower < 100 )
 	
-		stats.shower += 0.5;
-		counter = stats.shower;
+		data.shower += 0.5;
+		counter = data.shower;
 	
 		unload_map( 0, graph );
 		graph = draw_bar(counter, 200, 12);
@@ -47,7 +47,7 @@ begin
 
 	file = fpg_shower;
 	
-	graph = stats.age * 100;
+	graph = data.age * 100;
 	
 	x = 160;
 	y = 120;
