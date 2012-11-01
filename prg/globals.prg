@@ -76,6 +76,8 @@ GLOBAL
 	
 	int open_main_menu = true;
 	int menu_avaliable[ MENU_COUNT-1 ];
+	
+	int current_volume;
 
 	STRUCT data
 
@@ -108,6 +110,9 @@ GLOBAL
 		int first_time;
 		int last_time;
 		int death_time;
+		
+		// opciones
+		int volume = 80; // porcentaje de volumen
 
 	END
 
