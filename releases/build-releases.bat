@@ -5,7 +5,7 @@ Title BUILDBOT
 set gamename=wizpet
 
 set windows=1
-set exe=1
+set exe=0
 set linux=0
 set source=1
 set wiz=1
