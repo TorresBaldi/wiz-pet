@@ -82,6 +82,8 @@ GLOBAL
 	int transition_speed;
 
 	STRUCT data
+	
+		string name;
 
 		// stats de la criatura
 		float food 		= 100;
@@ -124,6 +126,7 @@ GLOBAL
 	int fpg_system;
 	int fpg_hud;
 	int fpg_menu;
+	int fpg_info;
 	int fpg_tateti;
 	int fpg_health;
 	int fpg_shower;
