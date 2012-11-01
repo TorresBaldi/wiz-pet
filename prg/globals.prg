@@ -71,7 +71,9 @@ GLOBAL
 
 	int caca_updated = true;
 	
-	// opciones habilitadas en el menu
+	// indica si la partida fue iniciada
+	int game_started;
+	
 	int open_main_menu = true;
 	int menu_avaliable[ MENU_COUNT-1 ];
 

@@ -49,6 +49,7 @@ include "prg/debug.prg";
 
 include "prg/gui.prg";
 include "prg/hud.prg";
+include "prg/audio.prg";
 include "prg/intro.prg";
 include "prg/actions.prg";
 include "prg/actions_food.prg";
@@ -74,7 +75,7 @@ BEGIN
 		case OS_GP2X_WIZ:
 
 			set_mode(320, 240, 16, MODE_FULLSCREEN);
-			set_fps(SCREEN_FPS,0);
+			set_fps(SCREEN_FPS,2);
 
 		end
 

@@ -2,12 +2,12 @@
 PROCESS game_controller()
 
 PRIVATE
-
-	int i;
 	
 	int menu_option;
 	
-	int intro_skippable;
+	int data_loaded;
+	
+	int first_run = true;;
 	
 END
 
@@ -17,11 +17,13 @@ BEGIN
 	jkeys_set_default_keys();
 	jkeys_init();
 	
-	// si encuentro archivo indico que se puede saltar la intro
-	intro_skippable = load_data();
+	audio_manager();
 	
-	// establezco opciones disponibles en menu
-	if ( intro_skippable )
+	// si encuentro archivo indico que se puede saltar la intro
+	data_loaded = load_data();
+	
+	// establezco opciones disponibles en menu principal
+	if ( data_loaded )
 		menu_avaliable[MENU_START] = FALSE;
 		menu_avaliable[MENU_CONTINUE] = TRUE;
 	else
@@ -42,9 +44,7 @@ BEGIN
 	play_song( ogg_dst_dreamingreen, 0 );
 	
 	// inicio la intro
-	start_intro(intro_skippable);
-	
-	intro_skippable = 1;
+	start_intro(data_loaded);
 	
 	LOOP
 	
@@ -66,9 +66,9 @@ BEGIN
 			// say("let_me_alone");
 			
 			// si vengo de la intro, hago el efecto lento
-			if ( intro_skippable )
+			if ( first_run )
 			
-				intro_skippable = false;
+				first_run = false;
 				do_action = FALSE;	// evito la muerte repentina
 				stats.status = STA_NORMAL;
 				
@@ -184,6 +184,9 @@ BEGIN
 	
 	//bajo el volumen de la musica
 	set_song_volume(48);
+	
+	// indico que se inicio una partida
+	game_started = true;
 
 	loop
 
@@ -253,8 +256,11 @@ BEGIN
 	
 ONEXIT
 
+	// descargo recursos
 	unload_fpg( fpg_pet );
 	
 	//subo el volumen de la musica
 	set_song_volume(128);
+	
+	game_started = false;
 END
