@@ -155,8 +155,10 @@ begin
 	map_id = map_new( width, height, SCREEN_D);
 
 	drawing_map ( 0, map_id );
+	
+	drawing_color ( rgb(30,30,30) );
 
-	width_value = (width * value) / 100;
+	width_value = ((width-2) * value) / 100;
 
 	draw_line ( 1, 0, width - 2, 0 );
 	draw_line ( 1, height-1, width - 2, height-1 );
@@ -164,8 +166,10 @@ begin
 	draw_line ( 0, 1, 0, height - 2 );
 	draw_line ( width-1, 1, width-1, height - 2 );
 
+	drawing_color ( rgb(250,250,250) );
+	
 	if ( value > 0 )
-		draw_box ( 1, 1, 1+width_value, height-2 );
+		draw_box ( 1, 1, width_value, height-2 );
 	end
 
 	return map_id;
