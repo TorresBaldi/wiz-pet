@@ -63,15 +63,17 @@ begin
 		// los botones se activan solo si la mascota esta viva
 		if ( data.status <> STA_DEAD )
 			
-			// acciones de los botones
+			/* ------------------------------------------------------------------------- */
 			IF ( active[BTN_FOOD] )
 
 				do_action = ACTN_FOOD;
 
+			/* ------------------------------------------------------------------------- */
 			ELSEIF ( active[BTN_PLAY] )
 
 				do_action = ACTN_PLAY;
 
+			/* ------------------------------------------------------------------------- */
 			ELSEIF ( active[BTN_MOVE] )
 				
 				button_move.alpha = -20;
@@ -85,22 +87,25 @@ begin
 				
 				do_action = ACTN_MOVE;
 
+			/* ------------------------------------------------------------------------- */
 			ELSEIF ( active[BTN_HEAL] )
 			
 				do_action = ACTN_HEAL;
 
+			/* ------------------------------------------------------------------------- */
 			ELSEIF ( active[BTN_CLEAN] )
 			
-				clean_caca( data.location );
+				do_action = ACTN_CLEAN;
 				
+			/* ------------------------------------------------------------------------- */
 			ELSEIF ( active[BTN_BATH] )
 			
-				// lo baño solo estando adentro y sucio
-				if ( data.location == LOC_INSIDE and data.shower < 95 )
-					do_action = ACTN_BATH;
-				else
-					do_action = ACTN_NOBATH;
-				end
+				do_action = ACTN_BATH;
+			
+			/* ------------------------------------------------------------------------- */
+			ELSEIF ( active[BTN_INFO] )
+			
+				do_action = ACTN_INFO;
 
 			END
 			

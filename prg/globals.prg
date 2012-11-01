@@ -29,8 +29,8 @@ CONST
 	ACTN_HEAL	= 4;
 	ACTN_CLEAN	= 5;
 	ACTN_BATH	= 6;
-	ACTN_NOBATH	= 7;
-	ACTN_DIE	= 8;
+	ACTN_DIE	= 7;
+	ACTN_INFO	= 8;
 
 	// botones disponibles
 	BTN_FOOD	= 0;

@@ -15,65 +15,66 @@ begin
 
 			switch ( do_action )
 
-				//
-				//	JUGAR
-				//
-				case ACTN_PLAY:
-				
-					action_play_tateti();
-
-				end
-
-
-				//
-				//	COMER
-				//
+				/* ------------------------------------------------------------------------- */
 				case ACTN_FOOD:
 
 					action_food();
 
 				end
 
+				/* ------------------------------------------------------------------------- */
+				case ACTN_PLAY:
+				
+					// juega distintos juegos adentro y afuera
+					if ( data.location == LOC_OUTSIDE )
+						action_play_ball();
+					else
+						action_play_tateti();
+					end
 
-				//
-				//	MOVER
-				//
+				end
+
+				/* ------------------------------------------------------------------------- */
 				case ACTN_MOVE:
 
 					action_move();
 
 				end
 
-				//
-				//	CURAR
-				//
+				/* ------------------------------------------------------------------------- */
 				case ACTN_HEAL:
 
 					action_heal();
 
 				end
+				
+				/* ------------------------------------------------------------------------- */
+				case ACTN_CLEAN:
+				
+					action_sweep();
 
-				//
-				//	BAÑARSE
-				//
+				end
+				
+				/* ------------------------------------------------------------------------- */
 				case ACTN_BATH:
 
-					action_bath();
+					// lo baño solo estando adentro y sucio
+					if ( data.location == LOC_INSIDE and data.shower < 95 )
+						action_bath();
+					else
+						action_nobath();
+					end
 
 				end
 
-				//
-				//	NO PUEDE BAÑARSE AFUERA
-				//
-				case ACTN_NOBATH:
-
-					action_no_bath();
+				/* ------------------------------------------------------------------------- */
+				case ACTN_INFO:
+				
+					action_info();
 
 				end
-
-				//
-				//	MORIR
-				//
+				
+				/* ------------------------------------------------------------------------- */
 				case ACTN_DIE:
 
 					action_die();
@@ -82,7 +83,6 @@ begin
 
 			end
 
-			//global_key_lock();
 			// espero a que se suelten los botones antes de reanudar el juego
 			while ( global_key_lock )
 				global_key_lock();
@@ -94,8 +94,6 @@ begin
 			do_action = false;
 			
 			update_mood();
-
-			//say( "action done!" );
 
 		end
 

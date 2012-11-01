@@ -100,7 +100,7 @@ begin
 end
 
 /* ------------------------------------------------------------------------- */
-function action_no_bath();
+function action_nobath();
 
 begin
 
