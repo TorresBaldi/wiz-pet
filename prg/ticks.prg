@@ -4,7 +4,7 @@ PROCESS calcular_ticks( int ticks, int tick_location )
 
 BEGIN
 
-	say( ticks + " ticks" );
+	// say( ticks + " ticks" );
 
 	WHILE ( ticks > 0 )
 
@@ -15,8 +15,10 @@ BEGIN
 		//crezco
 		if ( data.ticks > age_duration[data.age] AND data.age < AGES )
 		
+			/* 
 			say( "ticks: " + data.ticks + "/" + age_duration[data.age] );
 			say( "se hace viejo!" );
+			*/
 		
 			data.age++;
 			

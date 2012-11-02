@@ -13,8 +13,8 @@ import "mod_file";
 import "mod_debug";
 import "mod_sound";
 import "mod_scroll";
-import "mod_say";
 import "mod_dir";
+import "mod_say";
 
 /* ------------------------------------------------------------------------- */
 
@@ -125,11 +125,11 @@ end
 
 begin
 
+	/*
 	say( cd() );
-	
 	say( cd() + "\time.dat" );
-	
 	say( fexists( cd() + "\time.dat" ) );
+	*/
 
 	//cargo tiempo anterior
 	if ( fexists( cd() + "\time.dat" ) )
@@ -150,23 +150,25 @@ begin
 
 	// modifico los stats
 	
+	/*
 	say( "antes" );
 	say( "food: " + data.food );
 	say( "health: " + data.health );
 	say( "fun: " + data.fun );
 	say( "clean: " + data.clean );
 	say( "shower: " + data.shower );
+	*/
 	
 	calcular_ticks ( time_delta / tick, TICK_OLDGAME );
 
+	/*
 	say( "ahora" );
 	say( "food: " + data.food );
 	say( "health: " + data.health );
 	say( "fun: " + data.fun );
 	say( "clean: " + data.clean );
 	say( "shower: " + data.shower );
-	
-
+	*/
 	
 	//elimino las IDs de las cacas que pueden haber quedado
 	for( i=0; i <= 5; i++ )

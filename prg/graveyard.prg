@@ -19,17 +19,20 @@ begin
 	
 		if ( data.graveyard[count].age == 0 )
 		
-			say("lugar " + count + " vacio");
+			// say("lugar " + count + " vacio");
 			break;
 			
 		end
 		
 	end
+	
+	max_x = ( count * 200) - 100;
+	
+	/*
 	say( "count " + count );
-	
 	say("muertos: " + count);
-	
-	max_x = ((count) * 200) - 100;
+	say("max_x: " + max_x);
+	*/
 	
 	start_scroll(0, file, 9, 0, 0, 1);
 	
@@ -37,7 +40,7 @@ begin
 	scroll.camera = id;
 	
 	for (i=0; i<count; i++)
-		say( "creo tumba " + i );
+		// say( "creo tumba " + i );
 		tomb( i, count );
 	end
 	
