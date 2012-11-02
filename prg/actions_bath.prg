@@ -18,6 +18,8 @@ begin
 	x = 160;
 	y = 20;
 	
+	put_screen(fpg_bg, 9);
+	
 	bath_water();
 	bath_pet();
 
