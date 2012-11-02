@@ -12,6 +12,8 @@ PRIVATE
 	
 	int next_caca;
 	
+	int pensamiento_id;
+	
 	string string_status;
 	
 	int min_x = 50;
@@ -101,9 +103,11 @@ BEGIN
 			// animacion
 			i++;
 			if ( i>20 )
+			
 				i=0;
 				grafico_frame++;
 				graph = (data.age * 100) + (data.status * 10) + grafico_frame%2;
+				
 			end			
 			
 			// hago caca
@@ -119,6 +123,28 @@ BEGIN
 		else
 		
 			graph = (data.age * 100) + (data.status * 10);
+		
+		end
+
+		
+		if ( data.status == STA_HUNGRY )
+		
+			if ( !pensamiento_id )
+			
+				pensamiento_id = pensamiento( rand(1,6)*10 + 1 );
+			
+			else
+			
+				pensamiento_id.x = x + 30;
+				pensamiento_id.y = y - 80;
+				
+			end
+			
+		else
+		
+			if ( pensamiento_id )
+				signal(pensamiento_id, S_KILL);
+			end
 		
 		end
 		
@@ -143,3 +169,18 @@ BEGIN
 	END
 
 END
+
+process pensamiento( graph )
+
+begin
+
+	file = load_fpg( "fpg/food.fpg" );
+	
+	loop
+	
+		frame;
+		
+	end
+onexit
+	unload_fpg( file );
+end
