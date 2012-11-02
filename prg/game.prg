@@ -22,7 +22,7 @@ BEGIN
 	// si encuentro archivo indico que se puede saltar la intro
 	data_loaded = load_data();
 	
-	say( "data_loaded:" + data_loaded );
+	//say( "data_loaded:" + data_loaded );
 	
 	// establezco opciones disponibles en menu principal
 	if ( data_loaded )
@@ -109,7 +109,8 @@ BEGIN
 				case MENU_START:
 				
 					// inicio una nueva partida
-					reset();
+					//reset();
+					game_start_new();
 					
 					// habilito la opcion de continuar la partida
 					menu_avaliable[MENU_CONTINUE] = TRUE;
@@ -250,8 +251,6 @@ BEGIN
 			update_mood();
 			
 			put_screen( fpg_bg, data.location);
-
-			kill_cacas();
 			
 			caca_updated = true;
 			
@@ -275,3 +274,37 @@ ONEXIT
 	
 	game_started = false;
 END
+
+// RESET
+function game_start_new()
+
+begin
+
+	say ("GAME START NEW");
+
+	data.food = 80;
+	data.health = 80;
+	data.fun = 80;
+	data.clean = 80;
+	data.shower = 80;
+
+	data.ticks = 0;
+	data.age = AGE_BABY;
+	
+	data.location = LOC_INSIDE;
+	
+	data.status = STA_NORMAL;
+
+	clean_caca(0);
+	clean_caca(1);
+
+	data.first_time = time();
+	data.last_time = time();
+	
+	update_mood();
+	
+	// le pongo nombre
+	
+
+end
+
