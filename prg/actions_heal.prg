@@ -102,7 +102,8 @@ begin
 				default:
 					// say("MALO!");
 					
-					data.fun -= ALE_NOTBAD;
+					data.fun -= 30;
+					result = ALE_BAD;
 					
 				end
 			

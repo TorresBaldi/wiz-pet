@@ -73,14 +73,23 @@ begin
 	txt_name = write( fnt_nueva_18, 160, 60, 4, data.name );
 	txt_age = write_string( fnt_nueva_18, 100, 208, 3, &age );
 	
-	while ( x < 200 )
+	while ( jkeys_state[_JKEY_SELECT] or mouse.left )
+		frame;
+	end
+	
+	LOOP
 	
 		//age = ftime( "%jD %Hh %Mm %Ss", time() - data.first_time );
 		age = s_to_string( time() - data.first_time );
 		x++;
 		
 		frame;
-	end
+		
+		if ( jkeys_state[_JKEY_SELECT] OR mouse.left ) 
+			global_key_lock = true;
+			break;
+		end
+	END
 	
 onexit
 
