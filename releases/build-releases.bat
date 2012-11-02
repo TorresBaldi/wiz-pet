@@ -6,11 +6,11 @@ set gamename=wizpet
 
 set bennupath="E:\Bennu\bin"
 
-set windows=1
+set windows=0
 set linux=0
-set source=1
-set wiz=1
-set canoo=1
+set source=0
+set wiz=0
+set canoo=0
 set exe=1
 
 
@@ -152,7 +152,7 @@ GOTO bot_begin
 
 :: borro los archivos creados
 del ..\main.dcb
-del ..\main.exe
+del ..\%gamename%.exe
 
 ::creo un archivo con todas las releases juntas
 winRAR a -cl -m5 -r -ep1 %ver%\%gamename%-all.zip %ver%\*
