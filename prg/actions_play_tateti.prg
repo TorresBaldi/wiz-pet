@@ -76,23 +76,30 @@ begin
 			switch (game_result)
 
 				case 0:
+				
 					// say("EMPATE");
 					data.fun += 5;
+					return ALE_NOTBAD;
+					
 				end
 
 				case 1:
+				
 					// say("GANA JUGADOR");
 					data.fun += 30;
+					return ALE_NOTBAD;
+					
 				end
 
 				case 2:
+				
 					// say("GANA CPU");
 					data.fun += 40;
+					RETURN ALE_GOOD;
+					
 				end
 
 			end
-
-			break;
 
 		end
 

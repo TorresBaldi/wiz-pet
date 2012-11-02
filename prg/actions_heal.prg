@@ -14,6 +14,8 @@ private
 	int speed = 5;
 	
 	int stop;
+	
+	int result;
 
 end
 
@@ -72,6 +74,8 @@ begin
 					data.health += 50;
 					data.fun -= 30;
 					
+					result = ALE_GOOD;
+					
 				end
 				
 				case 16..25:
@@ -80,12 +84,25 @@ begin
 					data.health += 10;
 					data.fun -= 20;
 					
+					result = ALE_NOTBAD;
+					
 				end
+				
+				case 80..99:
+					// say("MALO!");
+					
+					data.health -= 20;
+					data.fun -= 50;
+					
+					result = ALE_BAD;
+					
+				end
+				
 				
 				default:
 					// say("MALO!");
 					
-					data.fun -= 50;
+					data.fun -= ALE_NOTBAD;
 					
 				end
 			
@@ -103,16 +120,7 @@ begin
 		global_key_lock();
 	end
 	
-	// espero a que presione boton para salir
-	while ( !global_key_lock )
-		frame;
-		global_key_lock();
-		
-		if ( (!global_key_lock AND jkeys_state[_JKEY_SELECT]) OR mouse.left )
-			global_key_lock = true;
-		end
-		
-	end
+	return result;
 
 end
 

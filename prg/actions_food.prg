@@ -9,6 +9,8 @@ private
 
 	int button_sel[2];
 	int button_act[2];
+	
+	int liked;
 
 	struct food[5]
 
@@ -115,17 +117,14 @@ begin
 				data.food += food[seleccion].hambre;
 				data.health += food[seleccion].salud;
 
-				
-				// say( "hambre:" + food[seleccion].hambre );
-				// say( "salud:" + food[seleccion].salud );
-
 				// si le gusta o no
 				if ( rand(0, 100) <= food[seleccion].sabor )
 					data.fun += 10;
-					// say( "gusta!" );
+					liked = true;
 				else
+				
 					data.fun -= 30;
-					// say( "no gusta!" );
+					liked = false;
 				end
 
 				break;
@@ -139,6 +138,8 @@ begin
 		frame;
 
 	end
+	
+	return liked;
 	
 onexit
 

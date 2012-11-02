@@ -35,6 +35,14 @@ CONST
 	ACTN_BATH	= 6;
 	ACTN_DIE	= 7;
 	ACTN_INFO	= 8;
+	
+	// alertas disponibles
+	ALE_GOOD	= 80;
+	ALE_BAD		= 90;
+	ALE_NOTBAD	= 50;
+	ALE_GOINSIDE	= 70;
+	ALE_NOTNEED	= 60;
+	ALE_CLEAN	= 40;
 
 	// botones disponibles
 	BTN_FOOD	= 0;

@@ -3,8 +3,8 @@ cd /d %~dp0
 cls
 
 :: CREO FPGS
-::del /f/q fpg
-::..\..\bin\bgdi.exe build-fpgs.dcb
+del /f/q fpg
+..\..\bin\bgdi.exe build-fpgs.dcb
 
 
 :: COMPILO PRG
