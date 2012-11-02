@@ -145,11 +145,28 @@ begin
 
 	end
 
-	// calculo el tiempo que paso
+	// calculo el tiempo que paso en segundos
 	time_delta = time() - data.last_time;
 
 	// modifico los stats
-	calcular_ticks ( time_delta / tick );
+	
+	say( "antes" );
+	say( "food: " + data.food );
+	say( "health: " + data.health );
+	say( "fun: " + data.fun );
+	say( "clean: " + data.clean );
+	say( "shower: " + data.shower );
+	
+	calcular_ticks ( time_delta / tick, TICK_OLDGAME );
+
+	say( "ahora" );
+	say( "food: " + data.food );
+	say( "health: " + data.health );
+	say( "fun: " + data.fun );
+	say( "clean: " + data.clean );
+	say( "shower: " + data.shower );
+	
+
 	
 	//elimino las IDs de las cacas que pueden haber quedado
 	for( i=0; i <= 5; i++ )
@@ -168,7 +185,10 @@ begin
 
 	// guardo si se inicio una partida
 	if ( data.age )
-		data.last_time = time();
+	
+		data.first_time -= 400000;
+		data.last_time = time() - 400000;
+		
 		save( cd() + "\time.dat", data );
 	end
 	

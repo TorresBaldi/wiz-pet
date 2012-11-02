@@ -1,10 +1,10 @@
 /* ------------------------------------------------------------------------- */
-PROCESS calcular_ticks( int ticks )
+PROCESS calcular_ticks( int ticks, int tick_location )
 
 
 BEGIN
 
-	//say( ticks + " ticks" );
+	say( ticks + " ticks" );
 
 	WHILE ( ticks > 0 )
 
@@ -13,51 +13,71 @@ BEGIN
 		data.ticks++;
 
 		//crezco
-		if ( data.ticks % ticks_per_age == 0 )
-			data.age = data.ticks / ticks_per_age;
-			if ( data.age > AGES ) data.age = AGES; end // limite
-		end
-
-		//hambre
-		if ( data.fun < 60 )
-			data.food -= 0.6;
-		else
-			data.food -= 0.1;
-		end
-
-		//salud
-		if ( data.food < 10 )
-			data.health -= 0.8;
-		elseif ( data.food < 50 )
-			data.health -= 0.2;
-		elseif ( data.food < 60 )
-
-			// probabilidad de enfermedad
-			if ( rand(1,100) > 99 )
-				data.health -= 20;
-			end
-
-		end
+		if ( data.ticks > age_duration[data.age] AND data.age < AGES )
 		
-		if ( data.health <=0 AND data.status <> STA_DEAD )
+			say( "ticks: " + data.ticks + "/" + age_duration[data.age] );
+			say( "se hace viejo!" );
 		
-			// say("se murio!");
-			do_action = ACTN_DIE;
+			data.age++;
 			
 		end
+		
+		IF ( tick_location == TICK_INGAME )
 
-		// diversion
-		data.fun -= rand(1,8) * 0.1;
+			//hambre
+			if ( data.fun < 60 )
+				data.food -= 0.6;
+			else
+				data.food -= 0.1;
+			end
 
-		// higiene
-		data.shower -= 0.6;
+			//salud
+			if ( data.food < 10 )
+			
+				data.health -= 0.8;
+				
+			elseif ( data.food < 50 )
+			
+				data.health -= 0.2;
+				
+			elseif ( data.food < 60 )
 
-		/*
-		// hago caca
-		if ( rand(0,100) > 98 )
-			do_caca();
-		end
-		*/
+				// probabilidad de enfermedad
+				if ( rand(1,100) > 99 )
+					data.health -= 20;
+				end
+
+			end
+			
+			if ( data.health <=0 AND data.status <> STA_DEAD )
+			
+				// say("se murio!");
+				do_action = ACTN_DIE;
+				
+			end
+
+			// diversion
+			data.fun -= rand(1,8) * 0.1;
+
+			// higiene
+			data.shower -= 0.6;
+		
+		// estando fuera del juego es todo mas lento
+		ELSE
+			
+			// come 300 por dia
+			data.food -= 0.001;
+			
+			// salud de 100 por dia
+			data.health -= 0.00025;
+			
+			// diversion 600 por dia
+			data.fun -= 0.002;
+			
+			// ducha de 200 por dia
+			data.shower -= 0.0015;
+		
+		END
 
 		// limites de stats
 		if ( data.food > 100 ) data.food = 100;

@@ -13,6 +13,10 @@ CONST
 	LOC_INSIDE	= 2;
 	LOC_OUTSIDE	= 1;
 	
+	// valor de los ticks
+	TICK_INGAME	= 0;
+	TICK_OLDGAME	= 1;
+	
 	// estados de la mascota
 	STA_NORMAL	= 0;
 	STA_HAPPY	= 0;
@@ -62,7 +66,6 @@ GLOBAL
 
 	// unidad de tiempo del juego
 	int tick = 3;	// un tick cada 3 segundos
-	int ticks_per_age = 50;
 
 	// manejo de teclado
 	int global_key_lock;
@@ -82,17 +85,19 @@ GLOBAL
 	
 	int wiz;
 	int transition_speed;
+	
+	int age_duration[AGES];
 
 	STRUCT data
 	
 		string name;
 
 		// stats de la criatura
-		float food 	= 100;
-		float health 	= 100;
-		float fun 	= 100;
-		float clean 	= 100;
-		float shower 	= 100;
+		float food;
+		float health;
+		float fun;
+		float clean;
+		float shower;
 
 		int dump[1][5][3];
 		// [1] ubicacion de la caca ( LOC_XXX -1 )

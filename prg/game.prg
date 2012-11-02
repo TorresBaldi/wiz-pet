@@ -37,6 +37,13 @@ BEGIN
 		menu_avaliable[MENU_GRAVEYARD] = TRUE;
 	END
 	
+	// establezco duraciones de las edades
+	age_duration[AGE_BABY]	= 100;
+	age_duration[AGE_CHILD]	= 200;
+	age_duration[AGE_TEEN]	= 300;
+	age_duration[AGE_ADULT]	= 400;
+	age_duration[AGE_OLD]	= 500;
+	
 	//cargo recursos
 	fpg_system = load_fpg("fpg/system.fpg");
 	fpg_hud = load_fpg("fpg/hud.fpg");
@@ -212,20 +219,26 @@ BEGIN
 		if ( !busy )
 		
 			// cada tick
-			IF ( timer[0] >= tick * 100 )
+			IF ( timer[0] > tick * 100 )
+			
 				timer[0] -= tick * 100;
-				calcular_ticks(1);
+				calcular_ticks( 1, TICK_INGAME );
+				
 			END
 
 			// vuelvo al menu principal
 			IF ( jkeys_state[ _JKEY_MENU ] )
+			
 				global_key_lock = true;
 				open_main_menu = true;
+				
 			END
 			
 			//debug
 			if ( jkeys_state[ _JKEY_R ] )
-				calcular_ticks(1);
+			
+				calcular_ticks( 1, TICK_INGAME );
+				
 			end
 			if ( jkeys_state[ _JKEY_L ] )
 				reset();
@@ -312,7 +325,7 @@ begin
 	update_mood();
 	
 	// le pongo nombre
-	data.name = wizkeyboard("fpg/keyboard.fpg", fnt_nueva_18, fnt_nueva_18, 0, "Name Your Pet!", 25);
+	data.name = wizkeyboard("fpg/keyboard.fpg", fnt_nueva_18, fnt_nueva_18, 0, "Name Your Pet!", 15);
 	
 	while( mouse.left OR jkeys_state[_JKEY_SELECT] )
 		frame;
