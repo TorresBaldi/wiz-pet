@@ -97,6 +97,8 @@ BEGIN
 		end
 
 	end
+	
+	rand_seed( time() );
 
 	// inicio el bucle del juego
 	game_controller();
