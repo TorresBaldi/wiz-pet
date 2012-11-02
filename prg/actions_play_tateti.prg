@@ -79,6 +79,7 @@ begin
 				
 					// say("EMPATE");
 					data.fun += 5;
+					data.food -= 5;
 					return ALE_NOTBAD;
 					
 				end
@@ -87,6 +88,7 @@ begin
 				
 					// say("GANA JUGADOR");
 					data.fun += 30;
+					data.food -= 15;
 					return ALE_NOTBAD;
 					
 				end
@@ -95,6 +97,7 @@ begin
 				
 					// say("GANA CPU");
 					data.fun += 40;
+					data.food -= 20;
 					RETURN ALE_GOOD;
 					
 				end
