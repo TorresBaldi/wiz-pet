@@ -69,9 +69,11 @@ begin
 				/* ------------------------------------------------------------------------- */
 				case ACTN_CLEAN:
 				
-					action_sweep();
 					
-					action_alert( ALE_CLEAN );
+				
+					action_result = action_sweep();
+					
+					action_alert( action_result );
 
 				end
 				
