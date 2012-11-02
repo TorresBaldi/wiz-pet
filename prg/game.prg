@@ -50,8 +50,9 @@ BEGIN
 	play_song( ogg_dst_dreamingreen, -1 );
 	
 	// inicio la intro
-	start_intro(data_loaded);
+	//start_intro(data_loaded);
 	//start_intro(1);
+	frame;
 	
 	if ( OS_ID <> OS_GP2X_WIZ )
 		mouse.file = fpg_system;
