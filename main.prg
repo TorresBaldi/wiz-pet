@@ -12,6 +12,7 @@ import "mod_wm";
 import "mod_file";
 import "mod_debug";
 import "mod_sound";
+import "mod_scroll";
 import "mod_say";
 
 /* ------------------------------------------------------------------------- */
@@ -70,6 +71,7 @@ include "prg/ticks.prg";
 include "prg/pet.prg";
 include "prg/menu.prg";
 include "prg/credits.prg";
+include "prg/graveyard.prg";
 
 // extra
 include "prg/debug.prg";

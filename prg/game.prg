@@ -135,13 +135,14 @@ BEGIN
 					
 				end
 				
+				case MENU_GRAVEYARD:
+				
+					show_graveyard();					
+					
+				end
+				
 				default:
 				
-					// espero a que se suelte el boton para seguir
-					while ( jkeys_state[_JKEY_SELECT] or mouse.left )
-						frame;
-					end
-					
 					open_main_menu = true;
 					
 				end
