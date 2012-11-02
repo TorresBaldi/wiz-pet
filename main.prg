@@ -14,6 +14,7 @@ import "mod_debug";
 import "mod_sound";
 import "mod_scroll";
 import "mod_say";
+import "mod_dir";
 
 /* ------------------------------------------------------------------------- */
 
@@ -96,7 +97,7 @@ BEGIN
 
 		default:
 
-			set_title("WIZPet " + ver);
+			set_title("WIZPet - " + ver );
 			scale_resolution = (SCREEN_X * SCREEN_SCALE) * 10000 + (SCREEN_Y * SCREEN_SCALE);
 			set_mode(SCREEN_X, SCREEN_Y, SCREEN_D, SCREEN_MODE);
 			set_fps(SCREEN_FPS,0);
@@ -124,10 +125,16 @@ end
 
 begin
 
-	//cargo tiempo anterior
-	if ( fexists("time.dat") )
+	say( cd() );
 	
-		load( "time.dat", data );
+	say( cd() + "\time.dat" );
+	
+	say( fexists( cd() + "\time.dat" ) );
+
+	//cargo tiempo anterior
+	if ( fexists( cd() + "\time.dat" ) )
+	
+		load( cd() + "\time.dat", data );
 		found = true;
 		
 	else
@@ -158,8 +165,13 @@ end
 function do_exit()
 
 begin
-	data.last_time = time();
-	save( "time.dat", data );
+
+	// guardo si se inicio una partida
+	if ( data.age )
+		data.last_time = time();
+		save( cd() + "\time.dat", data );
+	end
+	
 	exit();
 end
 
