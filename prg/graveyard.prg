@@ -73,6 +73,8 @@ process tomb(index, total)
 private
 
 	string name;
+	
+	int fnt_id;
 
 end
 
@@ -83,9 +85,11 @@ begin
 	
 	name = data.graveyard[index].name;
 	
-	map_put(0, graph, write_in_map(fnt_nueva_18, name, 4 ), 80, 40);
+	fnt_id = load_fnt( "fnt/nueva-std-bold-18-gray.fnt" );
 	
-	map_put(0, graph, write_in_map(fnt_nueva_18, "Age: " + data.graveyard[index].age, 4 ), 80, 60);
+	map_put(0, graph, write_in_map(fnt_id, name, 4 ), 80, 60);
+	
+	map_put(0, graph, write_in_map(fnt_id, "Age: " + data.graveyard[index].age, 4 ), 80, 80);
 	
 	x = 100 + (total*200) - ( (index+1) * 200);
 	y = rand (80, 170);
