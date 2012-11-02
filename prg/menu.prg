@@ -28,7 +28,6 @@ begin
 		selection++;
 	END
 
-
 	// creo los botones
 	gui_button(30, 160, fpg_system, 100, &left_selected, &left_active);
 	gui_button(290, 160, fpg_system, 110, &right_selected, &right_active);
@@ -37,6 +36,10 @@ begin
 	menu_central_button( &selection, &changed, &confirmed );
 	
 	txt_id = write( 0, 320, 0, 2, ver );
+
+	while ( jkeys_state[_JKEY_SELECT] or mouse.left or jkeys_state[_JKEY_MENU] )
+		frame;
+	end
 
 	loop
 	
