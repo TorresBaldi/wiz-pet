@@ -22,6 +22,8 @@ BEGIN
 	// si encuentro archivo indico que se puede saltar la intro
 	data_loaded = load_data();
 	
+	say( "data_loaded:" + data_loaded );
+	
 	// establezco opciones disponibles en menu principal
 	if ( data_loaded )
 		menu_avaliable[MENU_START] = FALSE;
@@ -32,7 +34,7 @@ BEGIN
 	end
 	menu_avaliable[MENU_CREDITS] = TRUE;
 	menu_avaliable[MENU_EXIT] = TRUE;
-	menu_avaliable[MENU_GRAVEYARD] = TRUE;
+	//menu_avaliable[MENU_GRAVEYARD] = TRUE;
 	
 	//cargo recursos
 	fpg_system = load_fpg("fpg/system.fpg");
@@ -42,7 +44,7 @@ BEGIN
 	
 	//inicio la musica
 	ogg_dst_dreamingreen = load_song( "audio/dst-dreamingreen.ogg" );
-	play_song( ogg_dst_dreamingreen, 0 );
+	play_song( ogg_dst_dreamingreen, -1 );
 	
 	// inicio la intro
 	//start_intro(data_loaded);
