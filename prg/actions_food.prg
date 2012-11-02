@@ -26,35 +26,42 @@ end
 begin
 
 	// inicializo las comidas
+	
+	// pescado
 	food[0].hambre = 30;
 	food[0].salud = 0;
 	food[0].graph = 10;
 	food[0].sabor = 80;
 
-	food[1].hambre = 40;
+	// zanahoria
+	food[1].hambre = 10;
 	food[1].salud = 2;
 	food[1].graph = 20;
-	food[1].sabor = 20;
+	food[1].sabor = 50;
 
-	food[2].hambre = 20;
-	food[2].salud = -10;
+	// pan
+	food[2].hambre = 40;
+	food[2].salud = 0;
 	food[2].graph = 30;
-	food[2].sabor = 100;
+	food[2].sabor = 50;
 
-	food[3].hambre = 30;
-	food[3].salud = -1;
+	// pizza
+	food[3].hambre = 40;
+	food[3].salud = -10;
 	food[3].graph = 40;
-	food[3].sabor = 50;
+	food[3].sabor = 100;
 
-	food[4].hambre = 30;
-	food[4].salud = -1;
+	// manzana
+	food[4].hambre = 10;
+	food[4].salud = 2;
 	food[4].graph = 50;
-	food[4].sabor = 50;
+	food[4].sabor = 70;
 
+	// queso
 	food[5].hambre = 30;
-	food[5].salud = -1;
+	food[5].salud = 0;
 	food[5].graph = 60;
-	food[5].sabor = 50;
+	food[5].sabor = 80;
 
 
 	fpg_food = load_fpg( "fpg/food.fpg" );
