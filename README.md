@@ -1,9 +1,8 @@
+![WIZPet](https://dl.dropbox.com/u/3292353/releases/wizpet/wizpet-github-head-export.png)
 #wiz-pet
 A virtual Pet game for the GP2x WIZ
 
 ##TO-DOs
-
-* death system
 
 * graveyard
 
@@ -17,12 +16,6 @@ A virtual Pet game for the GP2x WIZ
 
 * menu: intro
 
-* menu: credits
-
 * sound
 
-* background music
-
 * day/night cycle
-
-* sleep
