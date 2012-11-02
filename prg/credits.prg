@@ -22,7 +22,6 @@ begin
 	end
 
 	while ( y > -860 + 240 )
-		say(y);
 		y--;
 		frame;
 	end

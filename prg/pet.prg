@@ -51,7 +51,7 @@ BEGIN
 	fx = final_x = rand( min_x, max_x );
 	fy = final_y = rand( min_y, max_y );
 	
-	say( "pos: " + x + "," + y );
+	//say( "pos: " + x + "," + y );
 
 	LOOP
 	
