@@ -46,7 +46,7 @@ BEGIN
 	
 	graph = (data.age * 100) + (data.status * 10);
 	
-	next_caca = rand (50, 2500);
+	next_caca = rand (200, 2000);
 	
 	//txt_id = write(0, x, y-20, 4, "STATUS: " + data.status );
 	
@@ -147,21 +147,6 @@ BEGIN
 			end
 		
 		end
-		
-		/*
-		delete_text( txt_id );
-		switch ( data.status )
-			case STA_NORMAL:	string_status = "NORMAL"; end 		
-			case STA_HAPPY:		string_status = "HAPPY"; end 		
-			case STA_SAD:		string_status = "SAD"; end 		
-			case STA_HUNGRY:	string_status = "HUNGRY"; end 		
-			case STA_DIRTY:		string_status = "DIRTY"; end 		
-			case STA_ILL:		string_status = "ILL"; end 		
-			case STA_DEAD:		string_status = "DEAD"; end 		
-		end
-		
-		txt_id = write(0, x, y-40, 4, string_status );
-		*/
 
 		FRAME;
 		
