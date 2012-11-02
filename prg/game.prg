@@ -38,11 +38,11 @@ BEGIN
 	END
 	
 	// establezco duraciones de las edades
-	age_duration[AGE_BABY]	= 100;
-	age_duration[AGE_CHILD]	= 200;
-	age_duration[AGE_TEEN]	= 300;
-	age_duration[AGE_ADULT]	= 400;
-	age_duration[AGE_OLD]	= 500;
+	age_duration[AGE_BABY]	= 1 * TICKS_PER_DAY;
+	age_duration[AGE_CHILD]	= 2 * TICKS_PER_DAY;
+	age_duration[AGE_TEEN]	= 4 * TICKS_PER_DAY;
+	age_duration[AGE_ADULT]	= 7 * TICKS_PER_DAY;
+	age_duration[AGE_OLD]	= 10 * TICKS_PER_DAY;
 	
 	//cargo recursos
 	fpg_system = load_fpg("fpg/system.fpg");
