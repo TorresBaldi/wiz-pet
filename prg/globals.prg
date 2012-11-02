@@ -45,13 +45,15 @@ CONST
 	
 	// opciones del menu principal
 	MENU_CONTINUE	= 0;
-	MENU_START		= 1;
+	MENU_START	= 1;
 	MENU_GRAVEYARD	= 2;
 	MENU_CREDITS	= 3;
 	MENU_OPTIONS	= 4;
-	MENU_EXIT		= 5;
+	MENU_EXIT	= 5;
 	
 	MENU_COUNT = 6;
+	
+	GRAVEYARD_COUNT = 20;
 
 END
 
@@ -86,9 +88,9 @@ GLOBAL
 		string name;
 
 		// stats de la criatura
-		float food 		= 100;
+		float food 	= 100;
 		float health 	= 100;
-		float fun 		= 100;
+		float fun 	= 100;
 		float clean 	= 100;
 		float shower 	= 100;
 
@@ -118,7 +120,7 @@ GLOBAL
 		int volume = 80; // porcentaje de volumen
 		
 		// cementerio
-		struct graveyard[50];
+		struct graveyard[ GRAVEYARD_COUNT ];
 		
 			string name;
 			int age;
