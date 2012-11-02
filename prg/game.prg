@@ -25,16 +25,17 @@ BEGIN
 	//say( "data_loaded:" + data_loaded );
 	
 	// establezco opciones disponibles en menu principal
-	if ( data_loaded )
-		menu_avaliable[MENU_START] = FALSE;
-		menu_avaliable[MENU_CONTINUE] = TRUE;
-	else
-		menu_avaliable[MENU_START] = TRUE;
-		menu_avaliable[MENU_CONTINUE] = FALSE;
-	end
+	menu_avaliable[MENU_START] = TRUE;
 	menu_avaliable[MENU_CREDITS] = TRUE;
 	menu_avaliable[MENU_EXIT] = TRUE;
-	//menu_avaliable[MENU_GRAVEYARD] = TRUE;
+	
+	IF ( data_loaded )
+		menu_avaliable[MENU_CONTINUE] = TRUE;
+	END
+	
+	IF ( data.graveyard[0].age )
+		menu_avaliable[MENU_GRAVEYARD] = TRUE;
+	END
 	
 	//cargo recursos
 	fpg_system = load_fpg("fpg/system.fpg");
@@ -49,9 +50,13 @@ BEGIN
 	play_song( ogg_dst_dreamingreen, -1 );
 	
 	// inicio la intro
-	//start_intro(data_loaded);
+	start_intro(data_loaded);
+	//start_intro(1);
 	
-	start_intro(1);
+	if ( OS_ID <> OS_GP2X_WIZ )
+		mouse.file = fpg_system;
+		mouse.graph = 1;
+	end
 	
 	LOOP
 	
@@ -113,9 +118,6 @@ BEGIN
 					// inicio una nueva partida
 					//reset();
 					game_start_new();
-					
-					// habilito la opcion de continuar la partida
-					menu_avaliable[MENU_CONTINUE] = TRUE;
 					
 					game_loop();
 				
@@ -302,6 +304,8 @@ begin
 
 	data.first_time = time();
 	data.last_time = time();
+	
+	menu_avaliable[MENU_CONTINUE] = TRUE;
 	
 	update_mood();
 	
