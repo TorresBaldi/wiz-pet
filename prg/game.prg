@@ -42,6 +42,8 @@ BEGIN
 	fpg_bg = load_fpg("fpg/bg.fpg");
 	fpg_menu = load_fpg("fpg/menu.fpg");
 	
+	fnt_nueva_18 = load_fnt("fnt/nueva-std-bold-18.fnt");
+	
 	//inicio la musica
 	ogg_dst_dreamingreen = load_song( "audio/dst-dreamingreen.ogg" );
 	play_song( ogg_dst_dreamingreen, -1 );
@@ -304,7 +306,11 @@ begin
 	update_mood();
 	
 	// le pongo nombre
+	data.name = wizkeyboard("fpg/keyboard.fpg", fnt_nueva_18, fnt_nueva_18, 0, "Name Your Pet!", 25);
 	
+	while( mouse.left OR jkeys_state[_JKEY_SELECT] )
+		frame;
+	end
 
 end
 

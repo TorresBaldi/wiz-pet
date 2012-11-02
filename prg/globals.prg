@@ -141,6 +141,8 @@ GLOBAL
 	int fpg_health;
 	int fpg_shower;
 	
+	int fnt_nueva_18;
+	
 	int ogg_dst_dreamingreen;
 
 END

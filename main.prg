@@ -36,17 +36,20 @@ END
 
 GLOBAL
 
-	time_delta;
+	string ver = "1.0";
 
 END
 
 /* ------------------------------------------------------------------------- */
 
+// libraries
 include "prg/jkeys.prg";
+include "prg/wiz-keyboard.lib";
 
+// declarations
 include "prg/globals.prg";
-include "prg/debug.prg";
 
+// game code
 include "prg/gui.prg";
 include "prg/hud.prg";
 include "prg/audio.prg";
@@ -68,6 +71,10 @@ include "prg/pet.prg";
 include "prg/menu.prg";
 include "prg/credits.prg";
 
+// extra
+include "prg/debug.prg";
+
+
 /* ------------------------------------------------------------------------- */
 
 
@@ -87,7 +94,7 @@ BEGIN
 
 		default:
 
-			set_title("WIZPet");
+			set_title("WIZPet " + ver);
 			scale_resolution = (SCREEN_X * SCREEN_SCALE) * 10000 + (SCREEN_Y * SCREEN_SCALE);
 			set_mode(SCREEN_X, SCREEN_Y, SCREEN_D, SCREEN_MODE);
 			set_fps(SCREEN_FPS,0);
@@ -110,6 +117,7 @@ function load_data()
 private
 	int i;
 	int found;
+	int time_delta;
 end
 
 begin

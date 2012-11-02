@@ -28,10 +28,15 @@ begin
 	end
 	
 	//devuelvo valor
-	ret = s + "s";
+	//ret = s + "s";
 	if ( m > 0 ) ret = m + "m " + ret; end
 	if ( h > 0 ) ret = h + "h " + ret; end
-	if ( d > 0 ) ret = d + "d " + ret; end
+	
+	if ( d > 0 )
+		ret = d + "d " + ret;
+	else
+		ret = ret + s + "s";
+	end
 	
 	return ret;
 
@@ -44,7 +49,8 @@ private
 
 	string age;
 	
-	int txt_id;
+	int txt_name;
+	int txt_age;
 
 end
 
@@ -60,9 +66,12 @@ begin
 	put( 0, draw_bar(data.clean,	110, 14), 150, 165 );
 	put( 0, draw_bar(data.shower,	110, 14), 150, 185 );
 	
+	put( fpg_pet, (data.age * 100) + (data.status * 10), 270, 220 );
+	
 	age = s_to_string( time() - data.first_time );
 	
-	txt_id = write_string( 0, 100, 205, 3, &age );
+	txt_name = write( fnt_nueva_18, 160, 60, 4, data.name );
+	txt_age = write_string( fnt_nueva_18, 100, 208, 3, &age );
 	
 	while ( x < 200 )
 	
@@ -75,6 +84,7 @@ begin
 	
 onexit
 
-	delete_text( txt_id );
+	delete_text( txt_name );
+	delete_text( txt_age );
 
 end

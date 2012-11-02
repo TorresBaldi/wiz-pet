@@ -13,6 +13,8 @@ private
 	int selection;
 	
 	int changed;
+	
+	int txt_id;
 
 end
 
@@ -33,6 +35,8 @@ begin
 	
 	menu_logo();
 	menu_central_button( &selection, &changed, &confirmed );
+	
+	txt_id = write( 0, 320, 0, 2, ver );
 
 	loop
 	
@@ -40,9 +44,17 @@ begin
 		
 		if ( !confirmed )
 		
+			if ( !global_key_lock )
+				left_selected = false;
+				right_selected = false;
+			end
+			
+		
 			if ( (!global_key_lock AND jkeys_state[_JKEY_LEFT]) OR left_active )
 
 				global_key_lock = true;
+				
+				left_selected = true;
 				
 				changed = true;
 				
@@ -57,6 +69,8 @@ begin
 			elseif ( (!global_key_lock AND jkeys_state[_JKEY_RIGHT]) OR right_active )
 
 				global_key_lock = true;
+				
+				right_selected = true;
 				
 				changed = true;
 				
@@ -93,6 +107,8 @@ begin
 	end
 onexit
 
+	delete_text( txt_id );
+	
 	signal( id, S_KILL_TREE );
 
 end

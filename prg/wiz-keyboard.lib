@@ -1,0 +1,505 @@
+//------------------------------------------------------------------------------------------------------------------
+//
+//	WIZ-KEYBOARD v 1.1
+//
+//------------------------------------------------------------------------------------------------------------------
+/*
+	CHANGELOG
+
+[v1.1]
+
+ - Adaptado a 320x240
+ - Deteccion de durezas optimizada
+
+[v1.0]
+
+ - Release inicial
+
+*/
+
+import "mod_string";
+import "mod_draw";
+
+//------------------------------------------------------------------------------------------------------------------
+CONST
+	
+	// variedad de teclado activada
+	WIZKB_MIN	= 0;
+	WIZKB_MAY	= 1;
+	WIZKB_NUM	= 2;
+	
+	// limites del teclado
+	WIZKB_NOKEY = -1;
+	WIZKB_NORMALKEYS = 27;
+	WIZKB_ALLKEYS = 32;
+	
+	// teclas especiales
+	WIZKB_KEY_SYMBOLS 	= 27;
+	WIZKB_KEY_OK 		= 28;
+	WIZKB_KEY_SHIFT 	= 29;
+	WIZKB_KEY_SPACE 	= 30;
+	WIZKB_KEY_DELETE 	= 31;
+
+END
+
+GLOBAL
+
+	// datos globales usados por el teclado
+	STRUCT wiz_kb
+	
+		int show_status = TRUE;
+
+		//durezas de las teclas
+		int keycolor[WIZKB_ALLKEYS];
+		
+		// tabla de valores de las teclas
+		string keyvalue[WIZKB_NORMALKEYS];
+		
+		// valor de la tecla presionada
+		int key = WIZKB_NOKEY;
+		
+		// id de graficos
+		int fpg;
+		
+	END
+
+END
+
+//------------------------------------------------------------------------------------------------------------------
+FUNCTION string wizkeyboard(string fpg_src, int fnt1, int fnt2, int fnt3, string message, int max_len)
+//
+// Inicia el teclado que devolvera un string con el texto ingresado.
+//
+
+PRIVATE
+
+	// graficos del teclado
+	png[3];
+	
+	// estado del teclado
+	keyboard_mode;
+	
+	string le_string;
+	
+	int le_string_count;
+	
+	txt_id;
+	txt_message;
+	txt_count;
+	
+	int aux;
+
+END
+
+BEGIN
+
+	// inicializo los valores
+	png[WIZKB_MIN] = 11;
+	png[WIZKB_MAY] = 10;
+	png[WIZKB_NUM] = 12;
+
+	// cargo los recursos
+	wiz_kb.fpg = load_fpg(fpg_src);
+	file = wiz_kb.fpg;
+	
+	// centro en pantalla
+	x = 320/2;
+	y = 240 - 80;
+	
+	wizkeyboard_setupkeycolors();
+	wizkeyboard_setupkeys(keyboard_mode);
+	wizkeyboard_keydetect();
+	
+	wizkeyboard_frame();
+	
+	LOOP
+		
+		// si se presiona una tecla
+		IF ( wiz_kb.key <> WIZKB_NOKEY )
+		
+			// TECLAS COMUNES
+			IF ( wiz_kb.key < WIZKB_NORMALKEYS )
+			
+				// agrego la tecla al string
+				le_string += wiz_kb.keyvalue[ wiz_kb.key ];
+			
+			// TECLAS ESPECIALES
+			ELSE
+			
+				SWITCH ( wiz_kb.key )
+				
+					// MODO SIMBOLOS
+					CASE WIZKB_KEY_SYMBOLS:
+					
+						IF ( keyboard_mode == WIZKB_NUM )
+							keyboard_mode = WIZKB_MIN;
+							wizkeyboard_setupkeys(keyboard_mode);
+						ELSE
+							keyboard_mode = WIZKB_NUM;
+							wizkeyboard_setupkeys(keyboard_mode);
+						END
+						
+					END
+					
+					// OK
+					CASE WIZKB_KEY_OK:
+					
+						return le_string;
+					
+					END
+					
+					// MODO SHIFT
+					CASE WIZKB_KEY_SHIFT:
+					
+						IF ( keyboard_mode == WIZKB_MAY )
+							keyboard_mode = WIZKB_MIN;
+							wizkeyboard_setupkeys(keyboard_mode);
+						ELSE
+							keyboard_mode = WIZKB_MAY;
+							wizkeyboard_setupkeys(keyboard_mode);
+						END
+						
+					END
+					
+					// SPACE
+					CASE WIZKB_KEY_SPACE:
+					
+						le_string += " ";
+						
+					END
+					
+					// DEL
+					CASE WIZKB_KEY_DELETE:
+					
+						// recorto el string
+						IF ( len(le_string) )
+							le_string = substr( le_string, 0, len(le_string)-1 );
+						END
+						
+					END
+					
+				END
+				
+			
+			END
+			
+		END
+
+		// limito el string a la cantidad maxima
+		le_string_count = len(le_string);
+		WHILE ( le_string_count > max_len )
+			le_string = substr( le_string, 0, len(le_string)-1 );
+			le_string_count = len(le_string);
+		END
+		
+		// parpadeo del cursor
+		aux++;
+		
+		// muestro el grafico del teclado que corresponda
+		graph = png[keyboard_mode];
+		
+		//muestro strings
+		text_z = -400;
+		txt_message = write(fnt1,160,10,4,message);
+		IF ( (aux/18) % 2 == 0 )
+			txt_id = write(fnt2,160,48,4,le_string + " ");
+		ELSE
+			txt_id = write(fnt2,160,48,4,le_string + "|");
+		END
+		if ( wiz_kb.show_status ) txt_count = write(fnt3,3,3,0,le_string_count + "/" + max_len ); end
+		text_z = -255;
+	
+		FRAME;
+		
+		delete_text(txt_id);
+		delete_text(txt_message);
+		if ( wiz_kb.show_status ) delete_text(txt_count); end
+		
+	END
+
+END
+
+//------------------------------------------------------------------------------------------------------------------
+PROCESS wizkeyboard_keydetect()
+//
+// Detecta la tecla presionada (mediante durezas) y traduce el valor a un valor de la tabla de teclas
+//
+
+PRIVATE
+
+	// coordenadas del mouse sobre el teclado
+	int inkeyboard_x;
+	int inkeyboard_y;
+	
+	// durezas
+	int color;
+
+	// contador de frames
+	// (para ejecutar solo una vez)
+	int aux;
+	
+	int i;
+
+END
+
+BEGIN
+
+	LOOP
+	
+		// salgo al eliminar al padre
+		IF ( !exists(father) )
+			break;
+		END
+		
+		// calculo el offset del teclado en la pantalla
+		inkeyboard_x = mouse.x - (father.x - (320/2) );
+		inkeyboard_y = mouse.y - (father.y - 80);
+		
+		// indico que no se presiono ninguna tecla todavia
+		wiz_kb.key = WIZKB_NOKEY;
+		
+		IF ( mouse.left ) 
+		
+			aux++;
+			
+			IF ( aux == 1)
+			
+				// detecto el color de la dureza de la tecla
+				color = map_get_pixel(wiz_kb.fpg, 1, inkeyboard_x, inkeyboard_y );
+				
+				//say( "X-" + inkeyboard_x + "	Y-" + inkeyboard_y + ": 	" + color );
+				
+				// traduzco el color a la tecla
+				FOR ( i=0; i<WIZKB_ALLKEYS; i++ )
+					if ( color == wiz_kb.keycolor[i] )
+					
+						// indico que tecla fue presionada
+						wiz_kb.key = i;
+						break;
+					
+					end
+				END
+			
+			END
+			
+		ELSE
+			aux = 0;
+		END
+		
+		frame;
+	
+	END
+
+END
+
+//------------------------------------------------------------------------------------------------------------------
+FUNCTION wizkeyboard_setupkeys(int keyboard_mode)
+//
+// Asigna el valor con el que será interpretada la pulsacion de cada tecla
+//
+
+BEGIN
+
+	// inicializo las teclas
+	SWITCH ( keyboard_mode )
+	
+		// minusculas
+		CASE WIZKB_MIN:
+		
+			wiz_kb.keyvalue[00] = "q";
+			wiz_kb.keyvalue[01] = "w";
+			wiz_kb.keyvalue[02] = "e";
+			wiz_kb.keyvalue[03] = "r";
+			wiz_kb.keyvalue[04] = "t";
+			wiz_kb.keyvalue[05] = "y";
+			wiz_kb.keyvalue[06] = "u";
+			wiz_kb.keyvalue[07] = "i";
+			wiz_kb.keyvalue[08] = "o";
+			wiz_kb.keyvalue[09] = "p";
+			
+			wiz_kb.keyvalue[10] = "a";
+			wiz_kb.keyvalue[11] = "s";
+			wiz_kb.keyvalue[12] = "d";
+			wiz_kb.keyvalue[13] = "f";
+			wiz_kb.keyvalue[14] = "g";
+			wiz_kb.keyvalue[15] = "h";
+			wiz_kb.keyvalue[16] = "j";
+			wiz_kb.keyvalue[17] = "k";
+			wiz_kb.keyvalue[18] = "l";
+			wiz_kb.keyvalue[19] = ".";
+			
+			wiz_kb.keyvalue[20] = "z";
+			wiz_kb.keyvalue[21] = "x";
+			wiz_kb.keyvalue[22] = "c";
+			wiz_kb.keyvalue[23] = "v";
+			wiz_kb.keyvalue[24] = "b";
+			wiz_kb.keyvalue[25] = "n";
+			wiz_kb.keyvalue[26] = "m";
+			
+		END
+		// mayusculas
+		CASE WIZKB_MAY:
+		
+			wiz_kb.keyvalue[00] = "Q";
+			wiz_kb.keyvalue[01] = "W";
+			wiz_kb.keyvalue[02] = "E";
+			wiz_kb.keyvalue[03] = "R";
+			wiz_kb.keyvalue[04] = "T";
+			wiz_kb.keyvalue[05] = "Y";
+			wiz_kb.keyvalue[06] = "U";
+			wiz_kb.keyvalue[07] = "I";
+			wiz_kb.keyvalue[08] = "O";
+			wiz_kb.keyvalue[09] = "P";
+			
+			wiz_kb.keyvalue[10] = "A";
+			wiz_kb.keyvalue[11] = "S";
+			wiz_kb.keyvalue[12] = "D";
+			wiz_kb.keyvalue[13] = "F";
+			wiz_kb.keyvalue[14] = "G";
+			wiz_kb.keyvalue[15] = "H";
+			wiz_kb.keyvalue[16] = "J";
+			wiz_kb.keyvalue[17] = "K";
+			wiz_kb.keyvalue[18] = "L";
+			wiz_kb.keyvalue[19] = "!";
+			
+			wiz_kb.keyvalue[20] = "Z";
+			wiz_kb.keyvalue[21] = "X";
+			wiz_kb.keyvalue[22] = "C";
+			wiz_kb.keyvalue[23] = "V";
+			wiz_kb.keyvalue[24] = "B";
+			wiz_kb.keyvalue[25] = "N";
+			wiz_kb.keyvalue[26] = "M";
+		
+		END
+		
+		CASE WIZKB_NUM:
+		
+			wiz_kb.keyvalue[00] = "1";
+			wiz_kb.keyvalue[01] = "2";
+			wiz_kb.keyvalue[02] = "3";
+			wiz_kb.keyvalue[03] = "4";
+			wiz_kb.keyvalue[04] = "5";
+			wiz_kb.keyvalue[05] = "6";
+			wiz_kb.keyvalue[06] = "7";
+			wiz_kb.keyvalue[07] = "8";
+			wiz_kb.keyvalue[08] = "9";
+			wiz_kb.keyvalue[09] = "0";
+			
+			wiz_kb.keyvalue[10] = "!";
+			wiz_kb.keyvalue[11] = "_";
+			wiz_kb.keyvalue[12] = ",";
+			wiz_kb.keyvalue[13] = "-";
+			wiz_kb.keyvalue[14] = "@";
+			wiz_kb.keyvalue[15] = "&";
+			wiz_kb.keyvalue[16] = "/";
+			wiz_kb.keyvalue[17] = "(";
+			wiz_kb.keyvalue[18] = ")";
+			wiz_kb.keyvalue[19] = "|";
+			
+			wiz_kb.keyvalue[20] = "?";
+			wiz_kb.keyvalue[21] = "º";
+			wiz_kb.keyvalue[22] = ";";
+			wiz_kb.keyvalue[23] = ":";
+			wiz_kb.keyvalue[24] = "'";
+			wiz_kb.keyvalue[25] = "<";
+			wiz_kb.keyvalue[26] = ">";
+		
+		END
+		
+	END
+	
+END
+
+//------------------------------------------------------------------------------------------------------------------
+FUNCTION wizkeyboard_setupkeycolors()
+//
+// Detecta y guarda los colores de cada tecla
+//
+
+PRIVATE
+
+	int i;
+
+END
+
+BEGIN
+
+	// teclas normales
+	wiz_kb.keycolor[00] = map_get_pixel(wiz_kb.fpg, 1, 010, 010);
+	wiz_kb.keycolor[01] = map_get_pixel(wiz_kb.fpg, 1, 040, 010);
+	wiz_kb.keycolor[02] = map_get_pixel(wiz_kb.fpg, 1, 070, 010);
+	wiz_kb.keycolor[03] = map_get_pixel(wiz_kb.fpg, 1, 110, 010);
+	wiz_kb.keycolor[04] = map_get_pixel(wiz_kb.fpg, 1, 140, 010);
+	wiz_kb.keycolor[05] = map_get_pixel(wiz_kb.fpg, 1, 170, 010);
+	wiz_kb.keycolor[06] = map_get_pixel(wiz_kb.fpg, 1, 210, 010);
+	wiz_kb.keycolor[07] = map_get_pixel(wiz_kb.fpg, 1, 240, 010);
+	wiz_kb.keycolor[08] = map_get_pixel(wiz_kb.fpg, 1, 270, 010);
+	wiz_kb.keycolor[09] = map_get_pixel(wiz_kb.fpg, 1, 310, 010);
+
+	wiz_kb.keycolor[10] = map_get_pixel(wiz_kb.fpg, 1, 010, 060);
+	wiz_kb.keycolor[11] = map_get_pixel(wiz_kb.fpg, 1, 040, 060);
+	wiz_kb.keycolor[12] = map_get_pixel(wiz_kb.fpg, 1, 070, 060);
+	wiz_kb.keycolor[13] = map_get_pixel(wiz_kb.fpg, 1, 110, 060);
+	wiz_kb.keycolor[14] = map_get_pixel(wiz_kb.fpg, 1, 140, 060);
+	wiz_kb.keycolor[15] = map_get_pixel(wiz_kb.fpg, 1, 170, 060);
+	wiz_kb.keycolor[16] = map_get_pixel(wiz_kb.fpg, 1, 210, 060);
+	wiz_kb.keycolor[17] = map_get_pixel(wiz_kb.fpg, 1, 240, 060);
+	wiz_kb.keycolor[18] = map_get_pixel(wiz_kb.fpg, 1, 270, 060);
+	wiz_kb.keycolor[19] = map_get_pixel(wiz_kb.fpg, 1, 310, 060);
+
+	wiz_kb.keycolor[20] = map_get_pixel(wiz_kb.fpg, 1, 010, 100);
+	wiz_kb.keycolor[21] = map_get_pixel(wiz_kb.fpg, 1, 040, 100);
+	wiz_kb.keycolor[22] = map_get_pixel(wiz_kb.fpg, 1, 070, 100);
+	wiz_kb.keycolor[23] = map_get_pixel(wiz_kb.fpg, 1, 110, 100);
+	wiz_kb.keycolor[24] = map_get_pixel(wiz_kb.fpg, 1, 140, 100);
+	wiz_kb.keycolor[25] = map_get_pixel(wiz_kb.fpg, 1, 170, 100);
+	wiz_kb.keycolor[26] = map_get_pixel(wiz_kb.fpg, 1, 210, 100);
+	
+	//teclas especiales
+	wiz_kb.keycolor[27] = map_get_pixel(wiz_kb.fpg, 1, 240, 100);
+	wiz_kb.keycolor[28] = map_get_pixel(wiz_kb.fpg, 1, 270, 100);
+	
+	wiz_kb.keycolor[29] = map_get_pixel(wiz_kb.fpg, 1, 010, 140);
+	wiz_kb.keycolor[30] = map_get_pixel(wiz_kb.fpg, 1, 070, 140);
+	wiz_kb.keycolor[31] = map_get_pixel(wiz_kb.fpg, 1, 210, 140);
+	
+	FOR ( i=0; i<=31; i++ )
+		
+		say( "color[" + i + "]: " + wiz_kb.keycolor[i] );
+		
+	END
+
+END
+
+//------------------------------------------------------------------------------------------------------------------
+PROCESS wizkeyboard_frame()
+//
+// Descripcion del Proceso
+//
+
+PRIVATE
+
+END
+
+BEGIN
+
+	file = father.file;
+	graph = 13;
+	x = 320/2;
+	y = 40;
+	z = -300;
+
+	LOOP
+	
+		if ( ! exists(father) )
+			
+			break;
+		
+		end
+	
+		frame;
+		
+	END
+
+END
+
