@@ -4,8 +4,6 @@ import "mod_math";
 function action_heal()
 
 private
-
-	int seleccion;
 	
 	int i;
 	
@@ -33,16 +31,15 @@ begin
 	graph = 1;
 	
 	x = 160;
-	y = 60;
+	y = 210;
 	
 	cursor_id = action_heal_cursor();
 	
 	cursor_id.y = y;
 	
 	// pongo el fondo para los botones
-	put(fpg_system, 125, 160, 180);
-	put(fpg_health, 3, 160, y);
-	put(fpg_health, 10, 160, 180);
+	put(fpg_health, 10, 160, 90);
+
 
 	while ( !stop )
 	
@@ -50,8 +47,7 @@ begin
 	
 		i += speed;
 		if ( i> 360000 )
-			i -= 360000;
-			// say("angle reset");
+			i -= 360000; // say("angle reset");
 		end
 		
 		pos = 100 * sin( i * 1000 );
