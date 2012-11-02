@@ -32,6 +32,7 @@ BEGIN
 	end
 	menu_avaliable[MENU_CREDITS] = TRUE;
 	menu_avaliable[MENU_EXIT] = TRUE;
+	menu_avaliable[MENU_GRAVEYARD] = TRUE;
 	
 	//cargo recursos
 	fpg_system = load_fpg("fpg/system.fpg");
@@ -44,7 +45,9 @@ BEGIN
 	play_song( ogg_dst_dreamingreen, 0 );
 	
 	// inicio la intro
-	start_intro(data_loaded);
+	//start_intro(data_loaded);
+	
+	start_intro(1);
 	
 	LOOP
 	
@@ -116,6 +119,12 @@ BEGIN
 				case MENU_CONTINUE:
 				
 					game_loop();					
+					
+				end
+				
+				case MENU_CREDITS:
+				
+					show_credits();					
 					
 				end
 				

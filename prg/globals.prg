@@ -116,6 +116,16 @@ GLOBAL
 		
 		// opciones
 		int volume = 80; // porcentaje de volumen
+		
+		// cementerio
+		struct graveyard[50];
+		
+			string name;
+			int age;
+			
+			int first_time;
+			int death_time;
+		end
 
 	END
 

@@ -66,6 +66,7 @@ include "prg/game.prg";
 include "prg/ticks.prg";
 include "prg/pet.prg";
 include "prg/menu.prg";
+include "prg/credits.prg";
 
 /* ------------------------------------------------------------------------- */
 
