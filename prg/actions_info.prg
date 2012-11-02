@@ -49,12 +49,10 @@ private
 end
 
 begin
-	
-	fpg_info = load_fpg( "fpg/info.fpg" );
 
-	say("info!");
+	file = fpg_system;
 	
-	put_screen( fpg_info, 10 );
+	put_screen( fpg_system, 10 );
 	
 	put( 0, draw_bar(data.food,		110, 14), 150, 105 );
 	put( 0, draw_bar(data.health,	110, 14), 150, 125 );
@@ -77,7 +75,6 @@ begin
 	
 onexit
 
-	unload_fpg( fpg_info );
 	delete_text( txt_id );
 
 end
