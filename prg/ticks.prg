@@ -19,7 +19,7 @@ BEGIN
 		end
 
 		//hambre
-		if ( data.fun < 50 )
+		if ( data.fun < 60 )
 			data.food -= 0.6;
 		else
 			data.food -= 0.1;
@@ -50,7 +50,7 @@ BEGIN
 		data.fun -= rand(1,8) * 0.1;
 
 		// higiene
-		data.shower -= 0.4;
+		data.shower -= 0.6;
 
 		/*
 		// hago caca
@@ -89,20 +89,20 @@ begin
 	IF ( data.status <> STA_DEAD )
 	
 		data.status = STA_NORMAL;
-		if ( data.fun > 75 )
+		if ( data.fun > 85 )
 			data.status = STA_HAPPY;
 		end
 		
-		if ( data.food < 25 )
+		if ( data.food < 40 )
 			data.status = STA_HUNGRY;
 		end
-		if ( data.fun < 25 )
+		if ( data.fun < 40 )
 			data.status = STA_SAD;
 		end
-		if ( data.shower < 25 )
+		if ( data.shower < 40 )
 			data.status = STA_DIRTY;
 		end
-		if ( data.health < 25 )
+		if ( data.health < 40 )
 			data.status = STA_ILL;
 		end
 		
