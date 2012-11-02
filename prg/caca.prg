@@ -139,27 +139,6 @@ begin
 
 end
 
-
-/* ------------------------------------------------------------------------- */
-/*
-	elimina procesos
-*/
-function kill_cacas()
-private
-	int caca_id;
-end
-begin
-
-	while ( caca_id = get_id(type caca) )
-		signal( caca_id, S_KILL );
-	end
-
-	//say( "cacas muertas" );
-
-end
-
-
-
 /* ------------------------------------------------------------------------- */
 process caca(x,y)
 
