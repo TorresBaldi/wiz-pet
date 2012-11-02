@@ -57,8 +57,9 @@ BEGIN
 	play_song( ogg_dst_dreamingreen, -1 );
 	
 	// inicio la intro
-	//start_intro(data_loaded);
 	//start_intro(1);
+	start_intro(data_loaded);
+	
 	frame;
 	
 	if ( OS_ID <> OS_GP2X_WIZ )
@@ -234,6 +235,7 @@ BEGIN
 				
 			END
 			
+			/*
 			//debug
 			if ( jkeys_state[ _JKEY_R ] )
 			
@@ -243,6 +245,7 @@ BEGIN
 			if ( jkeys_state[ _JKEY_L ] )
 				reset();
 			end
+			*/
 		end
 
 
@@ -299,7 +302,7 @@ function game_start_new()
 
 begin
 
-	say ("GAME START NEW");
+	// say("GAME START NEW");
 
 	data.food = 80;
 	data.health = 80;

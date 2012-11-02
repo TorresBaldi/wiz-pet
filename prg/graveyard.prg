@@ -102,7 +102,7 @@ begin
 	x = 100 + (total*200) - ( (index+1) * 200);
 	y = rand (80, 170);
 
-	say ( "creo tumba [" + index + "]: " + name + ", " +x + "," + y );
+	// say( "creo tumba [" + index + "]: " + name + ", " +x + "," + y );
 	
 	ctype = c_scroll;
 	

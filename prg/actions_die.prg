@@ -9,22 +9,7 @@ end
 
 begin
 
-	file = fpg_pet;
-	
-	graph = 10;
-	
-	size = 200;
-	
-	x = 160;
-	y = 120;
-	
-	while ( size > 0 )
-	
-		size -= 4;
-		
-		frame;
-		
-	end
+	action_alert( ALE_RIP );
 	
 	// say("die!");
 	

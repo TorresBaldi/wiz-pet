@@ -43,6 +43,7 @@ CONST
 	ALE_GOINSIDE	= 70;
 	ALE_NOTNEED	= 60;
 	ALE_CLEAN	= 40;
+	ALE_RIP		= 30;
 
 	// botones disponibles
 	BTN_FOOD	= 0;
