@@ -55,7 +55,7 @@ begin
 			
 			// ajusto el volumen
 			set_song_volume( current_volume );
-			set_channel_volume( -1, current_volume );
+			//set_channel_volume( -1, current_volume );
 		
 		end
 		

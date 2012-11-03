@@ -109,7 +109,10 @@ begin
 		caca_updated = true;
 
 		data.clean -= 20;
-		data.food -= 25;
+		data.food -= 20;
+		data.shower -= 25;
+		
+		play_wav( wav_fart, 0 );
 
 	end
 
@@ -150,6 +153,8 @@ begin
 
 	file = fpg_pet;
 	graph = 10;
+	
+	z = -100 - y;
 
 	loop
 	

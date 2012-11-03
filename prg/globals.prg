@@ -162,5 +162,7 @@ GLOBAL
 	int fnt_nueva_18;
 	
 	int ogg_dst_dreamingreen;
+	
+	int wav_fart;
 
 END

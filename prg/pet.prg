@@ -40,7 +40,6 @@ BEGIN
 
 	x = 100;
 	y = 180;
-	z = -100;
 
 	file = fpg_pet;
 	
@@ -58,12 +57,18 @@ BEGIN
 	LOOP
 	
 		if ( data.status <> STA_DEAD )
+		
+			//say("no esta muerto. entro al bucle");
 			
 			dist_x = (final_x - x);
 			dist_y = (final_y - y);
 			
+			//say("calculo distancia");
+			
 			// movimiento
 			if ( abs(dist_x) < 2 AND abs(dist_y) < 2)	// elijo nueva posicion
+			
+				//say("entro a elegir nueva posicion");
 			
 				final_x = rand( min_x, max_x );
 				final_y = rand( min_y, max_y );
@@ -71,17 +76,25 @@ BEGIN
 				dist_x = (final_x - x);
 				dist_y = (final_y - y);
 				
+				//say("...");
+				
 				if ( abs(dist_x) > abs(dist_y) )
+				
+					//say("entro primer if");
 				
 					vy = ( (final_y - y) / abs(final_x - x) ) / 2;
 					if ( dist_x > 0) vx = 0.5; else vx = -0.5; end
 				
 				else
 				
+					//say("entro segundo if");
+				
 					vx = ( (final_x - x) / abs(final_y - y) ) / 2;
 					if ( dist_y > 0) vy = 0.5; else vy = -0.5; end
 				
 				end
+				
+				//say("supero if");
 				
 				/*
 				say( "dist:" + dist_x + "," + dist_y );
@@ -91,14 +104,18 @@ BEGIN
 				
 			else
 			
+				//say("actualizo posicion float...");
+			
 				fx += vx;
 				fy += vy;
 				
 			end
 			
+			//say("actualizo posicion...");
+			
 			x = fx;
 			y = fy;
-			
+			z = -100 - y;
 
 			// animacion
 			i++;
@@ -129,7 +146,7 @@ BEGIN
 		
 		if ( data.status == STA_HUNGRY )
 		
-			if ( !pensamiento_id )
+			if ( !exists(pensamiento_id) )
 			
 				pensamiento_id = pensamiento( rand(1,6)*10 + 1 );
 			

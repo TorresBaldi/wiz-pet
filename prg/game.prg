@@ -52,6 +52,8 @@ BEGIN
 	
 	fnt_nueva_18 = load_fnt("fnt/nueva-std-bold-18.fnt");
 	
+	wav_fart = load_wav( "audio/fart.wav" );
+	
 	//inicio la musica
 	ogg_dst_dreamingreen = load_song( "audio/dst-dreamingreen.ogg" );
 	play_song( ogg_dst_dreamingreen, -1 );
