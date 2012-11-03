@@ -115,11 +115,11 @@ begin
 			data.status = STA_HAPPY;
 		end
 		
-		if ( data.food < 40 )
-			data.status = STA_HUNGRY;
-		end
 		if ( data.fun < 40 )
 			data.status = STA_SAD;
+		end
+		if ( data.food < 40 )
+			data.status = STA_HUNGRY;
 		end
 		if ( data.shower < 40 )
 			data.status = STA_DIRTY;
