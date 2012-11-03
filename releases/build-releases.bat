@@ -6,10 +6,10 @@ set gamename=wizpet
 
 set bennupath="E:\Bennu\bin"
 
-set windows=0
+set windows=1
 set linux=0
-set source=0
-set wiz=0
+set source=1
+set wiz=1
 set canoo=0
 set exe=1
 
@@ -28,7 +28,7 @@ set path=%path%;"C:\Archivos de programa\WinRAR"
 
 :::::::::::: CONSTRUYO LA RELEASE
 cd ..
-"%bennupath%\bgdc.exe" -a main.prg
+"%bennupath%\bgdc.exe" main.prg
 "%bennupath%\bgdc.exe" -a main.prg -s bgdi.exe -o %gamename%.exe
 cd releases\
 
@@ -83,7 +83,7 @@ IF %exe% == 0 GOTO skip_exe
 	SET exe=2
 	SET short_path=1
 	SET platform=exe
-	GOTO copy_files
+	GOTO copy_exe
 :skip_exe
 
 IF %source% == 0 GOTO skip_source
@@ -106,21 +106,47 @@ IF %short_path% == 1 SET URL=%gamename%-%platform%
 
 :: copio archivos
 copy ..\main.dcb %URL%\
+copy ..\info.txt %URL%\
 
-:: si es version exe copio el exe
-IF %exe% == 2 del %URL%\main.dcb
-IF %exe% == 2 copy ..\%gamename%.exe %URL%\
+xcopy "..\fpg" /E /D /I "%URL%\fpg"
+xcopy "..\fnt" /E /D /I "%URL%\fnt"
+xcopy "..\audio" /E /D /I "%URL%\audio"
 
 ::comprimo archivo
 winRAR a -cl -m5 -r %ver%\%gamename%-%ver%-%platform%.zip %gamename%-%platform%\*
 
 ::borro archivos
 del %URL%\main.dcb
-IF %exe%==2 del %URL%\%gamename%.exe
+del %URL%\info.txt
 
-:: indico que ya se construyo el exe
-IF %exe%==2 SET exe=0
+del /f/q %URL%\fpg
+rd %URL%\fpg
+del /f/q %URL%\fnt
+rd %URL%\fnt
+del /f/q %URL%\audio
+rd %URL%\audio
 
+GOTO bot_begin
+
+
+
+:::::::::::: CONSTRUYO EL EXE de windows
+:copy_exe
+
+SET URL=%gamename%-%platform%
+
+:: copio archivos
+copy ..\%gamename%.exe %URL%\
+copy ..\info.txt %URL%\
+
+::comprimo archivo
+winRAR a -cl -m5 -r %ver%\%gamename%-%ver%-%platform%.zip %gamename%-%platform%\*
+
+::borro archivos
+del %URL%\%gamename%.exe
+del %URL%\info.txt
+
+SET exe=0
 
 GOTO bot_begin
 
@@ -131,17 +157,27 @@ GOTO bot_begin
 
 SET URL=%gamename%-%platform%
 
-echo copio Archivos a %url%
-
+:: copio archivos
 copy ..\main.prg %URL%\
-xcopy "..\fpg" /E /D /I "%URL%\fpg"
+copy ..\info.txt %URL%\
 xcopy "..\prg" /E /D /I "%URL%\prg"
 
+xcopy "..\fpg" /E /D /I "%URL%\fpg"
+xcopy "..\fnt" /E /D /I "%URL%\fnt"
+xcopy "..\audio" /E /D /I "%URL%\audio"
+
+::comprimo archivo
 winRAR a -cl -m5 -r %ver%\%gamename%-%ver%-%platform%.zip %gamename%-%platform%\*
 
+::borro archivos
 del %URL%\main.prg
+del %URL%\info.txt
 del /f/q %URL%\fpg
 rd %URL%\fpg
+del /f/q %URL%\fnt
+rd %URL%\fnt
+del /f/q %URL%\audio
+rd %URL%\audio
 del /f/q %URL%\prg
 rd %URL%\prg
 

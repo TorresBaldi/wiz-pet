@@ -1,0 +1,44 @@
+
+
+	WIZPet 1.0
+
+	para el concurso "Making my Game the way I like 2012"
+
+
+Info:
+-----
+
+WIZPet es una pequeña mascota virtual para la WIZ.
+El objetivo es que la pequeña criatura sobreviva la mayor cantidad de dias posibles.
+Los dias son en tiempo real, por lo que deberás atender las necesidades de la criatura a diario.
+Tambien se podra visitar el cementerio, para ver tus criaturas que no lograron sobrevivir.
+
+
+Controles:
+----------
+
+Todo el juego se puede manejar con la pantalla tactil de la WIZ (y con el mouse en PC), asi como
+tambien con los botones ( y teclado en PC).
+Con las flechas izquierda y derecha seleccionas la opcion.
+Con SELECT confirmas. (ENTER en PC)
+Con MENU cancelas/volves a la pantalla anterior (ESC en PC)
+
+
+
+Programacion:
+-------------
+Gecko (Tehuel Torres Baldi)
+
+gecko666@hotmail.com
+
+
+
+Gráficos:
+---------
+Nehuen Torres Baldi
+
+
+
+Musica:
+-------
+“DST” / www.NoSoapRadio.us
