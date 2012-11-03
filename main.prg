@@ -188,9 +188,13 @@ begin
 	// guardo si se inicio una partida
 	if ( data.age )
 	
+		/*
+		debug
 		data.first_time -= 400000;
 		data.last_time = time() - 400000;
+		*/
 		
+		data.last_time = time();
 		save( cd() + "\time.dat", data );
 	end
 	
