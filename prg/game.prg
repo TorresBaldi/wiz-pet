@@ -29,7 +29,7 @@ BEGIN
 	menu_avaliable[MENU_CREDITS] = TRUE;
 	menu_avaliable[MENU_EXIT] = TRUE;
 	
-	IF ( data_loaded )
+	IF ( data.game_started )
 		menu_avaliable[MENU_CONTINUE] = TRUE;
 	END
 	
@@ -325,12 +325,14 @@ begin
 	data.first_time = time();
 	data.last_time = time();
 	
+	data.game_started = true;
+	
 	menu_avaliable[MENU_CONTINUE] = TRUE;
 	
 	update_mood();
 	
 	// le pongo nombre
-	data.name = wizkeyboard("fpg/keyboard.fpg", fnt_nueva_18, fnt_nueva_18, 0, "Name Your Pet!", 15);
+	data.name = wizkeyboard("fpg/keyboard.fpg", fnt_nueva_18, fnt_nueva_18, 0, "Name Your Pet!", 8);
 	
 	while( mouse.left OR jkeys_state[_JKEY_SELECT] )
 		frame;

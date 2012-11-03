@@ -13,6 +13,7 @@ begin
 	
 	// say("die!");
 	
+	data.game_started = false;
 	data.status = STA_DEAD;
 	
 	// actualizo las opciones del menu principal

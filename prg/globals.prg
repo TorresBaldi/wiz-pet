@@ -101,6 +101,8 @@ GLOBAL
 
 	STRUCT data
 	
+		int game_started;
+	
 		string name;
 
 		// stats de la criatura
