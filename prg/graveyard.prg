@@ -26,7 +26,7 @@ begin
 		
 	end
 	
-	max_x = ( count * 200) - 100;
+	max_x = ( count * 200) - 200;
 	
 	/*
 	say( "count " + count );
@@ -99,7 +99,7 @@ begin
 	map_put(0, graph, write_in_map(fnt_id, "Age: " + age, 4 ), 83, 80);
 	map_put(0, graph, write_in_map(fnt_id, dates, 4 ), 83, 100);
 	
-	x = 100 + (total*200) - ( (index+1) * 200);
+	x = (total*200) - ( (index+1) * 200);
 	y = rand (80, 170);
 
 	// say( "creo tumba [" + index + "]: " + name + ", " +x + "," + y );
