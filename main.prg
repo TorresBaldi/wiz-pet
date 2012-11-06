@@ -109,6 +109,17 @@ BEGIN
 	end
 	
 	rand_seed( time() );
+	
+	/* ------------------------------------------------------------------------- */
+	// inicializacion de variables
+	/* ------------------------------------------------------------------------- */
+
+	// establezco duraciones de las edades
+	age_duration[AGE_BABY]	= TICKS_PER_DAY;
+	age_duration[AGE_CHILD]	= TICKS_PER_DAY * 2;
+	age_duration[AGE_TEEN]	= TICKS_PER_DAY * 5;
+	age_duration[AGE_ADULT]	= TICKS_PER_DAY * 8;
+	age_duration[AGE_OLD]	= TICKS_PER_DAY * 10;
 
 	// inicio el bucle del juego
 	game_controller();
@@ -135,6 +146,17 @@ begin
 	if ( fexists( cd() + "\time.dat" ) )
 	
 		load( cd() + "\time.dat", data );
+		
+		// calculo el tiempo que paso en segundos
+		time_delta = time() - data.last_time;
+		calcular_ticks ( time_delta / tick, TICK_OLDGAME );
+		
+		//elimino las IDs de las cacas que pueden haber quedado
+		for( i=0; i <= 5; i++ )
+			data.dump[0][i][3] = false;
+			data.dump[1][i][3] = false;
+		end
+
 		found = true;
 		
 	else
@@ -143,38 +165,7 @@ begin
 		data.first_time = time();
 		data.last_time = time();
 
-	end
-
-	// calculo el tiempo que paso en segundos
-	time_delta = time() - data.last_time;
-
-	// modifico los stats
-	
-	/*
-	say( "antes" );
-	say( "food: " + data.food );
-	say( "health: " + data.health );
-	say( "fun: " + data.fun );
-	say( "clean: " + data.clean );
-	say( "shower: " + data.shower );
-	*/
-	
-	calcular_ticks ( time_delta / tick, TICK_OLDGAME );
-
-	/*
-	say( "ahora" );
-	say( "food: " + data.food );
-	say( "health: " + data.health );
-	say( "fun: " + data.fun );
-	say( "clean: " + data.clean );
-	say( "shower: " + data.shower );
-	*/
-	
-	//elimino las IDs de las cacas que pueden haber quedado
-	for( i=0; i <= 5; i++ )
-		data.dump[0][i][3] = false;
-		data.dump[1][i][3] = false;
-	end
+	end	
 	
 	return found;
 
@@ -186,7 +177,7 @@ function do_exit()
 begin
 
 	// guardo si se inicio una partida
-	if ( data.age )
+	if ( data.ticks > 1 )
 	
 		/*
 		debug

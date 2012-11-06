@@ -43,7 +43,7 @@ BEGIN
 
 	file = fpg_pet;
 	
-	graph = (data.age * 100) + (data.status * 10);
+	graph = 100 + (data.age * 100) + (data.status * 10);
 	
 	next_caca = rand (200, 2000);
 	
@@ -123,7 +123,7 @@ BEGIN
 			
 				i=0;
 				grafico_frame++;
-				graph = (data.age * 100) + (data.status * 10) + grafico_frame%2;
+				graph = 100 + (data.age * 100) + (data.status * 10) + grafico_frame%2;
 				
 			end			
 			
@@ -139,7 +139,7 @@ BEGIN
 			
 		else
 		
-			graph = (data.age * 100) + (data.status * 10);
+			graph = 100 + (data.age * 100) + (data.status * 10);
 		
 		end
 

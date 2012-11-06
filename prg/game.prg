@@ -36,13 +36,7 @@ BEGIN
 	IF ( data.graveyard[0].age )
 		menu_avaliable[MENU_GRAVEYARD] = TRUE;
 	END
-	
-	// establezco duraciones de las edades
-	age_duration[AGE_BABY]	= 1 * TICKS_PER_DAY;
-	age_duration[AGE_CHILD]	= 2 * TICKS_PER_DAY;
-	age_duration[AGE_TEEN]	= 4 * TICKS_PER_DAY;
-	age_duration[AGE_ADULT]	= 7 * TICKS_PER_DAY;
-	age_duration[AGE_OLD]	= 10 * TICKS_PER_DAY;
+
 	
 	//cargo recursos
 	fpg_system = load_fpg("fpg/system.fpg");

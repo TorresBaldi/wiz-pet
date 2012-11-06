@@ -3,11 +3,11 @@ CONST
 
 	//edades de la mascota
 	AGES = 5;
-	AGE_BABY 	= 1;
-	AGE_CHILD	= 2;
-	AGE_TEEN	= 3;
-	AGE_ADULT	= 4;
-	AGE_OLD		= 5;
+	AGE_BABY 	= 0;
+	AGE_CHILD	= 1;
+	AGE_TEEN	= 2;
+	AGE_ADULT	= 3;
+	AGE_OLD		= 4;
 
 	// ubicaciones de la mascota
 	LOC_INSIDE	= 2;
@@ -68,7 +68,7 @@ CONST
 	
 	GRAVEYARD_COUNT = 20;
 	
-	TICKS_PER_DAY = 280000;
+	TICKS_PER_DAY = 28800;
 
 END
 

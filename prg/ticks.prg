@@ -11,14 +11,13 @@ BEGIN
 		ticks--;
 
 		data.ticks++;
+		
+		say( "tick: " + data.ticks + "/" + age_duration[data.age] );
 
 		//crezco
-		if ( data.ticks > age_duration[data.age] AND data.age < AGES )
+		if ( data.ticks > age_duration[data.age] AND data.age < (AGES-1) )
 		
-			/* 
-			say( "ticks: " + data.ticks + "/" + age_duration[data.age] );
-			say( "se hace viejo!" );
-			*/
+			//say( "se hace viejo!" );
 		
 			data.age++;
 			
@@ -67,17 +66,15 @@ BEGIN
 		// estando fuera del juego es todo mas lento
 		ELSE
 			
-			// come 300 por dia
-			data.food -= 0.001;
+			data.food -= 0.009;
 			
-			// salud de 100 por dia
-			data.health -= 0.00025;
+			data.health -= 0.0025;
 			
-			// diversion 600 por dia
-			data.fun -= 0.002;
+			say( data.health );
 			
-			// ducha de 200 por dia
-			data.shower -= 0.0015;
+			data.fun -= 0.006;
+			
+			data.shower -= 0.005;
 		
 		END
 
