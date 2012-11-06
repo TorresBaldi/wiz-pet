@@ -13,7 +13,7 @@ echo 2 > /proc/cpu/alignment
 ##bgdc main.prg 1>log1.txt 2>err1.txt
 ##bgdi main.dcb 1>log2.txt 2>err2.txt
 
-bgdc main.prg
+##bgdc main.prg
 bgdi main.dcb
 
 sync
