@@ -4,18 +4,8 @@ A virtual Pet game for the GP2x WIZ
 
 ##TO-DOs
 
-* graveyard
+* outside ball game
 
-* naming pet
-
-* ball game
-
-* menu: pause game
-
-* menu: options screen
-
-* menu: intro
-
-* sound
+* add sounds
 
 * day/night cycle
