@@ -12,17 +12,17 @@ end
 begin
 
 	// descompongo la edad
-	while ( s > 60 );
+	while ( s >= 60 );
 		m++;
 		s -= 60;
 	end
 	
-	while( m > 60 );
+	while( m >= 60 );
 		h++;
 		m -= 60;
 	end
 	
-	while( h > 24 );
+	while( h >= 24 );
 		d++;
 		h -= 24;
 	end
@@ -66,7 +66,7 @@ begin
 	put( 0, draw_bar(data.clean,	110, 14), 150, 165 );
 	put( 0, draw_bar(data.shower,	110, 14), 150, 185 );
 	
-	put( fpg_pet, (data.age * 100) + (data.status * 10), 270, 220 );
+	put( fpg_pet, 100 + (data.age * 100) + (data.status * 10), 270, 220 );
 	
 	age = s_to_string( time() - data.first_time );
 	
