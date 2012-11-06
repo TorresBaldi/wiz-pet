@@ -49,7 +49,7 @@ begin
 
 	file = fpg_shower;
 	
-	graph = data.age * 100;
+	graph = 100 + (data.age * 100);
 	
 	x = 160;
 	y = 120;

@@ -141,10 +141,9 @@ GLOBAL
 		struct graveyard[ GRAVEYARD_COUNT ];
 		
 			string name;
-			int age;
-			
 			int first_time;
 			int death_time;
+			
 		end
 
 	END

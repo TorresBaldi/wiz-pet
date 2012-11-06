@@ -39,7 +39,7 @@ begin
 
 	// busco el primer lugar vacio
 	for ( i=0; i<=50; i++ )
-		if ( data.graveyard[i].age == 0 )
+		if ( data.graveyard[i].first_time == 0 )
 			break;
 		end
 	end
@@ -49,7 +49,6 @@ begin
 		for ( i=0; i<50; i++ )
 		
 			data.graveyard[i].name = data.graveyard[i+1].name;
-			data.graveyard[i].age = data.graveyard[i+1].age;
 			data.graveyard[i].first_time = data.graveyard[i+1].first_time;
 			data.graveyard[i].death_time = data.graveyard[i+1].death_time;
 		
@@ -58,7 +57,6 @@ begin
 	
 	// agrego datos de la mascota al cementerio
 	data.graveyard[i].name= data.name;
-	data.graveyard[i].age= data.age;
 	data.graveyard[i].first_time = data.first_time;
 	data.graveyard[i].death_time = time();
 	

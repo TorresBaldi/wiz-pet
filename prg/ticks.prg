@@ -12,7 +12,7 @@ BEGIN
 
 		data.ticks++;
 		
-		say( "tick: " + data.ticks + "/" + age_duration[data.age] );
+		//say( "tick: " + data.ticks + "/" + age_duration[data.age] );
 
 		//crezco
 		if ( data.ticks > age_duration[data.age] AND data.age < (AGES-1) )
@@ -70,7 +70,7 @@ BEGIN
 			
 			data.health -= 0.0025;
 			
-			say( data.health );
+			//say( data.health );
 			
 			data.fun -= 0.006;
 			

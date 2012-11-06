@@ -33,7 +33,7 @@ BEGIN
 		menu_avaliable[MENU_CONTINUE] = TRUE;
 	END
 	
-	IF ( data.graveyard[0].age )
+	IF ( data.graveyard[0].first_time )
 		menu_avaliable[MENU_GRAVEYARD] = TRUE;
 	END
 

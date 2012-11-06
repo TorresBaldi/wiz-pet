@@ -17,7 +17,7 @@ begin
 	// cuento la cantidad de muertos
 	for ( count=0; count < GRAVEYARD_COUNT; count++ )
 	
-		if ( data.graveyard[count].age == 0 )
+		if ( data.graveyard[count].first_time == 0 )
 		
 			// say("lugar " + count + " vacio");
 			break;
